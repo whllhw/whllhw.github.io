@@ -4,7 +4,7 @@ import os
 import time
 from multiprocessing import Process
 def deploy(data):
-    filename = data.split('title: ',1)[1].split('\n',1)[0]
+    filename = data.split('title: ',1)[1].split('\n',1)[0].replace('-','').replace('/','').replace('\\','')
     with open('_posts/'+filename+'.md','wb') as f:
         f.writelines(data.encode('utf-8'))
     Process(target=main,args=(data,)).start()
