@@ -10,7 +10,7 @@ def deploy(data):
     return filename
     
 def main(filename):
-    os.system('cp _posts/{}.md ../whllhw.github.io/sources/_posts'.format(filename.encode('utf-8')))
+    os.system('cp _posts/{}.md ../whllhw.github.io/source/_posts'.format(filename.encode('utf-8')))
     os.chdir('../whllhw.github.io')
     os.system('hexo g')
     os.chdir('public/')
