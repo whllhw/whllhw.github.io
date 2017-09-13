@@ -1,9 +1,0 @@
-                        ---
-                        title: 
-                        tags: 
-                        date: 
-                        ---
-
-                        <!--more-->
-
-                
