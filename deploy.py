@@ -7,7 +7,7 @@ def deploy(data):
     filename = data.split('title: ',1)[1].split('\n',1)[0]
     with open('_posts/'+filename+'.md','wb') as f:
         f.writelines(data.encode('utf-8'))
-    Process(main,args=(data,)).start()
+    Process(target=main,args=(data,)).start()
     return filename
     
 def main(filename):
