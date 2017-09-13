@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh">        
+<head>
+        <meta charset="utf-8" />
+        <title>Simple example - Editor.md examples</title>
+        <link rel="stylesheet" href="{{ url_for("static",filename="style.css") }}"/>
+        <link rel="stylesheet" href="{{ url_for("static",filename="editormd.css") }}"/>
+</head>
+
+<body>
+        <div id="layout">
+            <header>
+                <h1>Simple example</h1>
+            </header>
+
+            <div id="test-editormd">
+                <textarea style="display:none;">
+---
+title: 
+tags: 
+date: 
+---
+
+<!--more-->
+                </textarea>
+            </div>
+
+        </div>
+        <script src="{{ url_for("static",filename="jquery.min.js") }}"></script>
+        <script src="{{ url_for("static",filename="editormd.min.js") }}"></script>
+        <script type="text/javascript">
+			var testEditor;
+
+            $(function() {
+                testEditor = editormd("test-editormd", {
+                    width   : "90%",
+                    height  : 640,
+                    syncScrolling : "single",
+                    path    : "http://ow7hjaxkb.bkt.clouddn.com/lib/"
+                });
+                /*
+                // or
+                testEditor = editormd({
+                    id      : "test-editormd",
+                    width   : "90%",
+                    height  : 640,
+                    path    : "../lib/"
+                });
+                */
+            });
+            function send(){
+                //testEditor.getMarkdown().toString()
+                $.ajax({
+                    type: 'POST',
+                    url: '../upload/',
+                    data: JSON.stringify({'content':testEditor.getMarkdown().toString()}), // or JSON.stringify ({name: 'jonas'}),
+                    success: function(data) { alert('已经保存为： ' + data['filename']); },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
+            }
+        </script>
+        <button onclick='send();'>确定</button>
+    </body>
+</html>
