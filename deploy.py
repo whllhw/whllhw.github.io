@@ -16,6 +16,8 @@ def main(filename):
     os.system('hexo g')
     os.chdir('public/')
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+    os.chair('cd ../source/_posts')
+    os.system('git add .;git commit -m "Site update:{}";git push origin HEAD:passage'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))    
 
 if __name__ == '__main__':
     deploy('''---
