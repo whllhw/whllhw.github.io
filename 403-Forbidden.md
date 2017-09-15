@@ -5,7 +5,6 @@ abbrlink: 15782
 date: 2017-06-01 13:37:00
 ---
 
-
 php7.0-fpm + Nginx搭建php服务，遇到403 也是常见的情形。网络上有说进程数不够、缓存不够会出现403 ，可我这破网站也就我一人在上，显然不是这情况。先记录下如何安装。
 	
 	sudo apt-get install php nginx # 默认php7自带了fpm
