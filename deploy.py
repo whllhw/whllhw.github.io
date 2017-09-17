@@ -18,7 +18,6 @@ title: {}
 tags: {}
 date: {} 
 ---
-<!--more-->
         '''.format(title.encode('utf-8'),tags.encode('utf-8'),time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
         f.writelines(data.encode('utf-8'))
     return filename
