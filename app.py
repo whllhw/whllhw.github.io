@@ -36,7 +36,7 @@ def upload():# JQ 使用Json格式实现跨域传送，前后端JSON数据交换
     return Response(json.dumps({'filename':filname}),  mimetype='application/json')
 
 if __name__=='__main__':
-    app.run(port=80,host='0.0.0.0')
+    app.run(port=5000,host='0.0.0.0')
     
 
 
