@@ -1,7 +1,7 @@
-
 ---
 title: 使用Flask 中遇到的Python2 编码问题
-tags: flask,python
+tags: 'flask,python'
+abbrlink: 22006
 date: 2017-09-17 16:47:49
 ---
         # 使用Flask 中遇到的Python2 编码问题
