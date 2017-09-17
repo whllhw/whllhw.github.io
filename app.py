@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
-from flask import Flask,g,session
+from flask import Flask,g,session,redirect
 from flask import render_template
 from flask import request,Response
 import deploy,json,os
