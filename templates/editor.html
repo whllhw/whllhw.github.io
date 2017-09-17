@@ -57,7 +57,7 @@ date:
                         'tags':$('#tags').val(),
                 }), // or JSON.stringify ({name: 'jonas'}),
                     success: function(data) {
-                        if (data.get('error')){
+                        if (data['error']){
                             alert('文件保存失败：'+data['filename']+'\nerror:'+data['error']+'\n提交失败');
                             return
                         }
