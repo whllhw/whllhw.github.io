@@ -29,7 +29,6 @@ date:
         <script src="http://ow7hjaxkb.bkt.clouddn.com/editormd.min.js"></script>
         <script type="text/javascript">
 			var testEditor;
-
             $(function() {
                 testEditor = editormd("test-editormd", {
                     width   : "90%",
@@ -52,7 +51,11 @@ date:
                 $.ajax({
                     type: 'POST',
                     url: '../upload/',
-                    data: JSON.stringify({'content':testEditor.getMarkdown().toString()}), // or JSON.stringify ({name: 'jonas'}),
+                    data: JSON.stringify({
+                        'content':testEditor.getMarkdown().toString(),
+                        'title':$('#username').val(),
+                        'tags':$('#password').val(),
+                }), // or JSON.stringify ({name: 'jonas'}),
                     success: function(data) { 
                         if (confirm('已经保存为： ' + data['filename']+'\n是否保存？')){
                             publish(data['filename']);
@@ -68,6 +71,15 @@ date:
                 });
             }
         </script>
+        <form action="{{ url_for('login') }}" method=post>
+        <!--input type="submit" value="Submit" /-->
+        
+        <dl>
+        <dt>title:
+        <dd><input type=text name=username>
+        <dt>tags:
+        <dd><input type=text name=password></dl>
+        </form>
         <button onclick='send();'>确定</button>
     </body>
 </html>

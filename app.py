@@ -62,9 +62,11 @@ def editor():
 @app.route('/upload/', methods=['POST','GET'])
 def upload():# JQ 使用Json格式实现跨域传送，前后端JSON数据交换，$.ajax 不会自动转换数据到Json，需要手动转化JSON.stringify
     if not session.get('logged_in'):
-        redirect(url_for('login'))
+        return redirect(url_for('login'))
     if request.method == 'POST':
         filename = deploy.deploy(request.json['content'])
+        print request.json['title']
+        print request.json['tags']
         return Response(json.dumps({'filename':filename}),  mimetype='application/json')
     else:
         filename = request.args.get('filename',None)
