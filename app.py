@@ -45,7 +45,7 @@ def login():
         else:
             return 'Login Failed,Please Retry!'
     else:
-        if session['logged_in']:
+        if session.get('logged_in'):
             redirect(url_for('edit'))
         else:
             return render_template('login.html')
@@ -53,14 +53,14 @@ def login():
 # 编辑界面
 @app.route('/edit/')
 def editor():
-    if session['logged_in']:
+    if session.get('logged_in'):
         return render_template('editor.html')
     else:
         redirect(url_for('login'))
 # 上传Markdown文件
 @app.route('/upload/', methods=['POST','GET'])
 def upload():# JQ 使用Json格式实现跨域传送，前后端JSON数据交换，$.ajax 不会自动转换数据到Json，需要手动转化JSON.stringify
-    if not session['logged_in']:
+    if not session.get('logged_in'):
         redirect(url_for('login'))
     if request.method == 'POST':
         filename = deploy.deploy(request.json['content'])
