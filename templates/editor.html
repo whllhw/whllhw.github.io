@@ -20,7 +20,6 @@ title:
 tags: 
 date: 
 ---
-
 <!--more-->
                 </textarea>
             </div>
@@ -54,9 +53,18 @@ date:
                     type: 'POST',
                     url: '../upload/',
                     data: JSON.stringify({'content':testEditor.getMarkdown().toString()}), // or JSON.stringify ({name: 'jonas'}),
-                    success: function(data) { alert('已经保存为： ' + data['filename']); },
+                    success: function(data) { 
+                        if (alert('已经保存为： ' + data['filename']+'\n是否保存？')){
+                            publish(data['filename']);
+                        }
+                    },
                     contentType: "application/json",
                     dataType: 'json'
+                });
+            }
+            function publish(filename){
+                $.get( "../upload/?filename="+filename, function( data ) {
+                    alert( "Data Loaded: " + data );
                 });
             }
         </script>
