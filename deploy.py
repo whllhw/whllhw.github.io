@@ -13,17 +13,12 @@ def deploy(data,title,tags):
     # data为 unicode类型
     with open('_posts/'+filename+'.md','wb') as f:
         f.write('''
-        
-        ---
-
-        title: {}
-        tags: {}
-        date: {}
-        
-        ---
-
-        <!--more-->
-        
+---
+title: {}
+tags: {}
+date: {} 
+---
+<!--more-->
         '''.format(title.encode('utf-8'),tags.encode('utf-8'),time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
         f.writelines(data.encode('utf-8'))
     return filename
@@ -35,7 +30,7 @@ def main(filename):
     os.system('hexo g')
     os.chdir('public/')
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
-    os.chair('../source/_posts')
+    os.chdir('../source/_posts')
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))    
 
 if __name__ == '__main__':
