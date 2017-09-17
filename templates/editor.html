@@ -54,7 +54,7 @@ date:
                     url: '../upload/',
                     data: JSON.stringify({'content':testEditor.getMarkdown().toString()}), // or JSON.stringify ({name: 'jonas'}),
                     success: function(data) { 
-                        if (alert('已经保存为： ' + data['filename']+'\n是否保存？')){
+                        if (confirm('已经保存为： ' + data['filename']+'\n是否保存？')){
                             publish(data['filename']);
                         }
                     },

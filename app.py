@@ -1,11 +1,28 @@
 #!/usr/bin/env python
 # coding=utf-8
-from flask import Flask 
+from flask import Flask,g,session
 from flask import render_template
 from flask import request,Response
 import deploy,json
 app = Flask(__name__)
+import MySQLdb
+app.config['SECRET_KEY']=os.urandom(24)
+def get_db():
+    db = getattr(g, 'db', None)
+    if db is None:
+        db = g.db = init_db()
+    return db
 
+def init_db():
+    conn = MySQLdb.connect('118.89.41.105','root','lhw520','db_game',3306,'/tmp/mysql.sock',charset='utf8')
+    conn.autocommit(1)
+    return conn.cursor()
+
+@app.teardown_appcontext
+def teardown_db(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
 # 主页
 @app.route('/')
 def index():
@@ -20,19 +37,31 @@ def hello(name=None):
 @app.route('/login/',methods=['GET','POST'])
 def login():
     if request.method == 'POST':
-        pass
+        result = g.db.execute('select username,password from t_user where username="{}" and password="{}"'.format(
+            request.form['username'].encode('utf-8'),request.form['password'].encode('utf-8')))
+        if result:
+            session['logged_in'] = True
+            redirect(url_for('edit'))
+        else:
+            return 'Login Failed,Please Retry!'
     else:
-        pass
-    return 'login'
+        if session['logged_in']:
+            redirect(url_for('edit'))
+        else:
+            return render_template('login.html')
 
 # 编辑界面
 @app.route('/edit/')
 def editor():
-    return render_template('editor.html')
-
+    if session['logged_in']:
+        return render_template('editor.html')
+    else:
+        redirect(url_for('login'))
 # 上传Markdown文件
 @app.route('/upload/', methods=['POST','GET'])
 def upload():# JQ 使用Json格式实现跨域传送，前后端JSON数据交换，$.ajax 不会自动转换数据到Json，需要手动转化JSON.stringify
+    if not session['logged_in']:
+        redirect(url_for('login'))
     if request.method == 'POST':
         filename = deploy.deploy(request.json['content'])
         return Response(json.dumps({'filename':filename}),  mimetype='application/json')
