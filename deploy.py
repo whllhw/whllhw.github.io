@@ -12,13 +12,14 @@ def deploy(data,title,tags):
     filename += hashlib.md5(data.encode('utf-8')).hexdigest()[:4].decode('utf-8')
     # data为 unicode类型
     with open('_posts/'+filename+'.md','wb') as f:
-        f.write('''
+        f.write(
+'''
 ---
 title: {}
 tags: {}
 date: {}
 ---
-        '''.format(title.encode('utf-8'),tags.encode('utf-8'),time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+'''.format(title.encode('utf-8'),tags.encode('utf-8'),time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
         f.writelines(data.encode('utf-8'))
     return filename
 def post(filename):
