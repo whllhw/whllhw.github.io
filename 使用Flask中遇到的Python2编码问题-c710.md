@@ -4,7 +4,7 @@ tags: 'flask,python'
 abbrlink: 22006
 date: 2017-09-17 16:47:49
 ---
-        # 使用Flask 中遇到的Python2 编码问题
+# 使用Flask 中遇到的Python2 编码问题
 
 >  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。
 
