@@ -8,7 +8,9 @@ def deploy(data,title,tags):
     if not os.path.exists('_posts'):
         os.makedirs('_posts')
     #filename = data.split('title: ',1)[1].split('\n',1)[0].replace('-','').replace('/','').replace('\\','').replace(' ','')
-    filename = title.replace('/','').replace('\\','').replace(' ','')+hashlib.md5(data).hexdigest()[:4]
+    filename = title.replace('/','').replace('\\','').replace(' ','')+'-'
+    filename += hashlib.md5(data.encode('utf-8')).hexdigest()[:4].decode('utf-8')
+    # data为 unicode类型
     with open('_posts/'+filename+'.md','wb') as f:
         f.write('''
         ---
@@ -17,7 +19,7 @@ def deploy(data,title,tags):
         date: {}
         ---
         <!--more-->
-        '''.format(title,tags,time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())).encode('utf-8'))
+        '''.format(title.encode('utf-8'),tags.encode('utf-8'),time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
         f.writelines(data.encode('utf-8'))
     return filename
 def post(filename):
@@ -28,7 +30,7 @@ def main(filename):
     os.system('hexo g')
     os.chdir('public/')
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
-    os.chair('cd ../source/_posts')
+    os.chair('../source/_posts')
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))    
 
 if __name__ == '__main__':
