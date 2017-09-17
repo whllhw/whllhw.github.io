@@ -25,9 +25,9 @@ date: {}
 def post(filename):
     Process(target=main,args=(filename,)).start()
 def main(filename):
-    os.system('cp _posts/{}.md ../whllhw.github.io/source/_posts'.format(filename.encode('utf-8')))
+    os.system('cp _posts/{}.md ../whllhw.github.io/source/_posts -f'.format(filename.encode('utf-8')))
     os.chdir('../whllhw.github.io/source/_posts')
-    os.system('git add .;git commit -m "Site update:{}";git push -f'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+    os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
     os.chdir('../../')
     os.system('hexo g')
     os.chdir('public/')
