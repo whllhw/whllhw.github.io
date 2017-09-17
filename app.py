@@ -3,7 +3,7 @@
 from flask import Flask,g,session
 from flask import render_template
 from flask import request,Response
-import deploy,json
+import deploy,json,os
 app = Flask(__name__)
 import MySQLdb
 app.config['SECRET_KEY']=os.urandom(24)
