@@ -2,7 +2,7 @@
 # coding=utf-8
 from flask import Flask,g,session,redirect
 from flask import render_template
-from flask import request,Response
+from flask import request,Response,url_for
 import deploy,json,os
 app = Flask(__name__)
 import MySQLdb
@@ -14,7 +14,7 @@ def get_db():
     return db
 
 def init_db():
-    conn = MySQLdb.connect('118.89.41.105','root','lhw520','db_game',3306,'/tmp/mysql.sock',charset='utf8')
+    conn = MySQLdb.connect('localhost','root','lhw520','db_game',3306,'/tmp/mysql.sock',charset='utf8')
     conn.autocommit(1)
     return conn.cursor()
 
@@ -36,17 +36,18 @@ def hello(name=None):
 # 登录界面
 @app.route('/login/',methods=['GET','POST'])
 def login():
+    get_db()
     if request.method == 'POST':
         result = g.db.execute('select username,password from t_user where username="{}" and password="{}"'.format(
             request.form['username'].encode('utf-8'),request.form['password'].encode('utf-8')))
         if result:
             session['logged_in'] = True
-            redirect(url_for('edit'))
+            return redirect(url_for('editor'))
         else:
             return 'Login Failed,Please Retry!'
     else:
         if session.get('logged_in'):
-            redirect(url_for('edit'))
+            return redirect(url_for('editor'))
         else:
             return render_template('login.html')
 
@@ -56,7 +57,7 @@ def editor():
     if session.get('logged_in'):
         return render_template('editor.html')
     else:
-        redirect(url_for('login'))
+        return redirect(url_for('login'))
 # 上传Markdown文件
 @app.route('/upload/', methods=['POST','GET'])
 def upload():# JQ 使用Json格式实现跨域传送，前后端JSON数据交换，$.ajax 不会自动转换数据到Json，需要手动转化JSON.stringify
