@@ -64,9 +64,9 @@ def upload():# JQ 使用Json格式实现跨域传送，前后端JSON数据交换
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     if request.method == 'POST':
-        filename = deploy.deploy(request.json['content'])
-        print request.json['title']
-        print request.json['tags']
+        filename = deploy.deploy(request.json['content'], request.json['title'],request.json['tags'])
+        if not request.json['title']:
+            return Response(json.dumps({'filename':filename,'error':'未填写标题'}),  mimetype='application/json')
         return Response(json.dumps({'filename':filename}),  mimetype='application/json')
     else:
         filename = request.args.get('filename',None)

@@ -56,7 +56,11 @@ date:
                         'title':$('#title').val(),
                         'tags':$('#tags').val(),
                 }), // or JSON.stringify ({name: 'jonas'}),
-                    success: function(data) { 
+                    success: function(data) {
+                        if (data.get('error')){
+                            alert('文件保存失败：'+data['filename']+'\nerror:'+data['error']+'\n提交失败');
+                            return
+                        }
                         if (confirm('已经保存为： ' + data['filename']+'\n是否保存？')){
                             publish(data['filename']);
                         }
