@@ -1,8 +1,8 @@
+
 ---
 title: Selenium 自动化测试框架
-tags: 'Selenium,python'
-abbrlink: 54061
-date: 2017-09-21 12:26:21
+tags: Selenium,python
+date: 2017-09-21 12:29:15
 ---
 
 > 比较快速的爬取一些网站，最快就是用这个框架，记录遇到的坑。
@@ -30,17 +30,17 @@ date: 2017-09-21 12:26:21
 - 隐式等待，可以自制一个装饰器，重复调用
 
 ```python
-	from selenium.webdriver.common.by import By
-	from selenium.webdriver.support import expected_conditions as EC
-	from selenium.webdriver.support.ui import WebDriverWait
-	def wait(func):
-		def wrapper(*args,**kw):
-			return WebDriverWait(driver, 30).until(func(*args,**kw))
-		return wrapper
-	@wait
-	def find_element_by_xpath(xpath):
-		return  EC.presence_of_element_located((By.XPATH, xpath))
-	@wait
-	def find_elements_by_xpath(xpath):
-		return EC.presence_of_elements_located((By.XPATH, xpath))
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+def wait(func):
+	def wrapper(*args,**kw):
+		return WebDriverWait(driver, 30).until(func(*args,**kw))
+	return wrapper
+@wait
+def find_element_by_xpath(xpath):
+	return  EC.presence_of_element_located((By.XPATH, xpath))
+@wait
+def find_elements_by_xpath(xpath):
+	return EC.presence_of_elements_located((By.XPATH, xpath))
 ```
