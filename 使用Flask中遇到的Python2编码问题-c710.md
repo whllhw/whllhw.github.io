@@ -2,10 +2,13 @@
 title: 使用Flask 中遇到的Python2 编码问题
 tags: 'flask,python'
 abbrlink: 22006
-date: 2017-09-17 16:35:02
+date: 2017-09-17 16:47:49
 ---
 # 使用Flask 中遇到的Python2 编码问题
+<<<<<<< HEAD
 
+=======
+>>>>>>> dade94cfd1abc93889060ce2b5e11684262c12b0
 
 >  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。
 
