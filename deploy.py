@@ -30,5 +30,6 @@ def main(filename):
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
     os.chdir('../../')
     os.system('hexo g')
-    os.chdir('public/')
-    os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))    
+    os.system('hexo d')
+#    os.chdir('public/')
+#    os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))    
