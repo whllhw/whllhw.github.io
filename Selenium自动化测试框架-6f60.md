@@ -1,6 +1,7 @@
 ---
 title: Selenium 自动化测试框架
-tags: Selenium,python
+tags: 'Selenium,python'
+abbrlink: 54061
 date: 2017-09-21 12:29:15
 ---
 

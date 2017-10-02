@@ -5,10 +5,6 @@ abbrlink: 22006
 date: 2017-09-17 16:47:49
 ---
 # 使用Flask 中遇到的Python2 编码问题
-<<<<<<< HEAD
-
-=======
->>>>>>> dade94cfd1abc93889060ce2b5e11684262c12b0
 
 >  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。
 
@@ -31,8 +27,7 @@ Flask 中提交的表单 + MySQLdb + Mysql
 g.db.execute('insert into entries (title, text) values ({}, {})'.format(request.form['title'].encode('utf-8'), request.form['text'].encode('utf-8')))
 ```
 
-​	request.form['title'] 的类型是Unicode，encode后应该就可以变成str了，可是
-
+request.form['title'] 的类型是Unicode，encode后应该就可以变成str了，可是
 提示``OperationalError: (1054, "Unknown column 'abc' in 'field list'")``英文都插入不了，然后经Stack Overflow启发，改动 { } => "{ }"，然后就可以运行了。。坑死了。
 
 还有一个坑：``OperationalError: (2002, "Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)")``
