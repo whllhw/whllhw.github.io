@@ -1,5 +1,5 @@
 # coding=utf-8
-from flask import Flask,g,session,redirect,jsonify
+from flask import Flask,g,redirect,jsonify
 from flask import render_template,abort
 from flask import request,Response,url_for
 import json,MySQLdb,time,hashlib
