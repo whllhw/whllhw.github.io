@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="keywords" content="短网址,短链接,网址缩短,短网址服务,短链接生成器,缩短网址,短网址生成,长网址,免费缩址,长网址变短网址">
+<meta name="description" content="suo.im为您提供：在线生成短网址，短链接,网址缩短服务，开放api接口，不限制接口请求数，可以批量生成短链接。绿标短网址，防屏蔽、防拦截。">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no,email=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="zh-CN"> 
+        <title>短网址_短链接_网址缩短-intmain.me短网址</title>        
+        <link href="http://suo.im/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"> 
+        <script type="text/javascript" src="{{ url_for('static', filename='Jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='create.url.js') }}"></script>        
+<style>
+            html {
+                background: #105c9a url(/Public/Web/img/bg.png) repeat-x scroll 0 -450px;
+                overflow-y: scroll
+            }
+
+            body,
+            h1{
+                margin: 0;
+                padding: 0
+            }
+
+            body {
+                min-width: 900px;
+                max-height: 358px;
+                padding: 21px 0;
+                font: 12px/1.62 Georgia, tahoma, arial, \5b8b\4f53;
+                /*background: url(/Public/Web/img/bg.png) no-repeat center 0;
+                */_background: none
+            }
+
+            a {
+                text-decoration: none
+            }
+
+            h1 {
+                width: 204px;
+                margin: 0 auto 10px;
+                *margin-bottom: 0;
+            }
+
+            h1 a {
+                color: white;
+                font-size: 48px;
+                font-weight: normal
+            }
+
+            h1 strong {
+                position: relative;
+                top: -2px;
+                left: 5px;
+                font-size: 40px;
+                font-weight: normal;
+                font-family: Microsoft YaHei, simhei
+            }		
+
+
+            label {
+                display: block;
+                font-size: 14px;
+                font-weight: bold
+            }
+
+            input {
+                width: 521px;
+                height: 16px;
+                padding: 7px 5px;
+                font-size: 14px;
+                font-weight: bold;
+                font-family: Georgia, tahoma, arial, \5b8b\4f53;
+                border: solid 1px #333;
+                border-radius: 4px;
+                background: #e8f4fc;
+                outline: none;
+                box-shadow: 0 1px 0 rgba(255, 255, 255, 0.27), 1px 1px 2px rgba(0, 0, 0, 0.443) inset
+            }
+
+            input:focus {
+                background: #fff;
+            }
+
+            button {
+                height: 44px;
+                padding: 0 35px 4px;
+                *padding: 0 17px;
+                color: white;
+                font-size: 23px;
+                font-family: Microsoft YaHei, simhei;
+                background: #ce1171 url(/Public/Web/img/bg.png) 0 -400px;
+                border: solid 2px white;
+                border-radius: 5px;
+                cursor: pointer
+            }
+
+            textarea::-webkit-input-placeholder {
+                text-align: center;
+                padding-top: 70px;
+            }
+
+            .section {
+                width: 700px;
+                margin: 0 auto;
+                color: white;
+            }
+
+            .success {
+                position: relative;
+                font-size: 14px;
+                word-break: break-all;
+                word-wrap: break-word
+            }
+
+            .success a {
+                color: white
+            }		
+            .foot {
+                color: #7EBFDC;
+                text-align: center
+            }
+
+            .foot a {
+                color: #7EBFDC
+            }
+
+            .ad {
+                width: 728px;
+                margin: 110px auto 0 -96px;
+            }
+
+            .text {
+                width: 700px;
+                display: block;
+                margin: 0 auto 25px auto;
+                height: 200px;
+                resize: none;
+                font-size: 20px;
+                border-color: rgba(204, 204, 204, 1);
+                border-radius: 5px;
+            }
+
+            .url {
+                margin: 15px 0 12px
+            }
+
+            .url label {
+                margin-bottom: 3px
+            }
+
+            .alias label {
+                display: inline;
+                margin-right: 4px
+            }
+
+            .alias input {
+                width: 80px;
+                margin: 0 3px;
+                padding: 3px
+            }
+
+            .shorten {
+                text-align: right;
+                margin: 10px 5px 50px
+            }
+
+            .n {
+                width: 200px;
+                padding: 5px 3px;
+                border: 0;
+                border-radius: 0;
+                box-shadow: 0 0 0 0;
+            }
+
+            .p {
+                position: absolute;
+                display: none;
+                width: 122px;
+                margin-top: -56px;
+                *margin-top: -29px;
+                left: 49px;
+                padding: 2px 8px 3px;
+                border: solid 1px #0f619d;
+                background: #dbdbdb;
+                color: #f00;
+                text-shadow: 1px 1px 1px #fff;
+                box-shadow: 0 1px 2px #0f619d;
+                border-radius: 0
+            }
+
+            .p span {
+                position: absolute;
+                display: block;
+                width: 0;
+                height: 0;
+                _overflow: hidden;
+                top: 28px;
+                left: 61px;
+                border: solid 6px #0f619d;
+                border-color: #0f619d transparent;
+                border-width: 6px 6px 0
+            }
+
+            .f .p {
+                display: block
+            }
+
+            .p1 {
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            .warp {
+                display: block;
+                width: 800px;
+                margin: 0 auto;
+                color: #000;
+                margin-bottom: 50px;
+                color: #fff;
+            }
+            .warp p{
+                font-size: 14px;
+                line-height: 16px;
+            }
+            .warp>div{
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <h1>
+                <strong>
+                    <a href="/">网址缩短</a>
+                </strong>
+            </h1>
+            <form>
+                <div>
+                    <p class="p1">输入将要缩短的长网址:</p>
+                    <textarea class="text" placeholder="每行一个长网址，可以批量缩短，支持一次缩短300条短网址" id="multiurl" name="multiurl" style="#ce1171"></textarea>
+                </div>
+                <div class="shorten">
+                    <button type="button" onclick="form_submit(this, '/')">生 成</button>
+                </div>
+            </form>
+            
+            <div class="foot">友情链接：
+            </div>
+            <br/>
+            <div class="foot">
+               <br />
+            </div>
+            <div style="display: none;">
+            </div>
+    </body>
+</html>

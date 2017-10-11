@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正在前往</title>
+</head>
+<body>
+    {% if text %}
+        隐藏的信息为：{{ text }}
+    {% endif %}
+    {% if error==503 %}
+        查询失败
+    {% endif %}
+    {% if error==404 %}
+        查询网址有误
+    {% endif %}
+</body>
+</html>
