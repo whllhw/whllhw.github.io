@@ -1,7 +1,7 @@
-
 ---
 title: 我的云上CentOS记录
-tags: centos,linux
+tags: 'centos,linux'
+abbrlink: 8687
 date: 2017-11-25 19:55:27
 ---
 # #使用CentOS笔记
