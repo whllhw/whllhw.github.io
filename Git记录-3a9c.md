@@ -1,7 +1,7 @@
-
 ---
 title: Git记录
-tags: git,linux
+tags: 'git,linux'
+abbrlink: 20125
 date: 2017-11-25 20:02:36
 ---
 # #Git 使用笔记
