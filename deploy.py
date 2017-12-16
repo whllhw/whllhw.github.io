@@ -25,6 +25,9 @@ date: {}
 def post(filename):
     Process(target=main,args=(filename,)).start()
 def main(filename):
+    # 复制指定的文件名到 whllhw.github.io/source/_posts 
+    # 并提交，同步到 github 的 passage 分支
+    # 使用 hexo 自动提交到master分支
     os.system('cp _posts/{}.md ../whllhw.github.io/source/_posts -f'.format(filename.encode('utf-8')))
     os.chdir('../whllhw.github.io/source/_posts')
     os.system('git add .;git commit -m "Site update:{}";git push'.format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
