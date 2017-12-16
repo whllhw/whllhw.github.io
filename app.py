@@ -38,8 +38,8 @@ def hello(name=None):
 def login():
     get_db()
     if request.method == 'POST':
-        result = g.db.execute('select username,password from t_user where username="{}" and password="{}"'.format(
-            request.form['username'].encode('utf-8'),request.form['password'].encode('utf-8')))
+        result = g.db.execute('select username,password from t_user where username=%s and password=%s',[
+            request.form['username'].encode('utf-8'),request.form['password'].encode('utf-8')])
         if result:
             session['logged_in'] = True
             return redirect(url_for('editor'))

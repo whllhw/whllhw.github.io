@@ -1,3 +1,5 @@
 static/
 _posts/
 *.pyc
+app.log
+uwsgi.pid
