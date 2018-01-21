@@ -27,7 +27,7 @@ def ImportPassage():
     db_session.commit()
     User.query.filter(User.name == 'lhw').first()
     """
-    import os
+    import os,sys
     from models import Passage,Category
     from datetime import datetime
     filePath = 'E:/博客/whllhw.github.io/'
@@ -35,25 +35,32 @@ def ImportPassage():
     for file in fileNames:
         with open(filePath+file,encoding='utf-8') as f:
             _ = f.readline()
-            title,tag,_,date,*content = (i for i in f)
-            title = title.split(':')[1].strip().replace('\n','')
-            tag = tag.split(':')[1].replace('\n','').replace('\'','')
-            date = date.split(':',1)[1].replace('\n','')  # 注意 maxSplit = 1 最大分割次数
-            content = ''.join(content)
-            for t in tag.split(','):# 处理标签，对不在数据库中的进行创建
+            info = {}
+            for i in f:
+                if '---' in i:
+                    break
+                i = i.split(':',1)
+                info[i[0]] = i[1].strip().replace('\n','')
+            try:
+                info['tags'] = info['tags'].lower().replace('\'','')
+            except:
+                print('----',info)
+                exit()
+            content = ''.join((i for i in f))
+            for t in info['tags'].split(','):# 处理标签，对不在数据库中的进行创建
                 if not Category.query.filter(Category.name == t.strip()).first():
                     db_session.add(Category(t.strip()))
                     db_session.commit()
             # 提交文章
-            if not Passage.query.filter(Passage.title==title).first():
+            if not Passage.query.filter(Passage.title==info['title']).first():
                 try:
-                    db_session.add(Passage(title=title,context=content,date=datetime.strptime(date.strip(),'%Y-%m-%d %H:%M:%S'),author=1))
-                except ValueError:
-                    print(file)
-                else:
-                    print('无错误')
-                    db_session.commit()
+                    date = datetime.strptime(info['date'].strip(),'%Y-%m-%d %H:%M:%S')
+                except:
+                    info['date'] = info['date'].replace('\'','')
+                    date = datetime.strptime(info['date'].strip(),'%Y/%m/%d %H:%M:%S')
 
+                db_session.add(Passage(title=info['title'],context=content,date=date,author=1))
+                db_session.commit()
 
 if __name__ == '__main__':
     # init_db()
