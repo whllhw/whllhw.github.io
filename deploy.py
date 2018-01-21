@@ -5,7 +5,6 @@ import time
 from multiprocessing import Process
 import hashlib
 
-
 def deploy(data, title, tags):
     if not os.path.exists('_posts'):
         os.makedirs('_posts')
