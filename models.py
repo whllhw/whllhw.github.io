@@ -32,7 +32,7 @@ class Passage(Base):
         self.title = title
         self.context = context
         self.author_id = author
-        self.date = date or datetime.utcnow()
+        self.date = date or datetime.datetime.now()
 
     def __repr__(self):
         return '<Passage {}>'.format(self.title)

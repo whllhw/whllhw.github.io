@@ -1,58 +1,118 @@
-<!doctype html>
-<html lang="zh">        
-<head>
-        <meta charset="utf-8" />
-        <title>编辑文章 - {{ passage.title }}</title>
-        <link rel="stylesheet" href="http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/css/editormd.min.css"/>
+<!DOCTYPE doctype html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8"/>
+        <title>
+            编辑文章 - {{ passage.title }}
+        </title>
+        <link href="http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/css/editormd.min.css" rel="stylesheet"/>
         <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/editormd.min.js"></script>
-        <script src="{{ url_for('static',filename='js/main.js') }}">
-        </script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="col-md-2">    
-        <!-- <form action="{{ url_for('login') }}" method=post >
-        input type="submit" value="Submit" /
-        
-        <dl>
-        <dt>title:
-        <dd><input type=text id="title">
-        <dt>tags:
-        <dd><input type=text id="tags"></dl>
-        </form> -->
-        <button onclick='send();'>确定</button>
-        </div>
-
-        <div class="col-md-10">
-        <div id="layout">
-            <div id="test-editormd">
-                <textarea style="display:none;"></textarea>
+            <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js">
+            </script>
+            <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js">
+            </script>
+            <script src="http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/editormd.min.js">
+            </script>
+            <script src="{{ url_for('static',filename='js/main.js') }}">
+            </script>
+        </link>
+    </head>
+    <body style="overflow-x:hidden;overflow-y:hidden">
+        <!-- 禁止滚动 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <!--                 <form action="{{ url_for('upload') }}" method="post" >
+                <dl>
+                <dt>title:
+                <dd><input type=text id="title">
+                <dt>tags:
+                <dd><input type=text id="tags"></dl>
+                </form>
+                <button class="btn btn-primary" onclick='send();'>确定</button>
+ -->
+                    <form class="form-horizontal" id="form">
+                        <fieldset>
+                            <div class="" id="legend">
+                                <legend class="">
+                                    发布文章
+                                </legend>
+                            </div>
+                            <div class="control-group">
+                                <!-- Text input-->
+                                <label class="control-label" for="input01">
+                                    标题
+                                </label>
+                                <div class="controls">
+                                    <input class="input-xlarge" name="title" placeholder="" type="text" value="{{ passage.title }}" required>
+                                    <input name="id" type="hidden" value="{{ passage.id or -1 }}">
+                                    </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    标签
+                                </label>
+                                <div class="controls">
+                                    <!-- Multiple Checkboxes -->
+                                    {% for i in tags %}
+                                    <label class="checkbox">
+                                        <input name="tags" type="checkbox" value="{{ i.id }}" 
+                                        {% if i.id in tag %}
+                                        checked
+                                        {% endif %} 
+                                        >
+                                            {{ i.name }}
+                                        </input>
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">
+                                </label>
+                                <!-- Button -->
+                                <div class="controls">
+                                    <button class="btn btn-success" id="Send" type="submit">
+                                        <span class="glyphicon glyphicon-ok">
+                                        </span>
+                                        确定
+                                    </button>
+                                    <button class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-cancal">
+                                        </span>
+                                        返回
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-md-10">
+                    <div id="layout">
+                        <div id="test-editormd">
+                            <textarea style="display:none;">{{ passage.context }}</textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <script>
-        var testEditor;
-            $(function() {
-                testEditor = editormd("test-editormd", {
-                    width   : "90%",
-                    height  : 640,
-                    syncScrolling : "single",
-                    path    : "http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/lib/"
-                });
-                {% if  passage %}
-                // TODO：有文章时完成操作
-                if ({{ passage }}){
-                    testEditor.setMarkdown(passage.content);
-                }
-                {% else %}
-                // TODO：无文章时完成的操作
+            <script>
+                var testEditor;
+        $(function() {
+            testEditor = editormd("test-editormd", {
+                width: "90%",
+                height: 640,
+                syncScrolling: "single",
+                path: "http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/lib/"
+            }); 
+            {% if passage %}
+            // TODO：有文章时完成操作
 
-                {% endif %}
-            });
-    </script>
-</body>
+            {% else %}
+            // TODO：无文章时完成的操作
+
+            {% endif %}
+        });
+            </script>
+        </div>
+    </body>
 </html>

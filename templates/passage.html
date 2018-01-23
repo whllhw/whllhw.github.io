@@ -1,30 +1,53 @@
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>浏览文章</title>
-</head>
-<body>
-	<table>
-		<thead>
-			<tr>
-				<th>编号</th>
-				<th>标题</th>
-				<th>作者</th>
-				<th>时间</th>
-				<th>内容</th>
-			</tr>
-		</thead>
-		<tbody>
-	{% for passage in passages %}
-		<tr>
-			<td>passage.id</td>
-			<td>passage.title</td>
-			<td>passage.author</td>
-			<td>passage.date</td>
-			<td>passage.context</td>
-		</tr>
-	{% endfor %}
-		</tbody>
-	</table>
-</body>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                浏览文章
+            </title>
+        </meta>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        编号
+                    </th>
+                    <th>
+                        标题
+                    </th>
+                    <th>
+                        作者
+                    </th>
+                    <th>
+                        时间
+                    </th>
+                    <th>
+                        内容
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for passage in passages %}
+                <tr>
+                    <td>
+                        {{ passage.id }}
+                    </td>
+                    <td>
+                        {{ passage.title }}
+                    </td>
+                    <td>
+                        {{ passage.author }}
+                    </td>
+                    <td>
+                        {{ passage.date }}
+                    </td>
+                    <td>
+                        {{ passage.context }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
 </html>
