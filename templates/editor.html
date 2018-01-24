@@ -3,7 +3,11 @@
     <head>
         <meta charset="utf-8"/>
         <title>
+            {% if passage %}
             编辑文章 - {{ passage.title }}
+            {% else %}
+            新建文章
+            {% endif %}
         </title>
         <link href="http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/css/editormd.min.css" rel="stylesheet"/>
         <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
