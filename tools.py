@@ -1,7 +1,9 @@
 from database import *
 import os
+from sys import platform
 from models import *
 from datetime import datetime
+import subprocess,hashlib
 
 
 def getPath():
@@ -11,6 +13,10 @@ def getPath():
     """
     filePath = 'E:/博客/whllhw.github.io/'
     return filePath
+
+
+def getDelpoyPath():
+    return 'E:/博客/blog'
 
 
 def getFileName():
@@ -35,13 +41,10 @@ def importPassageTool():
     db_session.commit()
     User.query.filter(User.name == 'lhw').first()
     """
-    import hashlib
     filePath, fileNames = getFileName()
-    md5 = hashlib.md5()
     for file in fileNames:
         with open(filePath + file, encoding='utf-8') as f:
-            md5.update(f.read().encode('utf-8'))
-            passage_md5 = md5.hexdigest()
+            passage_md5 = hashlib.md5(open(filePath + file,'rb').read()).hexdigest()
             f.seek(0)  # 返回到文件头部
             _ = f.readline()
             info = {}
@@ -86,17 +89,28 @@ def importPassageTool():
                 db_session.commit()
 
 
-def outPassageTool(passage_id):
+def outPassageTool(passage):
     """
     从数据中写出单个文章到文件上
     :param passage_id:
     :return:
     """
-    passage = Passage.query.filter(Passage.id == passage_id).first()
-    categories = Category.query.join(Tag).join(Passage).filter(Passage.id == 2).all()  # join连接查询出所有的tag
-    title = passage.title.replace('/', '').replace('\\', '').replace(':', '').replace('*', '').replace('?', '').replace(
+    categories = Category.query.join(Tag).join(Passage).filter(Passage.id == passage.id).all()  # join连接查询出所有的tag
+    fileName = passage.title.replace('/', '').replace('\\', '').replace(':', '').replace('*', '').replace('?',
+                                                                                                          '').replace(
         '<', '').replace('>', '').replace('|', '') + '.md'
-    with open(getPath() + title, 'w', encoding='utf-8') as f:
+    file = db_session.query(File).filter(File.passage_id == passage.id).first()
+    # 不判断是否已经修改！
+    # Python md5 校验打开方式有毒！！
+    # md5.update() 为大数据读入时使用
+    if file and os.path.exists(getPath()+file.fileName):
+        if file.md5 != hashlib.md5(open(getPath()+file.fileName,'rb').read()).hexdigest(): # 文件md5不相同，已经被修改
+            pass
+        else:
+            os.remove(getPath() + file.fileName)
+
+    # 将会直接清空文件
+    with open(getPath() + fileName, 'w', encoding='utf-8') as f:
         f.write('---\n')
         f.write(f'title: {passage.title}\n')
         f.write('tags: ')
@@ -107,25 +121,59 @@ def outPassageTool(passage_id):
         f.write('---\n\n')
         f.write(passage.context)
 
-    with open(getPath() + title, 'r', encoding='utf-8') as f:
-        import hashlib
-        md5 = hashlib.md5(f.read().encode('utf-8'))
-        db_session.add(File(passage_id, md5.hexdigest(), title))  # 提交文件属性到数据库
-        db_session.commit()
+    with open(getPath() + fileName, 'rb') as f:
+        hexdigest = hashlib.md5(f.read()).hexdigest()
+        if not file:
+            db_session.add(File(passage.id, hexdigest, fileName))  # 提交文件属性到数据库
+            db_session.commit()
+        else:
+            file.fileName = fileName
+            file.md5 = hexdigest
+            db_session.commit()
 
 
 def syncPassage():
     """
     同步数据库与文件
-    :return:
+    :return
     """
+    # TODO:同步数据库与文件
     import hashlib
     filePath, fileNames = getFileName()
-    md5 = hashlib.md5()
+
     for passage in Passage.query.all():
         if os.path.isdir(filePath + passage.title + '.md'):
             pass
 
 
+def deployPassage():
+    """
+    发布文章：
+    :return:
+    """
+    # 删除 _post 下所有md文件
+    # 移动文件到 _post
+    if platform == 'win32':
+        os.system('del ' + getDelpoyPath().replace('/', '\\') + '\\source\\_posts\\*.md')
+        os.system('copy ' + getPath().replace('/', '\\') + '*.md ' + getDelpoyPath().replace('/',
+                                                                                             '\\') + '\\source\\_posts\\')
+    else:
+        os.system('rm ' + getDelpoyPath() + '/source/_post/*.md')
+        os.system(f'cp f{getPath()}/*.md {getDelpoyPath()}/source/_posts/')
+    # 执行 hexo g & hexo d
+    p = subprocess.Popen(f'cd {getDelpoyPath()} & hexo g & hexo d', shell=True, stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT)
+    for line in p.stdout.readlines():
+        print(line)
+    retVal = p.wait()
+    # 文章同步提交到git
+    q = subprocess.Popen(f'cd {getPath()} & git add . & git commit -m "bak up" & git push', shell=True,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT)
+    for line in q.stdout.readline():
+        print(line)
+    retVal2 = q.wait()
+    return retVal
+
 if __name__ == '__main__':
-    outPassageTool(30)
+    outPassageTool(Passage.query.filter(Passage.id == 30).first())
