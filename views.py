@@ -2,8 +2,8 @@ from flask import render_template, request, jsonify, abort
 
 from app import create_app
 from database import db_session
-from models import Passage, Category, Tag
-
+from models import Passage, Category, Tag,File
+from tools import outPassageTool,deployPassage
 app = create_app()
 
 
@@ -12,7 +12,7 @@ app = create_app()
 def shutdown_session(exception=None):
     db_session.remove()
 
-
+@app.route('/')
 @app.route('/passage')
 def getAll():
     """
@@ -35,9 +35,8 @@ def edit(id=0):
     else:
         passage = None
     tags = Category.query.all()  # 查询出所有的tags
-    tag = (i.category_id for i in Tag.query.filter(Tag.passage_id == id).all())  # 查询出该文章使用的标签
+    tag = [i.category_id for i in Tag.query.filter(Tag.passage_id == id).all()]  # 查询出该文章使用的标签
     return render_template('editor.html', passage=passage, tags=tags, tag=tag)
-
 
 @app.route('/category/<name>')
 def create(name):
@@ -47,7 +46,6 @@ def create(name):
     """
     # 填坑
     pass
-
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -80,8 +78,24 @@ def upload():
         # 假设标签已经存在
         db_session.add(Tag(passage_id, int(i)))
         db_session.commit()
-    return jsonify({'id': id,'error':0})
+    return jsonify({'id': id,'error':0,'msg':'成功保存到数据库中'})
 
+@app.route('/sync/')
+@app.route('/sync/<int:id>')
+def sync(id=0):
+    if not id:# 同步所有文章到磁盘
+        pass
+        return jsonify({'msg':'全部文章同步成功','error':0})
+    passage = Passage.query.filter(Passage.id == id).first()
+    if passage:
+        outPassageTool(passage)
+        return jsonify({'msg':'id成功','error':0})
+    else:
+        return jsonify({'msg':'不存在该id的文章','error':1})
+
+@app.route('/deploy')
+def deploy():
+    return jsonify({'error':0,'msg':deployPassage()})
 
 @app.route('/login')
 def login():
@@ -90,12 +104,6 @@ def login():
     :return:
     """
     pass
-
-
-@app.route('/get/<name>')
-def getName(name):
-    pass
-
 
 if __name__ == '__main__':
     app.run(debug=True)
