@@ -1,6 +1,6 @@
 ---
 title: 腾讯云主机相关的iptables使用端口转发
-tag: 'linux,iptables'
+tags: 'linux,iptables'
 abbrlink: 13040
 date: 2017-06-23 11:27:00
 ---
