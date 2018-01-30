@@ -176,4 +176,5 @@ def deployPassage():
     return retVal
 
 if __name__ == '__main__':
-    outPassageTool(Passage.query.filter(Passage.id == 30).first())
+    # outPassageTool(Passage.query.filter(Passage.id == 30).first())
+    importPassageTool()

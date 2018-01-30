@@ -12,13 +12,15 @@
             <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js">
             </script>
              <script src="{{ url_for('static',filename='js/jquery.dataTables.min.js') }}"></script>
+             <script src="{{ url_for('static',filename='js/sweetalert.min.js') }}"></script>
         </link>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-
+				<button id="edit" type="button" class="btn btn-info">编辑</button>
+        		<button id="delete" type="button" class="btn btn-danger">删除</button>
                 </div>
                 <div class="col-md-10">
                     <table class="table table-hover" id="datatable">
@@ -29,7 +31,7 @@
                                 <!-- <th>作者</th> -->
                                 <th>时间</th>
                                 <th>内容</th>
-                                <th>操作</th>
+                                <!-- <th>操作</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +42,6 @@
                                 <!-- <td>{{ passage.author_id }}</td> -->
                                 <td>{{ passage.date }}</td>
                                 <td>{{ passage.context[:15] }}</td>
-                                <td></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -57,22 +58,45 @@ $(function(){
         {"data": "title"},
         //{"data": "author"},
         {"data": "date"},
-        {"data": "context"},
-        {
-            "data": null,
-            "defaultContent": '<button type="button" class="btn btn-info">编辑</button>'+
-            '<button type="button" class="btn btn-danger">删除</button>'
-        }
-    ]
-});
-    $('#datatable tbody').on('click','button',function(){
+        {"data": "context"},]
+	});
+    $('#datatable tbody').on( 'click', 'tr', function () {
+	    if ( $(this).hasClass('selected') ) {
+	        $(this).removeClass('selected');
+	    }
+	    else {
+	        table.$('tr.selected').removeClass('selected');
+	        $(this).addClass('selected');
+	    }
+	});
+    $('#edit').click(function(){
+    	let data = table.row('.selected').data();
+    	window.location.href = "{{ url_for('edit',_external=true) }}/" + data['id'];
+    });
+    $('#delete').click(function(){
     	let class_name = $(this).attr('class');
-    	let data = table.row($(this).parents('tr')).data();
-    	if(class_name == 'btn btn-info'){ // 编辑
-    		window.location.href = "{{ url_for('edit',_external=true) }}/" + data['id'];
-    	}else{ // 删除
-
-    	}
+    	let data = table.row('.selected').data();
+		swal({
+			title: "确定删除该文章?",
+			text: "无法恢复文章!" + data['title'],
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+			})
+		.then((willDelete) => {
+		  if (willDelete) {
+		  	$.get("{{ url_for('delete',_external=true) }}"+data['id'])
+		  	.then(function(data){
+		  		if(data.error === 0){
+		  			swal("成功",data.msg,"success");
+		  			table.row('.selected').remove().draw( false );
+		  		}else{
+		  			swal("错误",data.msg,"error");
+		  		}
+		  	});
+		  }
+		});
+    	
     });
 });
     </script>

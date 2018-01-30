@@ -19,6 +19,7 @@
             </script>
             <script src="{{ url_for('static',filename='js/main.js') }}">
             </script>
+            <script src="{{ url_for('static',filename='js/sweetalert.min.js') }}"></script>
         </link>
     </head>
     <body style="overflow-x:hidden;overflow-y:hidden">
@@ -35,7 +36,7 @@
                 </form>
                 <button class="btn btn-primary" onclick='send();'>确定</button>
  -->
-                    <form class="form-horizontal" id="form">
+                    <form class="form-horizontal" id="form" onsubmit="return false;">
                         <fieldset>
                             <div class="" id="legend">
                                 <legend class="">
@@ -81,7 +82,7 @@
                                         </span>
                                         确定
                                     </button>
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger" onclick="window.location({{ url_for('getAll',_external=true) }});">
                                         <span class="glyphicon glyphicon-cancal">
                                         </span>
                                         返回

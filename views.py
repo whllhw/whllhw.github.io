@@ -89,9 +89,9 @@ def sync(id=0):
     passage = Passage.query.filter(Passage.id == id).first()
     if passage:
         outPassageTool(passage)
-        return jsonify({'msg':'id成功','error':0})
+        return jsonify({'msg':f'同步{id}成功','error':0})
     else:
-        return jsonify({'msg':'不存在该id的文章','error':1})
+        return jsonify({'msg':f'不存在该{id}的文章','error':1})
 
 @app.route('/deploy')
 def deploy():
@@ -104,6 +104,22 @@ def login():
     :return:
     """
     pass
+@app.route('/del/')
+@app.route('/del/<int:id>')
+def delete(id=0):
+    """
+    删除文章，并删除File表内的文件记录
+    :param id:
+    :return:
+    """
+    passage = Passage.query.filter(Passage.id == id)
+    if not passage.first():
+        return jsonify({'msg':f'找不到{id}文章','error':1})
+    File.query.filter(File.passage_id == id).delete()
+    title = passage.first().title
+    passage.delete()
+    db_session.commit()
+    return jsonify({'msg':f'{title} 成功删除','error':0})
 
 if __name__ == '__main__':
     app.run(debug=True)
