@@ -18,11 +18,10 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
-				<button id="edit" type="button" class="btn btn-info">编辑</button>
-        		<button id="delete" type="button" class="btn btn-danger">删除</button>
-                </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
+				
+                <!-- </div> -->
+                <!-- <div class="col-md-10"> -->
                     <table class="table table-hover" id="datatable">
                         <thead>
                             <tr>
@@ -45,6 +44,12 @@
                             </tr>
                             {% endfor %}
                         </tbody>
+                        <tfoot>
+                        	<button id="newPassage" type="button" class="btn btn-primary">新文章</button>
+                        	<button id="edit" type="button" class="btn btn-info">编辑</button>
+			        		<button id="delete" type="button" class="btn btn-danger">删除</button>
+			        		<button id="deply" type="button" class="btn btn-primary">上传</button>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -58,7 +63,8 @@ $(function(){
         {"data": "title"},
         //{"data": "author"},
         {"data": "date"},
-        {"data": "context"},]
+        {"data": "context"},],
+        "order":[2,'desc']
 	});
     $('#datatable tbody').on( 'click', 'tr', function () {
 	    if ( $(this).hasClass('selected') ) {
@@ -71,7 +77,11 @@ $(function(){
 	});
     $('#edit').click(function(){
     	let data = table.row('.selected').data();
+    	if(!data) {return;}
     	window.location.href = "{{ url_for('edit',_external=true) }}/" + data['id'];
+    });
+    $('#newPassage').click(function(){
+    	window.location.href = "{{ url_for('edit',_external=true) }}";
     });
     $('#delete').click(function(){
     	let class_name = $(this).attr('class');
@@ -96,7 +106,25 @@ $(function(){
 		  	});
 		  }
 		});
-    	
+    });
+    $('#deply').click(function(){
+    	let data = table.row('.selected').data();
+    	$.get("{{ url_for('sync',_external=true) }}" +data['id'])
+    	.done(function(data){
+    		if(data.error !== 0){
+    			swal("失败",data.msg,'error');
+    		}
+    	}).fail(function(xhr){
+    		console.log(xhr);
+    	});
+    	$.get("{{ url_for('deploy',_external=true) }}")
+    	.done(function(data){
+    		if(data.msg === 0){
+    			swal("成功",data.msg,'success');
+    		}else{
+    			swal("失败",data.msg,'error');
+    		}
+    	}).fail(function(xhr){console.log(xhr);});
     });
 });
     </script>

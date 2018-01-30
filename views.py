@@ -84,6 +84,7 @@ def upload():
 @app.route('/sync/<int:id>')
 def sync(id=0):
     if not id:# 同步所有文章到磁盘
+        # TODO：填坑
         pass
         return jsonify({'msg':'全部文章同步成功','error':0})
     passage = Passage.query.filter(Passage.id == id).first()
