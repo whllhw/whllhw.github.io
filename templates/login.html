@@ -12,22 +12,55 @@
             <script src="{{ url_for('static',filename='js/sweetalert.min.js') }}"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-	    <h2>登录系统</h2>
-	    {% with messages = get_flashed_messages() %}
-	    <div>{{ messages[0] }}</div>
-		{% endwith %}
-	    <form method=post>
-	        <dl>
-	            <dt>用户:
-	            <dd><input type=text name=username>
-	            <dt>密码:
-	            <dd><input type=password name=password>
-	            <dd><input type=submit value=Login> 
-	        </dl>
-	    </form>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+        <h2 class="text text-center">登录系统</h2>
+            </div>
+            <div class="col-md-6">
+        {% with messages = get_flashed_messages() %}
+        <div>{{ messages[0] }}</div>
+        {% endwith %}
+        <form method=post class="form-horizontal">
+             <div id="legend" class="">
+            <legend class="">请先登录</legend>
+              </div>
+            <div class="control-group">
+          <!-- Text input-->
+          <label class="control-label" for="input01">用户</label>
+              <div class="controls">
+                <input type="text" placeholder="键入您的用户名" class="input-xlarge" name="username">
+              </div>
+            </div>
+    <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">密码</label>
+          <div class="controls">
+            <input type="password" placeholder="键入密码" class="input-xlarge" name="password">
+          </div>
+        </div>
+    <div class="control-group">
+          <label class="control-label">选项</label>
+          <div class="controls">
+      <!-- Multiple Checkboxes -->
+        <label class="checkbox">
+            <input type="checkbox" value="rememberme">
+            记住我
+        </label>
+           </div>
+    </div>
+    <div class="control-group">
+          <label class="control-label"></label>
+
+          <!-- Button -->
+          <div class="controls">
+            <button class="btn btn-success">登录</button>
+          </div>
+        </div>
+        </form>
+    </div>
+    </div>
     </div>
 </body>
 </html>
