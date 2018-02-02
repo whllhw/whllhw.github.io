@@ -33,6 +33,7 @@ class Passage(Base):
         self.context = context
         self.author_id = author
         self.date = date or datetime.datetime.now()
+        # TODO:解决microsecond
 
     def __repr__(self):
         return '<Passage {}>'.format(self.title)
