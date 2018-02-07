@@ -1,11 +1,18 @@
 ---
 title: ACM记录
-tags: cocos
+tags: 
 date: 2018-01-24 15:26:19
 ---
 
-汉诺塔问题：
-```
+BUG ! 、与号有问题
+STL的时间复杂度
+模拟、贪心
+二分、三分
+递归、递推
+
+
+不能直接跨塔移动的汉诺塔问题：（填坑）
+```cpp
 void f(int n,int from, int to, int on) {
 	if (n == 1) {
 		ans  ;
