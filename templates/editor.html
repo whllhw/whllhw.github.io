@@ -82,7 +82,7 @@
                                         </span>
                                         确定
                                     </button>
-                                    <button class="btn btn-danger" onclick="window.location({{ url_for('getAll',_external=true) }});">
+                                    <button class="btn btn-danger" onclick="window.location.href = "{{ url_for('getAll',_external=true) }}";">
                                         <span class="glyphicon glyphicon-cancal">
                                         </span>
                                         返回
@@ -114,7 +114,15 @@
 
             {% else %}
             // TODO：无文章时完成的操作
-
+            setTimeout(()=>{
+                if (localStorage.context){//已经存在了文章
+                    testEditor.setMarkdown(localStorage.context);
+                    swal("已经恢复了未保存的文章",'',"info");
+                }
+                setInterval(function(){
+                    localStorage.context = testEditor.getMarkdown(); // 暂时保存文章内容
+                },10000);
+            },1000);
             {% endif %}
         });
             </script>
