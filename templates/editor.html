@@ -109,21 +109,26 @@
                 syncScrolling: "single",
                 path: "http://p2v0lzbr1.bkt.clouddn.com/editor.md-master/lib/"
             }); 
-            {% if passage %}
-            // TODO：有文章时完成操作
-
-            {% else %}
-            // TODO：无文章时完成的操作
+            
             setTimeout(()=>{
-                if (localStorage.context){//已经存在了文章
+                let saved = localStorage.getItem("saved");
+                let context = localStorage.context;
+                {% if passage %}
+                // TODO：有文章时完成操作
+                // 改动后设置saved = 0，并添加context保存
+                {% else %}
+                // 无文章时完成的操作
+                if (context && saved == "0"){//已经存在了文章，但未保存
                     testEditor.setMarkdown(localStorage.context);
                     swal("已经恢复了未保存的文章",'',"info");
+                }else{ // 不存在文章
+                    localStorage.setItem('saved',0);
                 }
                 setInterval(function(){
                     localStorage.context = testEditor.getMarkdown(); // 暂时保存文章内容
                 },10000);
+                {% endif %}
             },1000);
-            {% endif %}
         });
             </script>
         </div>
