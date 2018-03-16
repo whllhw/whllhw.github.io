@@ -14,13 +14,13 @@ date: 2018-02-07 12:59:37
 
 - 变量定义
 
-```
+```kotlin
 	val a = 2  //局部常量。自动推导出Int 类型，不可再次修改
 	var b = 2 //顶层变量。可以修改
 ```
 
 - 字符串模板
-```
+```kotlin
 	var a = 1
 	val s1 = "a is $a"
 	a = 2
@@ -29,13 +29,13 @@ date: 2018-02-07 12:59:37
 
 - if 作为表达式
 
-```
+```kotlin
 fun maxOf(a: Int, b:Int) = if (a>b) a else b
 ```
 
 - 函数返回值可为 null
 
-```
+```kotlin
 	fun parseInt(str: String): Int?{
 		return str.toIntOrNull()
 	}
@@ -43,7 +43,7 @@ fun maxOf(a: Int, b:Int) = if (a>b) a else b
 
 - 分支中自动类型转化
 
-```
+```kotlin
 	fun getStringLength(obj: Any):Int? {
 		if(obj is String){ // 在此分支中自动转化为了String类型，不需要再手动进行显式转化
 			return obj.length
@@ -55,7 +55,7 @@ fun maxOf(a: Int, b:Int) = if (a>b) a else b
 
 - for 循环
 
-```
+```kotlin
 	val items = listOf("apple","banana","kiwi")
 	for (item in items){
 		println(item)
@@ -67,7 +67,7 @@ fun maxOf(a: Int, b:Int) = if (a>b) a else b
 
 - when 表达式
 
-```
+```kotlin
 	fun describe(obj: Any): String =
 	when (obj) { // 与switch case 相似
 		1          -> "One"
@@ -80,7 +80,7 @@ fun maxOf(a: Int, b:Int) = if (a>b) a else b
 
 - 区间( range )
 
-```
+```kotlin
 	val x = 10
 	val y = 9
 	if (x in 1..y 1) {  // 使用 in 进行判断区间
@@ -96,7 +96,7 @@ fun maxOf(a: Int, b:Int) = if (a>b) a else b
 
 - 集合
 
-```
+```kotlin
 	in 运算符进行迭代
 	for (item in items) {
 		println(item)
@@ -113,6 +113,6 @@ fun maxOf(a: Int, b:Int) = if (a>b) a else b
 
 - 创建类及实例
 
-```
+```kotlin
 	var obj = Obj(1,2,3) // 不需要 new 关键字
 ```
