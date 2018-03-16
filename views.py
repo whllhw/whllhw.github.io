@@ -2,7 +2,7 @@ from flask import render_template, request, jsonify, abort, redirect, flash, url
 from app import create_app
 from database import db_session
 from models import Passage, Category, Tag, File, User
-from tools import outPassageTool, deployPassage
+from tools import outPassageTool, deployPassage, syncPassage
 from flask_login import login_user, LoginManager, login_required, UserMixin, logout_user
 
 app = create_app()
@@ -115,8 +115,7 @@ def upload():
 @login_required
 def sync(id=0):
     if not id:  # 同步所有文章到磁盘
-        # TODO：填坑
-        pass
+        syncPassage()
         return jsonify({'msg': '全部文章同步成功', 'error': 0})
     passage = Passage.query.filter(Passage.id == id).first()
     if passage:
@@ -179,4 +178,4 @@ def delete(id=0):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)

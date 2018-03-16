@@ -4,7 +4,7 @@ from sys import platform
 from models import *
 from datetime import datetime
 import subprocess,hashlib
-
+import logging
 
 def getPath():
     """
@@ -105,11 +105,11 @@ def outPassageTool(passage):
     # md5.update() 为大数据读入时使用
     if file and os.path.exists(getPath()+file.fileName):
         if file.md5 != hashlib.md5(open(getPath()+file.fileName,'rb').read()).hexdigest(): # 文件md5不相同，已经被修改
-            pass
+            logging.warning(file.fileName + "已经被修改")
         else:
             os.remove(getPath() + file.fileName)
 
-    # 将会直接清空文件
+    # 无论是否被修改将会直接清空文件
     with open(getPath() + fileName, 'w', encoding='utf-8') as f:
         f.write('---\n')
         f.write(f'title: {passage.title}\n')
@@ -138,12 +138,15 @@ def syncPassage():
     :return
     """
     # TODO:同步数据库与文件
-    import hashlib
-    filePath, fileNames = getFileName()
-
+    """
+        直接全部把数据库中的文章输出
+    """
+    if platform == 'win32':
+        os.system('del '+getPath().replace('/','\\') + '\\*.md')
+    else:
+        os.system('rm '+getPath() + '/*.md')
     for passage in Passage.query.all():
-        if os.path.isdir(filePath + passage.title + '.md'):
-            pass
+        outPassageTool(passage)
 
 
 def deployPassage():
@@ -161,20 +164,17 @@ def deployPassage():
         os.system('rm ' + getDelpoyPath() + '/source/_post/*.md')
         os.system(f'cp f{getPath()}/*.md {getDelpoyPath()}/source/_posts/')
     # 执行 hexo g & hexo d
-    p = subprocess.Popen(f'cd {getDelpoyPath()} & hexo g & hexo d', shell=True, stdout=subprocess.PIPE,
-                         stderr=subprocess.STDOUT)
-    for line in p.stdout.readlines():
-        print(line)
-    retVal = p.wait()
+    p = os.system(f'cd {getDelpoyPath()} & hexo g & hexo d')
+    # retVal = p.wait()
     # 文章同步提交到git
-    q = subprocess.Popen(f'cd {getPath()} & git add . & git commit -m "bak up" & git push', shell=True,
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.STDOUT)
-    for line in q.stdout.readline():
-        print(line)
-    retVal2 = q.wait()
-    return retVal
+    # q = subprocess.Popen(f'cd {getPath()} & git add . & git commit -m "bak up" & git push', shell=True,
+    #                      stdout=subprocess.PIPE,
+    #                      stderr=subprocess.STDOUT)
+    # for line in q.stdout.readline():
+    #     print(line)
+    # retVal2 = q.wait()
+    return 0
 
 if __name__ == '__main__':
     # outPassageTool(Passage.query.filter(Passage.id == 30).first())
-    importPassageTool()
+    syncPassage()
