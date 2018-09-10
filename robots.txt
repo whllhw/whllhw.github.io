@@ -1,2 +1,3 @@
+user-agent: *
 allow: /
 Sitemap: https://whllhw.xyz/sitemap.xml
