@@ -14,27 +14,27 @@
     
     
     
-    <title>SSH密钥认证的坑 | 仰头45℃爆笑</title>
+    <title>Visual Studio 2017 无法登陆提示脚本错误 | 仰头45℃爆笑</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="ubuntu">
-    <meta name="description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key">
-<meta name="keywords" content="ubuntu">
+    <meta name="keywords" content="">
+    <meta name="description" content="打开 VS 发现许可证过期，需要登陆后重新获取，但是登陆时提示：https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js Script error 无法执行脚本。浏览器打开发现脚本没问题。重启多试几次，还是不行，就直接搜这个网址，还真有：VS2017登陆不了,TFS无法连接成功的问题果然，我的 win7 是 ie8，不过都是用 ch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SSH密钥认证的坑">
-<meta property="og:url" content="https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/index.html">
+<meta property="og:title" content="Visual Studio 2017 无法登陆提示脚本错误">
+<meta property="og:url" content="https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key">
+<meta property="og:description" content="打开 VS 发现许可证过期，需要登陆后重新获取，但是登陆时提示：https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js Script error 无法执行脚本。浏览器打开发现脚本没问题。重启多试几次，还是不行，就直接搜这个网址，还真有：VS2017登陆不了,TFS无法连接成功的问题果然，我的 win7 是 ie8，不过都是用 ch">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://www.intmain.me/images/20170110223815.png">
-<meta property="og:updated_time" content="2018-09-10T02:17:31.020Z">
+<meta property="og:image" content="https://whllhw.xyz/images/ie1.png">
+<meta property="og:image" content="https://whllhw.xyz/images/ie2.png">
+<meta property="og:updated_time" content="2018-09-10T02:17:31.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSH密钥认证的坑">
-<meta name="twitter:description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key">
-<meta name="twitter:image" content="http://www.intmain.me/images/20170110223815.png">
+<meta name="twitter:title" content="Visual Studio 2017 无法登陆提示脚本错误">
+<meta name="twitter:description" content="打开 VS 发现许可证过期，需要登陆后重新获取，但是登陆时提示：https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js Script error 无法执行脚本。浏览器打开发现脚本没问题。重启多试几次，还是不行，就直接搜这个网址，还真有：VS2017登陆不了,TFS无法连接成功的问题果然，我的 win7 是 ie8，不过都是用 ch">
+<meta name="twitter:image" content="https://whllhw.xyz/images/ie1.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
@@ -108,7 +108,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">SSH密钥认证的坑</div>
+        <div class="flex-col header-title ellipsis">Visual Studio 2017 无法登陆提示脚本错误</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -130,11 +130,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">SSH密钥认证的坑</h1>
+        <h1 class="title">Visual Studio 2017 无法登陆提示脚本错误</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-01-10T14:43:38.000Z" itemprop="datePublished" class="page-time">
-  2017-01-10
+                <time datetime="2018-09-10T02:17:26.000Z" itemprop="datePublished" class="page-time">
+  2018-09-10
 </time>
 
 
@@ -150,21 +150,14 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">1.</span> <span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Finally"><span class="post-toc-number">2.</span> <span class="post-toc-text">Finally</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#吐槽"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">吐槽</span></a></li></ol></li></ol>
-        </nav>
-    </aside>
 
-
-<article id="post-SSH密钥认证的坑"
+<article id="post-Visual Studio 2017 无法登陆提示脚本错误"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">SSH密钥认证的坑</h1>
+        <h1 class="post-card-title">Visual Studio 2017 无法登陆提示脚本错误</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-01-10 22:43:38" datetime="2017-01-10T14:43:38.000Z"  itemprop="datePublished">2017-01-10</time>
+            <time class="post-time" title="2018-09-10 10:17:26" datetime="2018-09-10T02:17:26.000Z"  itemprop="datePublished">2018-09-10</time>
 
             
 
@@ -177,27 +170,19 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <blockquote>
-<p>在jobsky的服务器(<strong>Centos7</strong>)上不想输密码，SSH配置的时候老出现问题：<br><strong>Server refused our key</strong></p>
-</blockquote>
-<a id="more"></a>
-<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><ol>
-<li>ssh 文件夹权限不对？<br>据网上说要求<strong>700</strong>甚至<strong>400</strong>的权限，改了，<strong>无济于事</strong></li>
-<li>用puttykeygen生成的问题？<br>万恶的Mircosoft和Linux不相容，我又在服务端生成了一个新的密钥，<strong>失败</strong></li>
-<li>终于想起我的腾讯爸爸，登上云服务器看看.ssh文件夹，只有一个文件<strong>authorized_keys</strong>。好像没什么毛病！</li>
-<li>Selinux?失效！</li>
-<li>最后在一篇文章中找到<a href="http://blog.csdn.net/magic_zj00/article/details/7470023" target="_blank" rel="noopener">“关于使用putty私钥连接linux出现失败的原因解决方案”</a><br>竟然有和3相同的名字：<strong>authorized_keys</strong></li>
-<li>最后key-comment 内容不重要<h1 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa.pub authorzied_keys</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="image-bubble">
+            <p>打开 VS 发现许可证过期，需要登陆后重新获取，但是登陆时提示：<a href="https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js" target="_blank" rel="noopener">https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js</a> Script error 无法执行脚本。<br>浏览器打开发现脚本没问题。重启多试几次，还是不行，就直接搜这个网址，还真有：<a href="https://www.cnblogs.com/xxyxxb2080/p/9520837.html" target="_blank" rel="noopener">VS2017登陆不了,TFS无法连接成功的问题</a><br>果然，我的 win7 是 ie8，不过都是用 chrome 上网的（巨硬都是用系统自带的东西，也是服了），马上更新<br><a href="https://www.microsoft.com/en-us/download/internet-explorer-11-for-windows-7-details.aspx" target="_blank" rel="noopener">ie 11 更新包</a><br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://www.intmain.me/images/20170110223815.png" alt="" title="">
+                    <img src="/images/ie1.png" alt="下载运行提示缺少必要的更新，弹出网页，下载所有安装即可，再重启电脑安装ie 11" title="">
                 </div>
-                <div class="image-caption"></div>
-            </figure>
-<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>辣鸡百度，尽搜出来水教程，弄了一个晚上<br>附：SSH的配置文件/etc/ssh/ssh_config</p>
+                <div class="image-caption">下载运行提示缺少必要的更新，弹出网页，下载所有安装即可，再重启电脑安装ie 11</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/images/ie2.png" alt="安装 ie 11" title="">
+                </div>
+                <div class="image-caption">安装 ie 11</div>
+            </figure><br>更新完了之后，我发现 Office 也能登录了，可以愉快的用 OneNote 了。</p>
 
         </div>
 
@@ -206,12 +191,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:17:31.020Z" itemprop="dateUpdated">2018-09-10 10:17:31</time>
+    最后更新时间：<time datetime="2018-09-10T02:17:31.726Z" itemprop="dateUpdated">2018-09-10 10:17:31</time>
 </span><br>
 
 
         
-        <a href="/posts/2017/01/10/SSH密钥认证的坑/" target="_blank" rel="external">https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/</a>
+        <a href="/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" target="_blank" rel="external">https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/</a>
         
     </div>
     
@@ -228,8 +213,6 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-
 
             
 <div class="page-share-wrap">
@@ -238,7 +221,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&title=《SSH密钥认证的坑》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/&title=《Visual Studio 2017 无法登陆提示脚本错误》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -248,24 +231,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&title=《SSH密钥认证的坑》 — 仰头45℃爆笑&source=
-在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key
-" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/&title=《Visual Studio 2017 无法登陆提示脚本错误》 — 仰头45℃爆笑&source=生活不止眼前的苟且，还有读不懂的诗和到不了的远方" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SSH密钥认证的坑》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&via=https://whllhw.xyz" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Visual Studio 2017 无法登陆提示脚本错误》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/&via=https://whllhw.xyz" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -285,21 +266,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">VMware vSphere Hypervisor (ESXi)虚拟化使用笔记</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/2016/12/11/Markdown语法/" id="post-next" class="post-nav-link">
+      <a href="/posts/2018/09/03/暑假有感/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Markdown语法</h4>
+        <h4 class="title">暑假有感</h4>
       </a>
     </div>
   
@@ -322,7 +296,7 @@
     <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
     <script>
         var gitment = new Gitment({
-            id: 'Tue Jan 10 2017 22:43:38 GMT+0800',
+            id: 'Mon Sep 10 2018 10:17:26 GMT+0800',
             owner: 'whllhw',
             repo: 'blog-comment',
             oauth: {
@@ -388,7 +362,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&title=《SSH密钥认证的坑》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/&title=《Visual Studio 2017 无法登陆提示脚本错误》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -398,24 +372,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&title=《SSH密钥认证的坑》 — 仰头45℃爆笑&source=
-在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key
-" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/&title=《Visual Studio 2017 无法登陆提示脚本错误》 — 仰头45℃爆笑&source=生活不止眼前的苟且，还有读不懂的诗和到不了的远方" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SSH密钥认证的坑》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&via=https://whllhw.xyz" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Visual Studio 2017 无法登陆提示脚本错误》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/&via=https://whllhw.xyz" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -426,7 +398,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://whllhw.xyz/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" alt="微信分享二维码">
 </div>
 
 
