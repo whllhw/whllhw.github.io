@@ -21,13 +21,13 @@
     
     
     <meta name="keywords" content="ubuntu">
-    <meta name="description" content="简要记录下了fdisk,dd命令使用虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
+    <meta name="description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
 <meta name="keywords" content="ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分区备份">
 <meta property="og:url" content="https://whllhw.xyz/posts/2016/11/16/分区备份/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="简要记录下了fdisk,dd命令使用虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
+<meta property="og:description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://i.imgur.com/xpZ0fVt.png">
 <meta property="og:image" content="http://i.imgur.com/rUSIzWB.png">
@@ -37,10 +37,10 @@
 <meta property="og:image" content="http://i.imgur.com/P7qPQeC.png">
 <meta property="og:image" content="http://i.imgur.com/nTeakz5.png">
 <meta property="og:image" content="http://i.imgur.com/doGqQ8B.png">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.658Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分区备份">
-<meta name="twitter:description" content="简要记录下了fdisk,dd命令使用虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
+<meta name="twitter:description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
 <meta name="twitter:image" content="http://i.imgur.com/xpZ0fVt.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
@@ -185,103 +185,130 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <blockquote>
-<p>简要记录下了fdisk,dd命令使用<br>虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！</p>
+<p>简要记录下了fdisk,dd命令使用<br>
+虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="ssh安装"><a href="#ssh安装" class="headerlink" title="ssh安装"></a>ssh安装</h2><p>坑爹没安装ssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh-server -y</span><br></pre></td></tr></table></figure></p>
+<h2 id="ssh安装">ssh安装</h2>
+<p>坑爹没安装ssh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh-server -y</span><br></pre></td></tr></table></figure>
 <ul>
-<li><figure class="image-bubble">
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/xpZ0fVt.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h2 id="fdisk分区"><a href="#fdisk分区" class="headerlink" title="fdisk分区"></a>fdisk分区</h2></li>
-<li>对vda进行分区<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/vda</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="fdisk分区">fdisk分区</h2>
+<ul>
+<li>对vda进行分区</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/vda</span><br></pre></td></tr></table></figure>
 <!--more-->
 <ul>
 <li>如图：</li>
-<li><figure class="image-bubble">
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/rUSIzWB.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
-            </figure></li>
-<li><figure class="image-bubble">
+            </figure>
+</li>
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/I14s6kf.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
-            </figure></li>
+            </figure>
+</li>
 <li>1.建立拓展分区vda4</li>
 <li>2.再进行操作建立vda5，vda6</li>
 <li>3.扇区选择默认，大小为+17G，+1G</li>
 <li>已分区成功：</li>
-<li><figure class="image-bubble">
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/tHFuK0C.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
-            </figure></li>
-<li><p>重载分区表</p>
+            </figure>
+</li>
+<li>重载分区表</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">partprobe</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行格式化</p>
+<ul>
+<li>运行格式化</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/vda5</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行格式化</p>
+<ul>
+<li>运行格式化</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/vda6</span><br></pre></td></tr></table></figure>
-</li>
-<li><figure class="image-bubble">
+<ul>
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/f2wl35p.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
-            </figure></li>
-<li><p>挂载vda6(先在/dev建立文件夹hdd1)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/vda6 hdd1</span><br></pre></td></tr></table></figure>
+            </figure>
 </li>
-<li><figure class="image-bubble">
+<li>挂载vda6(先在/dev建立文件夹hdd1)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/vda6 hdd1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/P7qPQeC.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h2 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /hdd1</span><br><span class="line">dd if=/dev/zero of=0 count=1 bs=100 000 000</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="dd">dd</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /hdd1</span><br><span class="line">dd if=/dev/zero of=0 count=1 bs=100 000 000</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>if=/dev/zero 无限生成0<br>of=输出为文件<br>count*bs=文件大小(字节）</p>
+<p>if=/dev/zero 无限生成0<br>
+of=输出为文件<br>
+count*bs=文件大小(字节）</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/urandom of=1 count=10 bs=10 000 000</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>/dev/urandom 生成随机字符</p>
 </blockquote>
 <ul>
-<li><figure class="image-bubble">
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/nTeakz5.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
-            </figure></li>
-<li><p>生成test.img</p>
+            </figure>
+</li>
+<li>生成test.img</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/vda6 of=~/test.img</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成test.img.gz压缩包</p>
+<ul>
+<li>生成test.img.gz压缩包</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/vda6 | gzip &gt;~/test.img.gz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将dd输出的数据导入到gzip 再重定向到test.img.gz</p>
-</li>
-<li><figure class="image-bubble">
+<ul>
+<li>将dd输出的数据导入到gzip 再重定向到test.img.gz</li>
+<li>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://i.imgur.com/doGqQ8B.png" alt="" title="">
@@ -298,7 +325,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.658Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.821Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 
@@ -341,7 +368,8 @@
       </li>
       <li>
         <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2016/11/16/分区备份/&title=《分区备份》 — 仰头45℃爆笑&source=
-简要记录下了fdisk,dd命令使用虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！
+简要记录下了fdisk,dd命令使用
+虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！
 " data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
@@ -491,7 +519,8 @@
       </li>
       <li>
         <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2016/11/16/分区备份/&title=《分区备份》 — 仰头45℃爆笑&source=
-简要记录下了fdisk,dd命令使用虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！
+简要记录下了fdisk,dd命令使用
+虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！
 " data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>

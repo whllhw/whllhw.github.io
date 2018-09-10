@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="使用Flask 中遇到的Python2 编码问题  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。  开始前建议阅读 Python2.x 字符编码终极指南，或者搜索一下就有很多文章。 Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.647Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Flask 中遇到的Python2 编码问题">
 <meta name="twitter:description" content="使用Flask 中遇到的Python2 编码问题  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。  开始前建议阅读 Python2.x 字符编码终极指南，或者搜索一下就有很多文章。 Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复">
@@ -151,7 +151,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用Flask-中遇到的Python2-编码问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用Flask 中遇到的Python2 编码问题</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用Flask 中遇到的Python2 编码问题</span></a></li></ol>
         </nav>
     </aside>
 
@@ -175,8 +175,9 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="使用Flask-中遇到的Python2-编码问题"><a href="#使用Flask-中遇到的Python2-编码问题" class="headerlink" title="使用Flask 中遇到的Python2 编码问题"></a>使用Flask 中遇到的Python2 编码问题</h1><blockquote>
-<p> python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。</p>
+            <h1>使用Flask 中遇到的Python2 编码问题</h1>
+<blockquote>
+<p>python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。</p>
 </blockquote>
 <p>开始前建议阅读 <a href="http://selfboot.cn/2016/12/28/py_encode_decode/" target="_blank" rel="noopener">Python2.x 字符编码终极指南</a>，或者搜索一下就有很多文章。</p>
 <p>Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复了这一类型。有如下关系</p>
@@ -184,12 +185,13 @@
 <p>Flask 中提交的表单 + MySQLdb + Mysql</p>
 <ol>
 <li>源文件中指明编码 #coding=utf-8</li>
-<li>Mysql设置编码为utf8 </li>
-<li>MySQLdb 连接指定charset=’utf8’，插入的代码如下</li>
+<li>Mysql设置编码为utf8</li>
+<li>MySQLdb 连接指定charset=‘utf8’，插入的代码如下</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g.db.execute(<span class="string">'insert into entries (title, text) values (&#123;&#125;, &#123;&#125;)'</span>.format(request.form[<span class="string">'title'</span>].encode(<span class="string">'utf-8'</span>), request.form[<span class="string">'text'</span>].encode(<span class="string">'utf-8'</span>)))</span><br></pre></td></tr></table></figure>
-<p>request.form[‘title’] 的类型是Unicode，encode后应该就可以变成str了，可是<br>提示<code>OperationalError: (1054, &quot;Unknown column &#39;abc&#39; in &#39;field list&#39;&quot;)</code>英文都插入不了，然后经Stack Overflow启发，改动 { } =&gt; “{ }”，然后就可以运行了。。坑死了。</p>
-<p>还有一个坑：<code>OperationalError: (2002, &quot;Can&#39;t connect to local MySQL server through socket &#39;/var/lib/mysql/mysql.sock&#39; (2)&quot;)</code></p>
+<p>request.form[‘title’] 的类型是Unicode，encode后应该就可以变成str了，可是<br>
+提示<code>OperationalError: (1054, &quot;Unknown column 'abc' in 'field list'&quot;)</code>英文都插入不了，然后经Stack Overflow启发，改动 { } =&gt; “{ }”，然后就可以运行了。。坑死了。</p>
+<p>还有一个坑：<code>OperationalError: (2002, &quot;Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)&quot;)</code></p>
 <p>默认MySQLdb会在/var/lib/mysql 寻找sock，由于服务器的安装位置不是这里，查找mysql.sock发现在/tmp 目录下，创建MySQLdb连接时，指定unix_sock = /tmp/mysql.sock就可以连接了</p>
 
         </div>
@@ -199,7 +201,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.647Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.802Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 

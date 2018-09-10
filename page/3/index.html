@@ -171,11 +171,20 @@
 
     
         
-1.配置网络命令版：1.设置IPsudo ifconfig ens3 202.197.75.58 
-2.设置网关sudo route add default gw 202.197.75.55
-3.设置DNSsudo nano /etc/resolv.conf 
+1.配置网络
+命令版：
+1.设置IP
+sudo ifconfig ens3 202.197.75.58 
+
+2.设置网关
+sudo route add default gw 202.197.75.55
+
+3.设置DNS
+sudo nano /etc/resolv.conf 
+
 添加nameserver 114.114.114.114
-4.重启网络sudo /ect/init.d/networking re...
+4.重启网络
+sudo /ect/init.d/netw...
     
 
         <a href="/posts/2016/11/16/Ubuntu下的网络配置/" class="post-more waves-effect waves-button">
@@ -222,17 +231,20 @@
     
         
 配置LNMP
+
 安装Nginx
+
 1.执行源更新：sudo apt-get update
 2.获取Nginx：sudo apt-get install nginx
 3.浏览器打开：202.197.75.58
 出现如图即为安装成功！
 
+
                 
                     
                     
                 
-     ...
+  ...
     
 
         <a href="/posts/2016/11/16/'LNMP,SAMBA'/" class="post-more waves-effect waves-button">

@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="spring boot">
-    <meta name="description" content="JPA 中文乱码  检查数据库编码 show variables like &amp;#39;character_set_database&amp;#39;;–查看该数据库使用的编码 alter database &amp;lt;数据库名&amp;gt; CHARACTER SET utf8;–修改编码为utf8 show create table &amp;lt;表名&amp;gt;;–查询表的编码，默认为：latin1 alter tabl">
+    <meta name="description" content="JPA   中文乱码  检查数据库编码  show variables like &apos;character_set_database&apos;;–查看该数据库使用的编码 alter database &amp;lt;数据库名&amp;gt; CHARACTER SET utf8;–修改编码为utf8 show create table &amp;lt;表名&amp;gt;;–查询表的编码，默认为：latin1 alter table &amp;lt">
 <meta name="keywords" content="spring boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring boot 笔记">
 <meta property="og:url" content="https://whllhw.xyz/posts/2018/03/21/Spring boot 笔记/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="JPA 中文乱码  检查数据库编码 show variables like &amp;#39;character_set_database&amp;#39;;–查看该数据库使用的编码 alter database &amp;lt;数据库名&amp;gt; CHARACTER SET utf8;–修改编码为utf8 show create table &amp;lt;表名&amp;gt;;–查询表的编码，默认为：latin1 alter tabl">
+<meta property="og:description" content="JPA   中文乱码  检查数据库编码  show variables like &apos;character_set_database&apos;;–查看该数据库使用的编码 alter database &amp;lt;数据库名&amp;gt; CHARACTER SET utf8;–修改编码为utf8 show create table &amp;lt;表名&amp;gt;;–查询表的编码，默认为：latin1 alter table &amp;lt">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.698Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring boot 笔记">
-<meta name="twitter:description" content="JPA 中文乱码  检查数据库编码 show variables like &amp;#39;character_set_database&amp;#39;;–查看该数据库使用的编码 alter database &amp;lt;数据库名&amp;gt; CHARACTER SET utf8;–修改编码为utf8 show create table &amp;lt;表名&amp;gt;;–查询表的编码，默认为：latin1 alter tabl">
+<meta name="twitter:description" content="JPA   中文乱码  检查数据库编码  show variables like &apos;character_set_database&apos;;–查看该数据库使用的编码 alter database &amp;lt;数据库名&amp;gt; CHARACTER SET utf8;–修改编码为utf8 show create table &amp;lt;表名&amp;gt;;–查询表的编码，默认为：latin1 alter table &amp;lt">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
@@ -151,7 +151,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JPA"><span class="post-toc-number">1.</span> <span class="post-toc-text">JPA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#View-Object"><span class="post-toc-number">2.</span> <span class="post-toc-text">View Object</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#jpa"><span class="post-toc-number">1.</span> <span class="post-toc-text">JPA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#view-object"><span class="post-toc-number">2.</span> <span class="post-toc-text">View Object</span></a></li></ol>
         </nav>
     </aside>
 
@@ -175,30 +175,41 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><ul>
-<li><p>中文乱码</p>
+            <h2 id="jpa">JPA</h2>
+<ul>
+<li>
+<p>中文乱码</p>
 <ol>
-<li>检查数据库编码<ul>
-<li><code>show variables like &#39;character_set_database&#39;;</code>–查看该数据库使用的编码</li>
+<li>检查数据库编码
+<ul>
+<li><code>show variables like 'character_set_database';</code>–查看该数据库使用的编码</li>
 <li><code>alter database &lt;数据库名&gt; CHARACTER SET utf8;</code>–修改编码为utf8</li>
 <li><code>show create table &lt;表名&gt;;</code>–查询表的编码，默认为：latin1</li>
 <li><code>alter table &lt;表名&gt; character set utf8;</code>–修改表的编码</li>
 </ul>
 </li>
-<li><p>检查JPA连接配置</p>
+<li>检查JPA连接配置
 <ul>
 <li>spring.datasource.url后面加上<code>characterEncoding=utf-8</code>参数</li>
 </ul>
-<p><strong>ps：后面才知道mysql的utf8是假的，只支持三字节的编码，utf8mb4才是现在称的真正utf8</strong></p>
 </li>
 </ol>
+<p><strong>ps：后面才知道mysql的utf8是假的，只支持三字节的编码，utf8mb4才是现在称的真正utf8</strong></p>
 </li>
 </ul>
-<h2 id="View-Object"><a href="#View-Object" class="headerlink" title="View Object"></a>View Object</h2><p>因为前端要的字段可能跟数据库里的不同，或者要其他的数据，都在一个接口处返回，或者嵌套对象返回。<br>解决方法是使用一大片 getter setter for 语句来处理，代码极其不好看。于是花半天时间查阅 <a href="https://docs.spring.io/spring-data/jpa/docs/1.11.13.RELEASE/reference/html/#projections" target="_blank" rel="noopener">jpa</a> 文档，发现可以用到 VO 来解决这些问题。<br>这里直接就贴上代码看一下就ok了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CompreGradeItem</span> </span>&#123;</span><br><span class="line">    <span class="function">Integer <span class="title">getCompreRank</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// more...与数据库字段相同的直接写 get 方法</span></span><br><span class="line">	<span class="comment">// 使用Value注解，获取到对象内的成员</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"#&#123;target.student.major&#125;"</span>)</span><br><span class="line">    <span class="function">String <span class="title">getMajor</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 新建的键值对，可以利用 spel 实现简单的处理</span></span><br><span class="line">	<span class="comment">// 要实现高级自定义，则编写自己的 bean 可以实现任意逻辑（下面一个）</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"#&#123;@compreGradeBean.getAddGroup(target)&#125;"</span>)</span><br><span class="line">    <span class="function">List&lt;Object&gt; <span class="title">getAddGroup</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="view-object">View Object</h2>
+<p>因为前端要的字段可能跟数据库里的不同，或者要其他的数据，都在一个接口处返回，或者嵌套对象返回。<br>
+解决方法是使用一大片 getter setter for 语句来处理，代码极其不好看。于是花半天时间查阅 <a href="https://docs.spring.io/spring-data/jpa/docs/1.11.13.RELEASE/reference/html/#projections" target="_blank" rel="noopener">jpa</a> 文档，发现可以用到 VO 来解决这些问题。<br>
+这里直接就贴上代码看一下就ok了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CompreGradeItem</span> </span>&#123;</span><br><span class="line">    <span class="function">Integer <span class="title">getCompreRank</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// more...与数据库字段相同的直接写 get 方法</span></span><br><span class="line">	<span class="comment">// 使用Value注解，获取到对象内的成员</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"#&#123;target.student.major&#125;"</span>)</span><br><span class="line">    <span class="function">String <span class="title">getMajor</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 新建的键值对，可以利用 spel 实现简单的处理</span></span><br><span class="line">	<span class="comment">// 要实现高级自定义，则编写自己的 bean 可以实现任意逻辑（下面一个）</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"#&#123;@compreGradeBean.getAddGroup(target)&#125;"</span>)</span><br><span class="line">    <span class="function">List&lt;Object&gt; <span class="title">getAddGroup</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompreGradeBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> CompreAddGradeRepository compreAddGradeRepository;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AwardBean awardBean;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CompreGradeBean</span><span class="params">(CompreAddGradeRepository compreAddGradeRepository, AwardBean awardBean)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.compreAddGradeRepository = compreAddGradeRepository;</span><br><span class="line">        <span class="keyword">this</span>.awardBean = awardBean;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Object&gt; <span class="title">getAddGroup</span><span class="params">(CompreGradeEntity compreGradeEntity)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 在这里编写自定义的方法，可以再进行查询。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CompreGradeRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">CompreGradeEntity</span>, <span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Page&lt;CompreGradeItem&gt; <span class="title">findAllByStudentMajorLikeAndStudentStuClassLikeAndYearTerm</span><span class="params">(String major,String stuClass,String yearTerm,Pageable pageable)</span></span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<p>更新：<br>用这种方法，由于 jpa 无法预知程序员想要留下的字段，所以直接全部字段都查询出来，数据量少应该无所谓，但是最好还是写 nativeQuery 这样数据库压力会小点，但是返回的是 <code>List&lt;Object[]&gt;</code> 映射字段名就麻烦了。用 setter ？不存在的。尽量避免写出无意义，而且容易出错的代码<br>下面说一下我正在使用的方法：<br>配合 java 8 的特性 stream 实现字段映射：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要映射的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassForm</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String A;</span><br><span class="line">	<span class="keyword">private</span> String B;</span><br><span class="line">	<span class="comment">// 这里是一个需要调用 bean 的一个参数</span></span><br><span class="line">	<span class="keyword">private</span> String C;</span><br><span class="line">	<span class="comment">//   getter   setter</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ClassForm <span class="title">map</span><span class="params">(Object[] i)</span></span>&#123;</span><br><span class="line">	ClassForm tmp = <span class="keyword">new</span> ClassForm();</span><br><span class="line">		tmp.setA(i[<span class="number">0</span>]);</span><br><span class="line">		tmp.setB(i[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 模仿流式 api</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ClassForm <span class="title">setC</span><span class="params">(String c)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.C = c;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更新：<br>
+用这种方法，由于 jpa 无法预知程序员想要留下的字段，所以直接全部字段都查询出来，数据量少应该无所谓，但是最好还是写 nativeQuery 这样数据库压力会小点，但是返回的是 <code>List&lt;Object[]&gt;</code> 映射字段名就麻烦了。用 setter ？不存在的。尽量避免写出无意义，而且容易出错的代码<br>
+下面说一下我正在使用的方法：<br>
+配合 java 8 的特性 stream 实现字段映射：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要映射的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassForm</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String A;</span><br><span class="line">	<span class="keyword">private</span> String B;</span><br><span class="line">	<span class="comment">// 这里是一个需要调用 bean 的一个参数</span></span><br><span class="line">	<span class="keyword">private</span> String C;</span><br><span class="line">	<span class="comment">//   getter   setter</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ClassForm <span class="title">map</span><span class="params">(Object[] i)</span></span>&#123;</span><br><span class="line">	ClassForm tmp = <span class="keyword">new</span> ClassForm();</span><br><span class="line">		tmp.setA(i[<span class="number">0</span>]);</span><br><span class="line">		tmp.setB(i[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 模仿流式 api</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ClassForm <span class="title">setC</span><span class="params">(String c)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.C = c;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在外层调用的时候</span></span><br><span class="line">List&lt;Object[]&gt; x = repository.findAllByXXX(xxx);</span><br><span class="line">List&lt;ClassForm&gt; r = x.stream().map(s-&gt;ClassForm.map(s).setC(myBean.getC(s[<span class="number">2</span>]))).Collect(Collector.toList());</span><br><span class="line"><span class="comment">// 随后 r 就可以通过反射 API，自动生成 JSON 数据了</span></span><br></pre></td></tr></table></figure>
 
         </div>
@@ -208,7 +219,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.698Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.907Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 

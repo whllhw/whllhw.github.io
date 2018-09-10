@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="ubuntu, ssh">
-    <meta name="description" content="SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。借助必应的威力，有了新的发现，借助ssh-copy-id，三步实现！！  第一步：生成密钥：1ssh-kengen 保存在~/.ssh/目录下。 第二步：1ssh-copy-id -i ~/.ssh/id_rsa.pub username@remo">
+    <meta name="description" content="SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。 借助必应的威力，有了新的发现，借助__ssh-copy-id__，三步实现！！  第一步： 生成密钥： 1ssh-kengen 保存在_~/.ssh/_目录下。 第二步： 1ssh-copy-id -i ~/.ssh/id_rsa.pub use">
 <meta name="keywords" content="ubuntu, ssh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSH无密码登录三步实现">
 <meta property="og:url" content="https://whllhw.xyz/posts/2017/03/11/SSH无密码登录三步实现/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。借助必应的威力，有了新的发现，借助ssh-copy-id，三步实现！！  第一步：生成密钥：1ssh-kengen 保存在~/.ssh/目录下。 第二步：1ssh-copy-id -i ~/.ssh/id_rsa.pub username@remo">
+<meta property="og:description" content="SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。 借助必应的威力，有了新的发现，借助__ssh-copy-id__，三步实现！！  第一步： 生成密钥： 1ssh-kengen 保存在_~/.ssh/_目录下。 第二步： 1ssh-copy-id -i ~/.ssh/id_rsa.pub use">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.613Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH无密码登录三步实现">
-<meta name="twitter:description" content="SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。借助必应的威力，有了新的发现，借助ssh-copy-id，三步实现！！  第一步：生成密钥：1ssh-kengen 保存在~/.ssh/目录下。 第二步：1ssh-copy-id -i ~/.ssh/id_rsa.pub username@remo">
+<meta name="twitter:description" content="SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。 借助必应的威力，有了新的发现，借助__ssh-copy-id__，三步实现！！  第一步： 生成密钥： 1ssh-kengen 保存在_~/.ssh/_目录下。 第二步： 1ssh-copy-id -i ~/.ssh/id_rsa.pub use">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
@@ -176,13 +176,18 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <blockquote>
-<p><em>SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。</em><br>借助必应的威力，有了新的发现，借助<strong>ssh-copy-id</strong>，三步实现！！</p>
+<p><em>SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。</em><br>
+借助必应的威力，有了新的发现，借助__ssh-copy-id__，三步实现！！</p>
 </blockquote>
-<h2 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h2><p>生成密钥：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-kengen</span><br></pre></td></tr></table></figure></p>
-<p>保存在<em>~/.ssh/</em>目录下。</p>
-<h2 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote-host</span><br></pre></td></tr></table></figure>
+<h2 id="第一步：">第一步：</h2>
+<p>生成密钥：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-kengen</span><br></pre></td></tr></table></figure>
+<p>保存在_~/.ssh/_目录下。</p>
+<h2 id="第二步：">第二步：</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote-host</span><br></pre></td></tr></table></figure>
 <p>该命令将公钥文件写到远程机器的 <em>~/.ssh/authorized_key</em></p>
-<h2 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@remote-host</span><br></pre></td></tr></table></figure>
+<h2 id="第三步：">第三步：</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@remote-host</span><br></pre></td></tr></table></figure>
 <p>登录！！</p>
 <blockquote>
 <p>原文：</p>
@@ -197,7 +202,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.613Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.738Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 
@@ -240,7 +245,8 @@
       </li>
       <li>
         <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/03/11/SSH无密码登录三步实现/&title=《SSH无密码登录三步实现》 — 仰头45℃爆笑&source=
-SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。借..." data-title=" QQ">
+SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。
+..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -389,7 +395,8 @@ SSH免密码登录百度上有很多教程，大多是重复的，效果不一�
       </li>
       <li>
         <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/03/11/SSH无密码登录三步实现/&title=《SSH无密码登录三步实现》 — 仰头45℃爆笑&source=
-SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。借..." data-title=" QQ">
+SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。
+..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>

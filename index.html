@@ -170,7 +170,9 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        打开 VS 发现许可证过期，需要登陆后重新获取，但是登陆时提示：https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js Script error 无法执行脚本。浏览器打开发现脚本没问题。重启多试几次，还是不行，就直接搜这个网址，还真有：VS2017登陆不了,TFS无法连接成功的问题果然，我的 win7 是 ie8，不过都是用...
+        打开 VS 发现许可证过期，需要登陆后重新获取，但是登陆时提示：https://auth.gfx.ms/16.000.27887.2/OldConvergedLogin_PCore.js Script error 无法执行脚本。
+浏览器打开发现脚本没问题。重启多试几次，还是不行，就直接搜这个网址，还真有：VS2017登陆不了,TFS无法连接成功的问题
+果然，我的 win7 是 ie8，不过都...
     
 
         <a href="/posts/2018/09/10/Visual Studio 2017 无法登陆提示脚本错误/" class="post-more waves-effect waves-button">
@@ -255,13 +257,13 @@
 
     
         
-　操作不当导致一天内写的代码丢失，最后依靠 idea 的本地历史（local history）找回。
+操作不当导致一天内写的代码丢失，最后依靠 idea 的本地历史（local history）找回。
 
 过程：
 
 使用 idea 的 VSC 工具进行 git commit （用这个主要是这个带有自动整理代码，优化导入的功能，还会分析代码）
 想了想应该只有我有最新的版本了，别人不会有更新的。于是直接点开 git push （以前都是先使用 git pull 的，这次脑残了）
-提示有冲突，是...
+提示有冲突，是否...
     
 
         <a href="/posts/2018/08/26/idea git push 引起的血案/" class="post-more waves-effect waves-button">
@@ -402,13 +404,16 @@
 
     
         JPA
+
+
 中文乱码
 
 检查数据库编码
-show variables like &#39;character_set_database&#39;;–查看该数据库使用的编码
+
+show variables like 'character_set_database';–查看该数据库使用的编码
 alter database &lt;数据库名&gt; CHARACTER SET utf8;–修改编码为utf8
 show create table &lt;表名&gt;;–查询表的编码，默认为：latin1
-alter t...
+alter table ...
     
 
         <a href="/posts/2018/03/21/Spring boot 笔记/" class="post-more waves-effect waves-button">
@@ -453,8 +458,11 @@ alter t...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        #全栈开发感想##摘要以前一直是学习后端开发，使用简单的 flask 框架进行开发，前端的网页要不就是没有，要不就是抄别人现成的网页，只是把ajax请求地址改成自己的。开发一些玩具类似的东西还是挺快的。
-##背景现在突然有个课设项目，大佬要跟我组队，不过他也不会前端的东西，我知道也是浅尝辄止。见过许多华丽的网页，自己却写不出来。我让他先去看一看网页相关的库，上上w3school 先入入门。过...
+        #全栈开发感想
+##摘要
+以前一直是学习后端开发，使用简单的 flask 框架进行开发，前端的网页要不就是没有，要不就是抄别人现成的网页，只是把ajax请求地址改成自己的。开发一些玩具类似的东西还是挺快的。
+##背景
+现在突然有个课设项目，大佬要跟我组队，不过他也不会前端的东西，我知道也是浅尝辄止。见过许多华丽的网页，自己却写不出来。我让他先去看一看网页相关的库，上上w3school 先入入...
     
 
         <a href="/posts/2017/12/15/近乎全栈的体验/" class="post-more waves-effect waves-button">
@@ -499,9 +507,11 @@ alter t...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        #Git 使用笔记克隆本分支，深度为112git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push
+        #Git 使用笔记
+克隆本分支，深度为1
+12git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push
 当已经存在.git文件夹时可以使用
-123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -...
+123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout...
     
 
         <a href="/posts/2017/11/25/Git记录/" class="post-more waves-effect waves-button">
@@ -547,11 +557,14 @@ alter t...
 
     
         #使用CentOS笔记
-在云上使用Centos，很多常用的命令不能直接用。软件仓库轻量化，也有导致使用不便。安装nginx 要添加源，才能直接安装，不然就是自己编译源代码。将持续更新。。。
 
-##使用常用命令Centos 安装编译工具包，很多在其他系统上直接安装的程序，都被包含进去，保证软件包仓库的纯净。
+在云上使用Centos，很多常用的命令不能直接用。软件仓库轻量化，也有导致使用不便。安装nginx 要添加源，才能直接安装，不然就是自己编译源代码。
+将持续更新。。。
+
+##使用常用命令
+Centos 安装编译工具包，很多在其他系统上直接安装的程序，都被包含进去，保证软件包仓库的纯净。
 1yum groupinstall "Development Tools"
-nginx...
+ng...
     
 
         <a href="/posts/2017/11/25/我的云上CentOS记录/" class="post-more waves-effect waves-button">

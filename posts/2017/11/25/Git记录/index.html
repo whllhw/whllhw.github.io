@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="git, linux">
-    <meta name="description" content="#Git 使用笔记克隆本分支，深度为112git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push 当已经存在.git文件夹时可以使用 123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -b d">
+    <meta name="description" content="#Git 使用笔记 克隆本分支，深度为1 12git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push 当已经存在.git文件夹时可以使用 123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -b">
 <meta name="keywords" content="git, linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git记录">
 <meta property="og:url" content="https://whllhw.xyz/posts/2017/11/25/Git记录/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="#Git 使用笔记克隆本分支，深度为112git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push 当已经存在.git文件夹时可以使用 123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -b d">
+<meta property="og:description" content="#Git 使用笔记 克隆本分支，深度为1 12git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push 当已经存在.git文件夹时可以使用 123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -b">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.555Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git记录">
-<meta name="twitter:description" content="#Git 使用笔记克隆本分支，深度为112git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push 当已经存在.git文件夹时可以使用 123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -b d">
+<meta name="twitter:description" content="#Git 使用笔记 克隆本分支，深度为1 12git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io git push #提交代码直接push 当已经存在.git文件夹时可以使用 123git branch -r # 显示远程分支git branch -a # 显示所有分支git checkout -b">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
@@ -151,7 +151,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Git-使用笔记"><span class="post-toc-number">1.</span> <span class="post-toc-text">#Git 使用笔记</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.</span> <span class="post-toc-text">#Git 使用笔记</span></a></li></ol>
         </nav>
     </aside>
 
@@ -175,11 +175,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="Git-使用笔记"><a href="#Git-使用笔记" class="headerlink" title="#Git 使用笔记"></a>#Git 使用笔记</h1><p>克隆本分支，深度为1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io </span><br><span class="line">git push #提交代码直接push</span><br></pre></td></tr></table></figure></p>
+            <h1>#Git 使用笔记</h1>
+<p>克隆本分支，深度为1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone -b deploy_online --depth=1 git@github.com:whllhw/whllhw.github.io </span><br><span class="line">git push #提交代码直接push</span><br></pre></td></tr></table></figure>
 <p>当已经存在.git文件夹时可以使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -r # 显示远程分支</span><br><span class="line">git branch -a # 显示所有分支</span><br><span class="line">git checkout -b dev origin/deploy_online # 建立本地分支dev并切换为远程的deploy_online？待验证</span><br></pre></td></tr></table></figure>
-<p>推送到远程其他分支时<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:whllhw/whllhw.github.io #添加远程仓库</span><br><span class="line">git push --set-upstream origin master:passage #将本地的master分支提交到远程的passage</span><br><span class="line"># 以后每次提交都要使用 git push origin HEAD:passage 有点麻烦！</span><br><span class="line">    # 或者使用上面切换分支的方法 git checkout -b ... </span><br><span class="line"># 或者使用本地分支与远程分支相同(master 作为变量，为分支名)</span><br><span class="line">git push --set-upstream origin master #默认将本地master分支提交到远程的master</span><br></pre></td></tr></table></figure></p>
-
+<p>推送到远程其他分支时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:whllhw/whllhw.github.io #添加远程仓库</span><br><span class="line">git push --set-upstream origin master:passage #将本地的master分支提交到远程的passage</span><br><span class="line"># 以后每次提交都要使用 git push origin HEAD:passage 有点麻烦！</span><br><span class="line">    # 或者使用上面切换分支的方法 git checkout -b ... </span><br><span class="line"># 或者使用本地分支与远程分支相同(master 作为变量，为分支名)</span><br><span class="line">git push --set-upstream origin master #默认将本地master分支提交到远程的master</span><br></pre></td></tr></table></figure>
         </div>
 
         <blockquote class="post-copyright">
@@ -187,7 +189,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.555Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.652Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 

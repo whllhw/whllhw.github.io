@@ -21,19 +21,19 @@
     
     
     <meta name="keywords" content="ubuntu">
-    <meta name="description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key">
+    <meta name="description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题： Server refused our key">
 <meta name="keywords" content="ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSH密钥认证的坑">
 <meta property="og:url" content="https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key">
+<meta property="og:description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题： Server refused our key">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://www.intmain.me/images/20170110223815.png">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.601Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH密钥认证的坑">
-<meta name="twitter:description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key">
+<meta name="twitter:description" content="在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题： Server refused our key">
 <meta name="twitter:image" content="http://www.intmain.me/images/20170110223815.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
@@ -153,7 +153,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">1.</span> <span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Finally"><span class="post-toc-number">2.</span> <span class="post-toc-text">Finally</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#吐槽"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">吐槽</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.</span> <span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">2.</span> <span class="post-toc-text">Finally</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#吐槽"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">吐槽</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -178,18 +178,24 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <blockquote>
-<p>在jobsky的服务器(<strong>Centos7</strong>)上不想输密码，SSH配置的时候老出现问题：<br><strong>Server refused our key</strong></p>
+<p>在jobsky的服务器(<strong>Centos7</strong>)上不想输密码，SSH配置的时候老出现问题：<br>
+<strong>Server refused our key</strong></p>
 </blockquote>
 <a id="more"></a>
-<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><ol>
-<li>ssh 文件夹权限不对？<br>据网上说要求<strong>700</strong>甚至<strong>400</strong>的权限，改了，<strong>无济于事</strong></li>
-<li>用puttykeygen生成的问题？<br>万恶的Mircosoft和Linux不相容，我又在服务端生成了一个新的密钥，<strong>失败</strong></li>
-<li>终于想起我的腾讯爸爸，登上云服务器看看.ssh文件夹，只有一个文件<strong>authorized_keys</strong>。好像没什么毛病！</li>
+<h1>解决过程</h1>
+<ol>
+<li>ssh 文件夹权限不对？<br>
+据网上说要求__700__甚至__400__的权限，改了，<strong>无济于事</strong></li>
+<li>用puttykeygen生成的问题？<br>
+万恶的Mircosoft和Linux不相容，我又在服务端生成了一个新的密钥，<strong>失败</strong></li>
+<li>终于想起我的腾讯爸爸，登上云服务器看看.ssh文件夹，只有一个文件__authorized_keys__。好像没什么毛病！</li>
 <li>Selinux?失效！</li>
-<li>最后在一篇文章中找到<a href="http://blog.csdn.net/magic_zj00/article/details/7470023" target="_blank" rel="noopener">“关于使用putty私钥连接linux出现失败的原因解决方案”</a><br>竟然有和3相同的名字：<strong>authorized_keys</strong></li>
-<li>最后key-comment 内容不重要<h1 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa.pub authorzied_keys</span><br></pre></td></tr></table></figure>
-</li>
+<li>最后在一篇文章中找到<a href="http://blog.csdn.net/magic_zj00/article/details/7470023" target="_blank" rel="noopener">&quot;关于使用putty私钥连接linux出现失败的原因解决方案&quot;</a><br>
+竟然有和3相同的名字：<strong>authorized_keys</strong></li>
+<li>最后key-comment 内容不重要</li>
 </ol>
+<h1>Finally</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa.pub authorzied_keys</span><br></pre></td></tr></table></figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -197,7 +203,9 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>辣鸡百度，尽搜出来水教程，弄了一个晚上<br>附：SSH的配置文件/etc/ssh/ssh_config</p>
+<h2 id="吐槽">吐槽</h2>
+<p>辣鸡百度，尽搜出来水教程，弄了一个晚上<br>
+附：SSH的配置文件/etc/ssh/ssh_config</p>
 
         </div>
 
@@ -206,7 +214,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.601Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.721Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 
@@ -249,7 +257,8 @@
       </li>
       <li>
         <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&title=《SSH密钥认证的坑》 — 仰头45℃爆笑&source=
-在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key
+在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：
+Server refused our key
 " data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
@@ -399,7 +408,8 @@
       </li>
       <li>
         <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/&title=《SSH密钥认证的坑》 — 仰头45℃爆笑&source=
-在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：Server refused our key
+在jobsky的服务器(Centos7)上不想输密码，SSH配置的时候老出现问题：
+Server refused our key
 " data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>

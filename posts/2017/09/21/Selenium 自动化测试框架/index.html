@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="比较快速的爬取一些网站，最快就是用这个框架，记录遇到的坑。  查阅的中文文档基本用法简单，但是高级的用法就是英文的，或者没有。这里记录一下。">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-09-10T02:18:57.589Z">
+<meta property="og:updated_time" content="2018-09-10T05:05:59.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Selenium 自动化测试框架">
 <meta name="twitter:description" content="比较快速的爬取一些网站，最快就是用这个框架，记录遇到的坑。  查阅的中文文档基本用法简单，但是高级的用法就是英文的，或者没有。这里记录一下。">
@@ -174,7 +174,7 @@
 <p>查阅的<a href="https://selenium-python-zh.readthedocs.io/en/latest/locating-elements.html" title="中文文档" target="_blank" rel="noopener">中文文档</a>基本用法简单，但是高级的用法就是英文的，或者没有。这里记录一下。</p>
 <a id="more"></a>
 <hr>
-<p><code>webdriver.Chrome(&#39;/path/to/chromedriver&#39;)</code></p>
+<p><code>webdriver.Chrome('/path/to/chromedriver')</code></p>
 <ul>
 <li>加载驱动时要指定路径，不然提示没有找到驱动</li>
 <li>在弹出的网页进行查找元素时，要使用切换窗口，不然提示NoSuchElementException</li>
@@ -187,16 +187,22 @@
 </ul>
 <p><code>f.write(json.dumps(data,indent=4,ensure_ascii=False))</code></p>
 <ul>
-<li><p>隐式等待，可以自制一个装饰器，重复调用</p>
-<p>  from selenium.webdriver.common.by import By<br>  from selenium.webdriver.support import expected_conditions as EC<br>  from selenium.webdriver.support.ui import WebDriverWait<br>  def wait(func):</p>
-<pre><code>def wrapper(*args,**kw):
-    return WebDriverWait(driver, 30).until(func(*args,**kw))
-return wrapper
-</code></pre><p>  @wait<br>  def find_element_by_xpath(xpath):</p>
-<pre><code>return  EC.presence_of_element_located((By.XPATH, xpath))
-</code></pre><p>  @wait<br>  def find_elements_by_xpath(xpath):</p>
-<pre><code>return EC.presence_of_elements_located((By.XPATH, xpath))
-</code></pre></li>
+<li>
+<p>隐式等待，可以自制一个装饰器，重复调用</p>
+<p>from <a href="http://selenium.webdriver.common.by" target="_blank" rel="noopener">selenium.webdriver.common.by</a> import By<br>
+from selenium.webdriver.support import expected_conditions as EC<br>
+from selenium.webdriver.support.ui import WebDriverWait<br>
+def wait(func):<br>
+	def wrapper(*args,**kw):<br>
+		return WebDriverWait(driver, 30).until(func(*args,**kw))<br>
+	return wrapper<br>
+@wait<br>
+def find_element_by_xpath(xpath):<br>
+	return  EC.presence_of_element_located((By.XPATH, xpath))<br>
+@wait<br>
+def find_elements_by_xpath(xpath):<br>
+	return EC.presence_of_elements_located((By.XPATH, xpath))</p>
+</li>
 </ul>
 
         </div>
@@ -206,7 +212,7 @@ return wrapper
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-10T02:18:57.589Z" itemprop="dateUpdated">2018-09-10 10:18:57</time>
+    最后更新时间：<time datetime="2018-09-10T05:05:59.707Z" itemprop="dateUpdated">2018-09-10 13:05:59</time>
 </span><br>
 
 
