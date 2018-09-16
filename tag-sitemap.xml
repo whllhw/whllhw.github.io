@@ -122,7 +122,14 @@
 
     <url>
         <loc>https://whllhw.xyz/tags/java/</loc>
-        <lastmod>2018-09-16T11:52:50.404Z</lastmod>
+        <lastmod>2018-09-16T12:58:36.395Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://whllhw.xyz/tags/%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+        <lastmod>2018-09-16T12:58:36.645Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

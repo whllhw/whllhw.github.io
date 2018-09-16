@@ -21,16 +21,14 @@
     
     
     <meta name="keywords" content="java">
-    <meta name="description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。如何连接服务器看这篇文章  前言 看到了敖厂长出的视频，居然还有这样的游戏能开私服。目前网上能搜到的就这篇文章【极品飞车世界】私服连接教程 游戏画面当然不能跟现在的游戏比较，硬核玩家才不会在意这些。【敖厂长】死掉的极品飞车游戏">
+    <meta name="description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。难度较高，我已经搭建好了服务器供玩耍，如何连接服务器看这篇文章或者 简书  不推荐的方法 我先找到 github SoapboxRaceWorld上面的开源服务器，尝试了很久，最后搭建好了之后发现游戏中购车的界面进不去，在后台数据库发现少数据，但是我已经全部导入了的😂">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NFSW 服务器搭建教程">
 <meta property="og:url" content="https://whllhw.xyz/posts/2018/09/16/NFSW 服务器搭建教程/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。如何连接服务器看这篇文章  前言 看到了敖厂长出的视频，居然还有这样的游戏能开私服。目前网上能搜到的就这篇文章【极品飞车世界】私服连接教程 游戏画面当然不能跟现在的游戏比较，硬核玩家才不会在意这些。【敖厂长】死掉的极品飞车游戏">
+<meta property="og:description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。难度较高，我已经搭建好了服务器供玩耍，如何连接服务器看这篇文章或者 简书  不推荐的方法 我先找到 github SoapboxRaceWorld上面的开源服务器，尝试了很久，最后搭建好了之后发现游戏中购车的界面进不去，在后台数据库发现少数据，但是我已经全部导入了的😂">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-761f611236891f57.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-9c729948532d0050.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-481f81f16c4de4f1.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-af34e1c7d352abb5.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-a65815bd7e0c07d6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
@@ -47,11 +45,11 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-ebd0debfd07f5f2a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-476964e1a7c54e06.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-73ba3c1133550a6b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-09-16T11:52:50.404Z">
+<meta property="og:updated_time" content="2018-09-16T12:58:36.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NFSW 服务器搭建教程">
-<meta name="twitter:description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。如何连接服务器看这篇文章  前言 看到了敖厂长出的视频，居然还有这样的游戏能开私服。目前网上能搜到的就这篇文章【极品飞车世界】私服连接教程 游戏画面当然不能跟现在的游戏比较，硬核玩家才不会在意这些。【敖厂长】死掉的极品飞车游戏">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10215367-761f611236891f57.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
+<meta name="twitter:description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。难度较高，我已经搭建好了服务器供玩耍，如何连接服务器看这篇文章或者 简书  不推荐的方法 我先找到 github SoapboxRaceWorld上面的开源服务器，尝试了很久，最后搭建好了之后发现游戏中购车的界面进不去，在后台数据库发现少数据，但是我已经全部导入了的😂">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10215367-481f81f16c4de4f1.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
@@ -181,26 +179,8 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <blockquote>
-<p>本篇文章主要讲搭建过程，以及出现问题的解决方法。如何连接服务器看这篇文章</p>
+<p>本篇文章主要讲搭建过程，以及出现问题的解决方法。难度较高，我已经搭建好了服务器供玩耍，如何连接服务器看<a href="">这篇文章</a>或者 <a href="https://www.jianshu.com/p/23bcb1dcbe26" target="_blank" rel="noopener">简书</a></p>
 </blockquote>
-<h1>前言</h1>
-<p>看到了敖厂长出的视频，居然还有这样的游戏能开私服。目前网上能搜到的就这篇文章<a href="https://www.bilibili.com/read/cv44595/" target="_blank" rel="noopener">【极品飞车世界】私服连接教程</a><br>
-游戏画面当然不能跟现在的游戏比较，硬核玩家才不会在意这些。<a href="https://www.bilibili.com/video/av25753282" target="_blank" rel="noopener">【敖厂长】死掉的极品飞车游戏</a></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/10215367-761f611236891f57.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="当然是去卡收费站的bug啦" title="">
-                </div>
-                <div class="image-caption">当然是去卡收费站的bug啦</div>
-            </figure>
-<p>不过连接国外的服务器有问题，ping 值 200 ，还登录不了。最近 zesty 开的CN 服务器也莫名其妙不见了，可能是关掉了吧。😂</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/10215367-9c729948532d0050.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="SoapboxRaceWorld.world也打不开" title="">
-                </div>
-                <div class="image-caption">SoapboxRaceWorld.world也打不开</div>
-            </figure>
 <h1>不推荐的方法</h1>
 <p>我先找到 github <a href="https://github.com/SoapboxRaceWorld/soapbox-race-core" target="_blank" rel="noopener">SoapboxRaceWorld</a>上面的开源服务器，尝试了很久，最后搭建好了之后发现游戏中购车的界面进不去，在后台数据库发现少数据，但是我已经全部导入了的😂</p>
 <figure class="image-bubble">
@@ -385,7 +365,7 @@ PS：我准备把这个服务做成 docker 镜像，这样部署的时候就不�
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-16T11:52:50.404Z" itemprop="dateUpdated">2018-09-16 19:52:50</time>
+    最后更新时间：<time datetime="2018-09-16T12:58:36.395Z" itemprop="dateUpdated">2018-09-16 20:58:36</time>
 </span><br>
 
 
@@ -462,7 +442,14 @@ PS：我准备把这个服务做成 docker 镜像，这样部署的时候就不�
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/2018/09/16/连接到 NFSW CN 服务器/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">连接到 NFSW CN 服务器</h4>
+      </a>
+    </div>
   
 
   
