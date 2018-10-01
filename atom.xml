@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://whllhw.xyz/"/>
-  <updated>2018-09-16T13:14:31.564Z</updated>
+  <updated>2018-10-01T15:27:46.738Z</updated>
   <id>https://whllhw.xyz/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实现一个自己的无人车：Donkey Car 一个小型汽车开源DIY自动驾驶平台</title>
+    <link href="https://whllhw.xyz/posts/2018/10/01/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%97%A0%E4%BA%BA%E8%BD%A6%EF%BC%9ADonkey%20Car%20%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9E%8B%E6%B1%BD%E8%BD%A6%E5%BC%80%E6%BA%90DIY%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E5%B9%B3%E5%8F%B0/"/>
+    <id>https://whllhw.xyz/posts/2018/10/01/实现一个自己的无人车：Donkey Car 一个小型汽车开源DIY自动驾驶平台/</id>
+    <published>2018-10-01T15:27:40.000Z</published>
+    <updated>2018-10-01T15:27:46.738Z</updated>
+    
+    <content type="html"><![CDATA[<h1>self driving car</h1><blockquote><p>An opensource DIY self driving platform for small scale cars.<br>RC CAR     Raspberry Pi   Python (tornado, keras, tensorflow, opencv, …)<br><a href="https://github.com/wroscoe/donkey" target="_blank" rel="noopener">https://github.com/wroscoe/donkey</a></p></blockquote><h2 id="donkeycar-a-python-self-driving-library">donkeycar: a python self driving library</h2><blockquote><p>Donkeycar is minimalist and modular self driving library for Python. It is developed for hobbyists and students with a focus on allowing fast experimentation and easy community contributions.<br><a href="http://www.donkeycar.com/" target="_blank" rel="noopener">http://www.donkeycar.com/</a></p></blockquote><ul><li>基于python的极简、模块化的自动驾驶库</li><li>开源社区驱动项目</li></ul><h1>设计理念</h1><ul><li>快速</li><li>模块化</li><li>可扩展</li><li>Keep It Simple, Stupid (KISS)</li></ul><blockquote><p>把复杂的事情变简单，这是一件复杂的事情</p></blockquote><hr><h1>使用的技术</h1><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-fbb3d9300bc8e034.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="Keras" title="">                </div>                <div class="image-caption">Keras</div>            </figure><h2 id="keras-：基于-python-的深度学习库">Keras ：基于 Python 的深度学习库</h2><p><a href="https://github.com/keras-team/keras" target="_blank" rel="noopener">https://github.com/keras-team/keras</a></p><ul><li>Deep Learning for humans</li><li>可以以TensorFlow, CNTK, 或者Theano 作为后端运行</li><li>支持快速实验，最小时延<ul><li>允许简单而快速的原型设计（由于用户友好，高度模块化，可扩展性）</li><li>支持卷积神经网络和循环神经网络，以及两者的组合。</li><li>在 CPU 和 GPU 上无缝运行。</li></ul></li><li>开源</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-cbe7c807e33baa5a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="Tornado" title="">                </div>                <div class="image-caption">Tornado</div>            </figure><h2 id="tornado">Tornado</h2><p><a href="https://github.com/tornadoweb/tornado" target="_blank" rel="noopener">https://github.com/tornadoweb/tornado</a></p><ul><li>高性能 web 框架和异步网络库（非阻塞网络 I/O）</li><li>开源</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-8dbfc84bb25a5571.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="TensorFlow" title="">                </div>                <div class="image-caption">TensorFlow</div>            </figure><h2 id="tensorflow：深度学习工具">Tensorflow：深度学习工具</h2><p><a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="noopener">https://github.com/tensorflow/tensorflow</a></p><ul><li>Tensor 张量即N维数组，Flow 流即基于数据流图的计算，合起来即张量从图一端到另一端</li><li>Google 开源</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-aa483965b7eef4d0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="OpenCV" title="">                </div>                <div class="image-caption">OpenCV</div>            </figure><h2 id="opencv：机器视觉库">Opencv：机器视觉库</h2><p><a href="https://github.com/opencv/opencv" target="_blank" rel="noopener">https://github.com/opencv/opencv</a></p><ul><li>实时图像处理、计算机视觉以及模式识别</li><li>Intel 开源</li></ul><hr><h1>硬件 DIY</h1><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-eeec2fe5cec50593.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="Raspberry Pi 俯视图" title="">                </div>                <div class="image-caption">Raspberry Pi 俯视图</div>            </figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-c4c316ce3b5da690.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="Raspberry Pi 外设连接图" title="">                </div>                <div class="image-caption">Raspberry Pi 外设连接图</div>            </figure><h2 id="树莓派">树莓派</h2><blockquote><p>The Raspberry Pi Foundation is a UK-based charity that works to put the power of digital making into the hands of people all over the world, so they are capable of understanding and shaping our increasingly digital world, able to solve the problems that matter to them, and equipped for the jobs of the future.</p></blockquote><ul><li>为学生计算机编程教育设计的卡片式电脑</li><li>开源硬件、软件</li><li>ARM Debian8.0 系统，定制硬件驱动与软件程序</li></ul><h2 id="普通遥控车改装">普通遥控车改装</h2><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-7956d228b60ac326.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="大脚车示例" title="">                </div>                <div class="image-caption">大脚车示例</div>            </figure><ol><li>电机速度控制器<ul><li>PWM控制</li></ul></li><li>转向伺服系统</li></ol><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-f2ceb349e5c87806.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="9g 舵机" title="">                </div>                <div class="image-caption">9g 舵机</div>            </figure><pre><code>  - PWM控制</code></pre><ol start="3"><li>有刷电机驱动</li><li>传感器</li></ol> <figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-dce242dcf9382bb7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="广角相机" title="">                </div>                <div class="image-caption">广角相机</div>            </figure><pre><code>- 广角相机</code></pre><h2 id="最终效果图">最终效果图</h2><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-585943f27acaec24.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="donkey car" title="">                </div>                <div class="image-caption">donkey car</div>            </figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;self driving car&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An opensource DIY self driving platform for small scale cars.&lt;br&gt;
+RC CAR     Raspberry Pi   Python
+      
+    
+    </summary>
+    
+    
+      <category term="树莓派" scheme="https://whllhw.xyz/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>连接到极品飞车世界 CN 服务器</title>
@@ -491,29 +517,6 @@
     
     
       <category term="vmware" scheme="https://whllhw.xyz/tags/vmware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSH密钥认证的坑</title>
-    <link href="https://whllhw.xyz/posts/2017/01/10/SSH%E5%AF%86%E9%92%A5%E8%AE%A4%E8%AF%81%E7%9A%84%E5%9D%91/"/>
-    <id>https://whllhw.xyz/posts/2017/01/10/SSH密钥认证的坑/</id>
-    <published>2017-01-10T14:43:38.000Z</published>
-    <updated>2018-09-16T13:14:31.070Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>在jobsky的服务器(<strong>Centos7</strong>)上不想输密码，SSH配置的时候老出现问题：<br><strong>Server refused our key</strong></p></blockquote><a id="more"></a><h1>解决过程</h1><ol><li>ssh 文件夹权限不对？<br>据网上说要求__700__甚至__400__的权限，改了，<strong>无济于事</strong></li><li>用puttykeygen生成的问题？<br>万恶的Mircosoft和Linux不相容，我又在服务端生成了一个新的密钥，<strong>失败</strong></li><li>终于想起我的腾讯爸爸，登上云服务器看看.ssh文件夹，只有一个文件__authorized_keys__。好像没什么毛病！</li><li>Selinux?失效！</li><li>最后在一篇文章中找到<a href="http://blog.csdn.net/magic_zj00/article/details/7470023" target="_blank" rel="noopener">&quot;关于使用putty私钥连接linux出现失败的原因解决方案&quot;</a><br>竟然有和3相同的名字：<strong>authorized_keys</strong></li><li>最后key-comment 内容不重要</li></ol><h1>Finally</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa.pub authorzied_keys</span><br></pre></td></tr></table></figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://www.intmain.me/images/20170110223815.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><h2 id="吐槽">吐槽</h2><p>辣鸡百度，尽搜出来水教程，弄了一个晚上<br>附：SSH的配置文件/etc/ssh/ssh_config</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在jobsky的服务器(&lt;strong&gt;Centos7&lt;/strong&gt;)上不想输密码，SSH配置的时候老出现问题：&lt;br&gt;
-&lt;strong&gt;Server refused our key&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="ubuntu" scheme="https://whllhw.xyz/tags/ubuntu/"/>
     
   </entry>
   
