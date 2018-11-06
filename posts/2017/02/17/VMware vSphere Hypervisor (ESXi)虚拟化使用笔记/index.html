@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-126824460-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="googleaf4c29130aaf2b72.html">
+    
+    
+    
+    
+    <title>VMware vSphere Hypervisor (ESXi)虚拟化使用笔记 | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="vmware">
+    <meta name="description" content="VMware vSphere Hypervisor (ESXi)虚拟化使用">
+<meta name="keywords" content="vmware">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMware vSphere Hypervisor (ESXi)虚拟化使用笔记">
+<meta property="og:url" content="https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/index.html">
+<meta property="og:site_name" content="仰头45℃爆笑">
+<meta property="og:description" content="VMware vSphere Hypervisor (ESXi)虚拟化使用">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2018-10-19T09:15:33.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VMware vSphere Hypervisor (ESXi)虚拟化使用笔记">
+<meta name="twitter:description" content="VMware vSphere Hypervisor (ESXi)虚拟化使用">
+    
+        <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">whllhw</h5>
+          <a href="mailto:undefined" class="mail">
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/whllhw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">VMware vSphere Hypervisor (ESXi)虚拟化使用笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">VMware vSphere Hypervisor (ESXi)虚拟化使用笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-17T07:32:47.000Z" itemprop="datePublished" class="page-time">
+  2017-02-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-VMware vSphere Hypervisor (ESXi)虚拟化使用笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">VMware vSphere Hypervisor (ESXi)虚拟化使用笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-17 15:32:47" datetime="2017-02-17T07:32:47.000Z"  itemprop="datePublished">2017-02-17</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1>VMware vSphere Hypervisor (ESXi)虚拟化使用</h1>
+<a id="more"></a>
+<hr>
+<h2 id="一-获取vmware-vsphere-hypervisor-esxi">一、获取VMware vSphere Hypervisor (ESXi)</h2>
+<p><a href="https://my.vmware.com/cn/web/vmware/downloads" target="_blank" rel="noopener">官网下载地址</a>下载ESXi以及管理工具<em>VMware vSphere</em></p>
+<hr>
+<h2 id="二-安装esxi">二、安装ESXi</h2>
+<p>注意：会清除数据并重新分区，注意资料备份</p>
+<hr>
+<h2 id="三-配置网络">三、配置网络</h2>
+<p>设置静态IP、DNS</p>
+<hr>
+<h2 id="四-登录管理esxi">四、登录管理ESXi</h2>
+<p>可选<strong>VMware Host Client</strong>登录，或者<strong>vSphere Client for Windows</strong></p>
+<ol>
+<li><a href="https://xn--IP-wz2cm89g" target="_blank" rel="noopener">https://主机IP</a>，即可进入VMware Host Client</li>
+<li>添加虚拟机，或者 部署OVF快速生成虚拟机</li>
+<li>添加系统光碟（Linux，Windows）</li>
+<li>启动安装程序</li>
+</ol>
+<hr>
+<h2 id="五-添加用户并登录虚拟机">五、添加用户并登录虚拟机</h2>
+<p>登录客户机需要在VMware Player，VMware workstation 里连接服务器，使用账户登录，添加权限不同的用户方便管理。</p>
+<p><strong>对密码长度有严格的要求</strong></p>
+<hr>
+<h2 id="六-获得官方的授权密钥">六、获得官方的授权密钥</h2>
+<hr>
+<h1>存在问题</h1>
+<h2 id="ntf41client-load-faided">ntf41client load faided</h2>
+<p>安装过程中提示No network adapters，无法继续安装。网卡驱动缺失造成的。</p>
+<blockquote>
+<p><a href="http://blog.bossma.cn/server/pc-install-esxi-5-5-two-problem-solution/" target="_blank" rel="noopener"> “解决方案”</a></p>
+</blockquote>
+<ol>
+<li>下载网卡驱动</li>
+<li>驱动打包工具ESXi-Customizer制作新的iso文件</li>
+</ol>
+<h2 id="调用对象-ha-datastoresystem-的-hostdatastoresystem-queryvmfsdatastorecreateoptions-添加datastore出错">调用对象 “ha-datastoresystem”的“HostDatastoreSystem.QueryVmfsDatastoreCreateOptions”。添加datastore出错</h2>
+<p>安装完成后没有数据储存，无法建立虚拟机，添加datastore提示**“HostDatastoreSystem.QueryVmfsDatastoreCreateOptions” for object “ha-datastoresystem” on ESXi “xxx.xxx.xxx.xx″ failed**</p>
+<blockquote>
+<p><a href="http://blog.sina.com.cn/s/blog_666e9239010149ju.html" target="_blank" rel="noopener">参考博客</a><br>
+<a href="http://www.ithao123.cn/content-10321943.html" target="_blank" rel="noopener">参考2</a><br>
+<a href="https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&amp;externalId=1008886" target="_blank" rel="noopener">官方解答</a></p>
+</blockquote>
+<p>原因分析：</p>
+<ol>
+<li>LUN空间大小超过2TB。</li>
+<li>这个LUN之前作为RDM裸设备映射。</li>
+<li>LUN包含一个GPT分区，不能被清除。</li>
+</ol>
+<p>未在实体机上解决。</p>
+<hr>
+<blockquote>
+<p>参考链接：<a href="http://dngood.blog.51cto.com/446195/1123097" target="_blank" rel="noopener">家用PC机打造VSphere5.1 测试环境</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-19T09:15:33.409Z" itemprop="dateUpdated">2018-10-19 17:15:33</time>
+</span><br>
+
+
+        
+        <a href="/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" target="_blank" rel="external">https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://whllhw.xyz">
+            <img src="/img/avatar.png" alt="whllhw">
+            whllhw
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vmware/">vmware</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/&title=《VMware vSphere Hypervisor (ESXi)虚拟化使用笔记》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/&title=《VMware vSphere Hypervisor (ESXi)虚拟化使用笔记》 — 仰头45℃爆笑&source=VMware vSphere Hypervisor (ESXi)虚拟化使用" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《VMware vSphere Hypervisor (ESXi)虚拟化使用笔记》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/&via=https://whllhw.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/2017/03/11/SSH无密码登录三步实现/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SSH无密码登录三步实现</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/2017/01/10/SSH密钥认证的坑/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SSH密钥认证的坑</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: 'Fri Feb 17 2017 15:32:47 GMT+0800',
+            owner: 'whllhw',
+            repo: 'blog-comment',
+            oauth: {
+                client_id: '95bdba8ca1dc4fcadca0',
+                client_secret: 'a37b8b6abc79a8a43d860fdd182caa52a10dffbd',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>whllhw &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/&title=《VMware vSphere Hypervisor (ESXi)虚拟化使用笔记》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/&title=《VMware vSphere Hypervisor (ESXi)虚拟化使用笔记》 — 仰头45℃爆笑&source=VMware vSphere Hypervisor (ESXi)虚拟化使用" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《VMware vSphere Hypervisor (ESXi)虚拟化使用笔记》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/&via=https://whllhw.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://whllhw.xyz/posts/2017/02/17/VMware vSphere Hypervisor (ESXi)虚拟化使用笔记/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
