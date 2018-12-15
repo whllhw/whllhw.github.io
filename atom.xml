@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://whllhw.xyz/"/>
-  <updated>2018-11-21T07:50:40.702Z</updated>
+  <updated>2018-12-15T07:45:17.508Z</updated>
   <id>https://whllhw.xyz/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>看书及写书摘：写下来才是自己的</title>
+    <link href="https://whllhw.xyz/posts/2018/12/15/%E7%9C%8B%E4%B9%A6%E5%8F%8A%E5%86%99%E4%B9%A6%E6%91%98%EF%BC%9A%E5%86%99%E4%B8%8B%E6%9D%A5%E6%89%8D%E6%98%AF%E8%87%AA%E5%B7%B1%E7%9A%84/"/>
+    <id>https://whllhw.xyz/posts/2018/12/15/看书及写书摘：写下来才是自己的/</id>
+    <published>2018-12-15T07:45:10.000Z</published>
+    <updated>2018-12-15T07:45:17.508Z</updated>
+    
+    <content type="html"><![CDATA[<p>开学的时候受公众号（stormzhang）影响在当当买了几本书，大佬推荐的一些理财书（《富爸爸穷爸爸》、《小狗钱钱》），还有一些运营的书（《启示录》、《增长黑客》）。和好友一起凑单买了几本，很快囫囵吞枣把一页页书吃掉，书上知识、理念很开眼界，但是现在博主已经全都忘记书上说过什么了，可能得再次翻开书才能找回看书时熟悉的感觉。今天写这篇水文，就当总结阅读来的感悟，还有不足之处吧。<br>以前的时候基本没怎么看书，天真地利用搜索引擎，以为有了搜索引擎就什么都可以找到。直到发现我遇到的问题开始在网上找不到了，不再是简单的是什么，怎么解决某个错误怎么处理，如何入门XX。可能这就是天花板了，简单的知识网上全都是，但是经过处理消化的知识不会遍地都是。很多“隐藏”内容都在书上写着、在文档里躺着，等着去阅读、去发掘。而且只利用网络上的只言片语、某些知道问答类型的网站，不会建立知识的网络，只是内容的搬运工，没有思考便得到答案，用进废退，早晚变笨蛋。一开始博主就是这么想的，有什么不会直接网上搜，肯定都有的，直接复制下来。经过一年两年发现自己的知识只是停留在片面，别人一说起某个名词，脑子里只知道好像在哪个网上博客里看到过，并不清楚到底是什么。网络真是把双刃剑，多少人没有利用好它，白白浪费自己的生命（当然这也让一些营销号、公司赚到了钱，甚至上了市），本来用来交换信息的好方式，不过这也不能怪工具，还是得从自己出发，发挥主观能性<br>这学年课很水，也不喜欢上课了，上课就打开手机看书或是带本书过去看，如今一学期快考试了，却还啥都不会。</p><ol><li>提醒自己该干嘛<br>比如一开始小狗钱钱里钱钱让（女主什么来着，网上找找）吉娅开始每天写成功笔记，并让读者也天天写自己成功的事情，博主也坚持做了一周时间，都后来就没有再写过了，达不到持久效果，果然人还是有惰性的。</li><li>看了很多书，还是涨点知识<br>今年在微信读书上看了不少的书，有各大厂的传记：</li></ol><ul><li>《顺势而为：雷军传》雷军从武汉电子一条街到做 WPS 、做投资、到现在做价格公道感动人心的小米</li><li>《腾讯传》一开始进这个App直接送的书籍（鹅厂也是够暗示了），不记得具体内容了，就是记录鹅厂的崛起故事，从寻呼机、OICQ，QQ、移动梦网到张小龙的微信<br>一些理财知识书籍，成功学？？：</li><li>《小狗钱钱》以小说情节中穿插金钱、投资的概念和做法</li><li>《富爸爸穷爸爸》直接上干货，对比自己的爸爸和好友的爸爸做法，引出穷人思维和富人思维。</li><li>《牛奶可乐经济学》揭示日常生活的经济学。<br>一些优点技术干货的书籍：</li><li>《蚂蚁金服：科技金融独角兽的崛起》这本还记得比较清楚，一本讲述支付宝是如何从淘宝分出来一个独立的系统，如何称霸的，面对各银行的不理睬，只有一家工商银行杭州支行给了支付接口，支付宝才得以用所谓快捷支付撸走用户银行卡里的钱。到现在做余额宝、基金、保险等互联网金融业务。还是挺振奋人心的，一开始的内部不支持，外部没银行支持，然后这个项目直接完蛋（怎么和阿里云一样了，可能记混了）</li><li>《淘宝技术这十年》外行人看热闹，内行人看门道。面对淘宝这样指数增长的业务流量，说了很多技术方面的事情，从买php源码，从Oracle，到自己开发数据库Oceanbase，开源项目能用到了都针对自己的业务量改过，并发行了自己的分支版本。其中几位码神多隆这样的人才，用神样的操作硬是让某些技术达到传说级别。</li><li>《网络是怎么连接的》《程序是怎样跑起来的》日本人写的一个系列书籍某某是怎样的，比较浅显，不像一些专业书籍那么难理解</li><li>《图解HTTP》也是一些入门书籍</li><li>《白帽子讲Web安全》先讲解了一些安全的基本概念，人是不安全因素。还有XSS、CSRF、SQL注入一些Web漏洞的防护。</li><li>《操作系统之哲学原理》强行哲学，有道理，看完也写不了操作系统<br>还有一些是程序员修养、职业生涯这类的，会写书的程序员谈心路历程之类的。没有做记录，已经不知道说了什么了。</li><li>《MacTalk》</li><li>《程序员的自我修养》</li></ul><p>本来是要摘录《软件随想录》里面的内容，但是写着就变成了这个读书总结了？哈哈哈。进入正题：<br>程序员部落酋长乔尔在给计算机系的学生的建议中有下面几点，本人觉得相见恨晚，没有早点在图书馆发现此书：</p><blockquote><p>给计算机系学生的建议</p><ul><li>毕业前练好写作</li><li>毕业前学好C语言</li><li>毕业前学好微观经济学</li><li>因为枯燥就不选修非计算机专业的课程</li><li>选修有大量编码实践的课程</li><li>担心所有的工作都被印度人抢走</li><li>找一份好的暑期实习工作</li><li>寻求专业人士的帮助，培养你的自信心</li></ul></blockquote><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://upload-images.jianshu.io/upload_images/10215367-d9889f7784b54551.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>虽然书籍写的是十年前的博客摘录，博客上面提到的很多公司没听过，上面的Windows还停留在XP时代，巨硬开发Office，IE，制定一些魔鬼标准，Joel 还谈论他创建的软件，宣传一些开发理念，给开发人员最好的工作环境。现今博客还在更新 <a href="https://www.joelonsoftware.com/" target="_blank" rel="noopener">https://www.joelonsoftware.com/</a><br>就先到这里，写的文字没有逻辑性，还是得多写，不能埋头苦干，别人都不知道你在干什么。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;开学的时候受公众号（stormzhang）影响在当当买了几本书，大佬推荐的一些理财书（《富爸爸穷爸爸》、《小狗钱钱》），还有一些运营的书（《启示录》、《增长黑客》）。和好友一起凑单买了几本，很快囫囵吞枣把一页页书吃掉，书上知识、理念很开眼界，但是现在博主已经全都忘记书上说过
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Spring Boot 中流操作使用</title>
@@ -481,35 +502,6 @@ RC CAR     Raspberry Pi   Python
     
     
       <category term="nginx, php" scheme="https://whllhw.xyz/tags/nginx-php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>wxPython的坑，textctrl回车事件处理</title>
-    <link href="https://whllhw.xyz/posts/2017/03/30/wxPython%E7%9A%84%E5%9D%91%EF%BC%8Ctextctrl%E5%9B%9E%E8%BD%A6%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"/>
-    <id>https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/</id>
-    <published>2017-03-30T07:14:42.000Z</published>
-    <updated>2018-11-21T07:50:40.475Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><em>学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。</em> 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。</p></blockquote><blockquote><p>我参考的是这个<br><a href="http://zetcode.com/wxpython/firststeps/" target="_blank" rel="noopener">快速入门教程</a></p></blockquote><h1>到正题了————&gt;</h1><p>实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。</p><p><strong>BUG</strong>：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。</p><a id="more"></a><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://intmain.me/images/sp170330_152238.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">OnEnter</span><span class="params">(self,e)</span>:</span></span><br><span class="line">self.out.WriteText(<span class="string">'\n&lt;localhost&gt;'</span> + \</span><br><span class="line">self.text.GetValue())</span><br><span class="line">self.text.Clear()</span><br></pre></td></tr></table></figure><p>处理后会多出空格。就像这样：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://intmain.me/images/sp170330_152834.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>在网上查解决方法，找不到。小型库使用者少（还是我弱鸡）</p><p>突然看到还可以绑定事件 wx.EVT_TEXT 来检测输入的内容。于是再绑定一个清除回车的消息不就可以了。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://intmain.me/images/sp170330_152523.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.Bind(wx.EVT_TEXT,self.replaceEnter,self.text)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceEnter</span><span class="params">(self,e)</span>:</span></span><br><span class="line"><span class="keyword">if</span> <span class="string">'\\n'</span> <span class="keyword">in</span> self.text.GetValue():</span><br><span class="line">self.text.Clear()</span><br></pre></td></tr></table></figure><p>最后，完美解决~</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。&lt;/em&gt; 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;我参考的是这个&lt;br&gt;
-&lt;a href=&quot;http://zetcode.com/wxpython/firststeps/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;快速入门教程&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1&gt;到正题了————&amp;gt;&lt;/h1&gt;
-&lt;p&gt;实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;BUG&lt;/strong&gt;：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://whllhw.xyz/tags/python/"/>
     
   </entry>
   
