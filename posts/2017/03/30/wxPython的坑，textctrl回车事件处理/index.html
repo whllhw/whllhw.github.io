@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-126824460-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="googleaf4c29130aaf2b72.html">
+    
+    
+    
+    
+    <title>wxPython的坑，textctrl回车事件处理 | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python">
+    <meta name="description" content="学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。   我参考的是这个 快速入门教程  到正题了————&amp;gt; 实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。 BUG：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wxPython的坑，textctrl回车事件处理">
+<meta property="og:url" content="https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/index.html">
+<meta property="og:site_name" content="仰头45℃爆笑">
+<meta property="og:description" content="学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。   我参考的是这个 快速入门教程  到正题了————&amp;gt; 实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。 BUG：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://intmain.me/images/sp170330_152238.png">
+<meta property="og:image" content="https://intmain.me/images/sp170330_152834.png">
+<meta property="og:image" content="https://intmain.me/images/sp170330_152523.png">
+<meta property="og:updated_time" content="2019-03-08T15:19:56.118Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wxPython的坑，textctrl回车事件处理">
+<meta name="twitter:description" content="学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。   我参考的是这个 快速入门教程  到正题了————&amp;gt; 实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。 BUG：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。">
+<meta name="twitter:image" content="https://intmain.me/images/sp170330_152238.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">whllhw</h5>
+          <a href="mailto:undefined" class="mail">
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/whllhw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">wxPython的坑，textctrl回车事件处理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">wxPython的坑，textctrl回车事件处理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-30T07:14:42.000Z" itemprop="datePublished" class="page-time">
+  2017-03-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-wxPython的坑，textctrl回车事件处理"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">wxPython的坑，textctrl回车事件处理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-30 15:14:42" datetime="2017-03-30T07:14:42.000Z"  itemprop="datePublished">2017-03-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p><em>学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。</em> 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。</p>
+</blockquote>
+<blockquote>
+<p>我参考的是这个<br>
+<a href="http://zetcode.com/wxpython/firststeps/" target="_blank" rel="noopener">快速入门教程</a></p>
+</blockquote>
+<h1>到正题了————&gt;</h1>
+<p>实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。</p>
+<p><strong>BUG</strong>：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。</p>
+<a id="more"></a>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://intmain.me/images/sp170330_152238.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">OnEnter</span><span class="params">(self,e)</span>:</span></span><br><span class="line">	self.out.WriteText(<span class="string">'\n&lt;localhost&gt;'</span> + \</span><br><span class="line">		self.text.GetValue())</span><br><span class="line">	self.text.Clear()</span><br></pre></td></tr></table></figure>
+<p>处理后会多出空格。就像这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://intmain.me/images/sp170330_152834.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>在网上查解决方法，找不到。小型库使用者少（还是我弱鸡）</p>
+<p>突然看到还可以绑定事件 wx.EVT_TEXT 来检测输入的内容。于是再绑定一个清除回车的消息不就可以了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://intmain.me/images/sp170330_152523.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.Bind(wx.EVT_TEXT,self.replaceEnter,self.text)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceEnter</span><span class="params">(self,e)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> <span class="string">'\\n'</span> <span class="keyword">in</span> self.text.GetValue():</span><br><span class="line">		self.text.Clear()</span><br></pre></td></tr></table></figure>
+<p>最后，完美解决~</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-03-08T15:19:56.118Z" itemprop="dateUpdated">2019-03-08 23:19:56</time>
+</span><br>
+
+
+        
+        <a href="/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" target="_blank" rel="external">https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://whllhw.xyz">
+            <img src="/img/avatar.png" alt="whllhw">
+            whllhw
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/&title=《wxPython的坑，textctrl回车事件处理》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/&title=《wxPython的坑，textctrl回车事件处理》 — 仰头45℃爆笑&source=
+学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。 为一个小程序，实现网络聊天室的效果，简要写写其界..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《wxPython的坑，textctrl回车事件处理》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/&via=https://whllhw.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Nginx上php部署 403-Forbidden 问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/2017/03/11/SSH无密码登录三步实现/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SSH无密码登录三步实现</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: 'Thu Mar 30 2017 15:14:42 GMT+0800',
+            owner: 'whllhw',
+            repo: 'blog-comment',
+            oauth: {
+                client_id: '95bdba8ca1dc4fcadca0',
+                client_secret: 'a37b8b6abc79a8a43d860fdd182caa52a10dffbd',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>whllhw &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/&title=《wxPython的坑，textctrl回车事件处理》 — 仰头45℃爆笑&pic=https://whllhw.xyz/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/&title=《wxPython的坑，textctrl回车事件处理》 — 仰头45℃爆笑&source=
+学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。 为一个小程序，实现网络聊天室的效果，简要写写其界..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《wxPython的坑，textctrl回车事件处理》 — 仰头45℃爆笑&url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/&via=https://whllhw.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://whllhw.xyz/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
