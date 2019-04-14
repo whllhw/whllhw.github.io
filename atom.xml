@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://whllhw.xyz/"/>
-  <updated>2019-04-14T15:55:26.182Z</updated>
+  <updated>2019-04-14T16:16:35.863Z</updated>
   <id>https://whllhw.xyz/</id>
   
   <author>
@@ -15,6 +15,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java并发知识整理</title>
+    <link href="https://whllhw.xyz/posts/2019/04/15/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/"/>
+    <id>https://whllhw.xyz/posts/2019/04/15/Java并发知识整理/</id>
+    <published>2019-04-14T16:13:22.000Z</published>
+    <updated>2019-04-14T16:16:35.863Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://whllhw.xyz/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机网络知识整理</title>
@@ -479,29 +495,6 @@ RC CAR     Raspberry Pi   Python
     
     
       <category term="centos, linux" scheme="https://whllhw.xyz/tags/centos-linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Selenium 自动化测试框架</title>
-    <link href="https://whllhw.xyz/posts/2017/09/21/Selenium%20%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/"/>
-    <id>https://whllhw.xyz/posts/2017/09/21/Selenium 自动化测试框架/</id>
-    <published>2017-09-21T04:29:15.000Z</published>
-    <updated>2019-04-14T15:55:25.875Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>比较快速的爬取一些网站，最快就是用这个框架，记录遇到的坑。</p></blockquote><p>查阅的<a href="https://selenium-python-zh.readthedocs.io/en/latest/locating-elements.html" title="中文文档" target="_blank" rel="noopener">中文文档</a>基本用法简单，但是高级的用法就是英文的，或者没有。这里记录一下。</p><a id="more"></a><hr><p><code>webdriver.Chrome('/path/to/chromedriver')</code></p><ul><li>加载驱动时要指定路径，不然提示没有找到驱动</li><li>在弹出的网页进行查找元素时，要使用切换窗口，不然提示NoSuchElementException</li></ul><p><code>driver.switch_to_window(driver.window_handles[-1])</code></p><ul><li>driver.page_source返回的是当前渲染后的网页的源码，可以进行保存</li><li>获取元素的内容 <code>element.text</code>返回str类型，包含当前元素下所有的内容</li><li>最后一个是json模块的锅：输出json到文件时居然还是\u开头的unicode，python3 还有编码问题？后面终于找到还要附加参数，心态爆炸</li></ul><p><code>f.write(json.dumps(data,indent=4,ensure_ascii=False))</code></p><ul><li><p>隐式等待，可以自制一个装饰器，重复调用</p><p>from <a href="http://selenium.webdriver.common.by" target="_blank" rel="noopener">selenium.webdriver.common.by</a> import By<br>from selenium.webdriver.support import expected_conditions as EC<br>from selenium.webdriver.support.ui import WebDriverWait<br>def wait(func):<br>def wrapper(*args,**kw):<br>return WebDriverWait(driver, 30).until(func(*args,**kw))<br>return wrapper<br>@wait<br>def find_element_by_xpath(xpath):<br>return  EC.presence_of_element_located((By.XPATH, xpath))<br>@wait<br>def find_elements_by_xpath(xpath):<br>return EC.presence_of_elements_located((By.XPATH, xpath))</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;比较快速的爬取一些网站，最快就是用这个框架，记录遇到的坑。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;查阅的&lt;a href=&quot;https://selenium-python-zh.readthedocs.io/en/latest/locating-elements.html&quot; title=&quot;中文文档&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;中文文档&lt;/a&gt;基本用法简单，但是高级的用法就是英文的，或者没有。这里记录一下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="selenium, python" scheme="https://whllhw.xyz/tags/selenium-python/"/>
     
   </entry>
   
