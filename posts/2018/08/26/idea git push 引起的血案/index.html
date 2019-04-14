@@ -40,18 +40,18 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="操作不当导致一天内写的代码丢失，最后依靠 idea 的本地历史（local history）找回。  过程：  使用 idea 的 VSC 工具进行 git commit （用这个主要是这个带有自动整理代码，优化导入的功能，还会分析代码） 想了想应该只有我有最新的版本了，别人不会有更新的。于是直接点开 git push （以前都是先使用 git pull 的，这次脑残了） 提示有冲突，是否进行合">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://whllhw.xyz/images/TIM截图20180828233327.png">
-<meta property="og:image" content="https://whllhw.xyz/images/TIM截图20180828232021.png">
-<meta property="og:updated_time" content="2019-04-14T15:17:48.092Z">
+<meta property="og:image" content="https://whllhw.xyz/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png">
+<meta property="og:image" content="https://whllhw.xyz/images/TIM%E6%88%AA%E5%9B%BE20180828232021.png">
+<meta property="og:updated_time" content="2019-04-14T15:55:25.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="idea git push 引起的血案">
 <meta name="twitter:description" content="操作不当导致一天内写的代码丢失，最后依靠 idea 的本地历史（local history）找回。  过程：  使用 idea 的 VSC 工具进行 git commit （用这个主要是这个带有自动整理代码，优化导入的功能，还会分析代码） 想了想应该只有我有最新的版本了，别人不会有更新的。于是直接点开 git push （以前都是先使用 git pull 的，这次脑残了） 提示有冲突，是否进行合">
-<meta name="twitter:image" content="https://whllhw.xyz/images/TIM截图20180828233327.png">
+<meta name="twitter:image" content="https://whllhw.xyz/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -74,7 +74,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:false" class="mail">false</a>
         </hgroup>
       </div>
     </div>
@@ -186,31 +186,17 @@ ga('send', 'pageview');
 <li>使用 idea 的 VSC 工具进行 git commit （用这个主要是这个带有自动整理代码，优化导入的功能，还会分析代码）</li>
 <li>想了想应该只有我有最新的版本了，别人不会有更新的。于是直接点开 git push （以前都是先使用 git pull 的，这次脑残了）</li>
 <li>提示有冲突，是否进行合并，选择是，自动合并完毕后。编译代码失败。一看，我一天写的写的定时消息通知不见了。</li>
-<li>我的妈啊，怎么直接没了，赶紧打开 bash 用 <code>git reflog</code> 结果如下：（有两处的 commit 信息是 add: 加入各处通知）</li>
-</ol>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/TIM截图20180828233327.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<ol start="4">
+<li>我的妈啊，怎么直接没了，赶紧打开 bash 用 <code>git reflog</code> 结果如下：（有两处的 commit 信息是 add: 加入各处通知）<br>
+<img src="/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png" alt=""></li>
 <li><code>ee2fa85</code> 直接变成了 merge 节点，而且我的提交直接就没有了，恢复不了。<code>git reset --hard</code> 只能回到原来的版本，但是记录里面根本没有我提交的版本</li>
 <li>救命稻草：idea 本地历史，idea 提供了磁盘上所有文件的修改记录，并且标注了时间，after push 、build 的操作就记录了下来，（这么吃内存也是有好处）于是我凭记忆恢复了我一天写的代码。</li>
 <li>最后再提交、推送到远程库</li>
 </ol>
 <ul>
-<li>从 gitea 上面的提交图来看，也说明了这次血案的原因</li>
+<li>从 gitea 上面的提交图来看，也说明了这次血案的原因<br>
+<img src="/images/TIM%E6%88%AA%E5%9B%BE20180828232021.png" alt=""><br>
+由提交图可以看到，我提交了一个 merge 节点，用于自动合并与其他人的代码版本。这个节点应该是 git 自动生成的，提交信息里面应该有 merge branch 字样，但是这个提交直接用我的 commit 信息了。</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/TIM截图20180828232021.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>由提交图可以看到，我提交了一个 merge 节点，用于自动合并与其他人的代码版本。这个节点应该是 git 自动生成的，提交信息里面应该有 merge branch 字样，但是这个提交直接用我的 commit 信息了。</p>
 <hr>
 <p>其实还有点疑惑的地方，有时间复现一下，看一看到底是怎么回事。</p>
 
@@ -221,7 +207,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-14T15:17:48.092Z" itemprop="dateUpdated">2019-04-14 23:17:48</time>
+    最后更新时间：<time datetime="2019-04-14T15:55:25.990Z" itemprop="dateUpdated">2019-04-14 23:55:25</time>
 </span><br>
 
 
@@ -359,7 +345,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -379,7 +365,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.2" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 

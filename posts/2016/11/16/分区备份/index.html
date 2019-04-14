@@ -48,7 +48,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://i.imgur.com/P7qPQeC.png">
 <meta property="og:image" content="http://i.imgur.com/nTeakz5.png">
 <meta property="og:image" content="http://i.imgur.com/doGqQ8B.png">
-<meta property="og:updated_time" content="2019-04-14T15:17:47.971Z">
+<meta property="og:updated_time" content="2019-04-14T15:55:25.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分区备份">
 <meta name="twitter:description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
@@ -57,7 +57,7 @@ ga('send', 'pageview');
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -80,7 +80,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:false" class="mail">false</a>
         </hgroup>
       </div>
     </div>
@@ -193,15 +193,7 @@ ga('send', 'pageview');
 <p>坑爹没安装ssh</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh-server -y</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/xpZ0fVt.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/xpZ0fVt.png" alt=""></li>
 </ul>
 <h2 id="fdisk分区">fdisk分区</h2>
 <ul>
@@ -211,37 +203,13 @@ ga('send', 'pageview');
 <!--more-->
 <ul>
 <li>如图：</li>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/rUSIzWB.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/I14s6kf.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/rUSIzWB.png" alt=""></li>
+<li><img src="http://i.imgur.com/I14s6kf.png" alt=""></li>
 <li>1.建立拓展分区vda4</li>
 <li>2.再进行操作建立vda5，vda6</li>
 <li>3.扇区选择默认，大小为+17G，+1G</li>
 <li>已分区成功：</li>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/tHFuK0C.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/tHFuK0C.png" alt=""></li>
 <li>重载分区表</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">partprobe</span><br></pre></td></tr></table></figure>
@@ -254,28 +222,12 @@ ga('send', 'pageview');
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/vda6</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/f2wl35p.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/f2wl35p.png" alt=""></li>
 <li>挂载vda6(先在/dev建立文件夹hdd1)：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/vda6 hdd1</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/P7qPQeC.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/P7qPQeC.png" alt=""></li>
 </ul>
 <h2 id="dd">dd</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /hdd1</span><br><span class="line">dd if=/dev/zero of=0 count=1 bs=100 000 000</span><br></pre></td></tr></table></figure>
@@ -289,15 +241,7 @@ count*bs=文件大小(字节）</p>
 <p>/dev/urandom 生成随机字符</p>
 </blockquote>
 <ul>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/nTeakz5.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/nTeakz5.png" alt=""></li>
 <li>生成test.img</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/vda6 of=~/test.img</span><br></pre></td></tr></table></figure>
@@ -307,15 +251,7 @@ count*bs=文件大小(字节）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/vda6 | gzip &gt;~/test.img.gz</span><br></pre></td></tr></table></figure>
 <ul>
 <li>将dd输出的数据导入到gzip 再重定向到test.img.gz</li>
-<li>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/doGqQ8B.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-</li>
+<li><img src="http://i.imgur.com/doGqQ8B.png" alt=""></li>
 </ul>
 
         </div>
@@ -325,7 +261,7 @@ count*bs=文件大小(字节）</p>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-14T15:17:47.971Z" itemprop="dateUpdated">2019-04-14 23:17:47</time>
+    最后更新时间：<time datetime="2019-04-14T15:55:25.926Z" itemprop="dateUpdated">2019-04-14 23:55:25</time>
 </span><br>
 
 
@@ -360,18 +296,18 @@ count*bs=文件大小(字节）</p>
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/posts/2016/11/16/Ubuntu下的网络配置/" id="post-prev" class="post-nav-link">
+      <a href="/posts/2016/12/11/Markdown语法/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Ubuntu下的网络配置</h4>
+        <h4 class="title">Markdown语法</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/2016/11/16/'LNMP,SAMBA'/" id="post-next" class="post-nav-link">
+      <a href="/posts/2016/11/16/Ubuntu下的网络配置/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">LNMP,SAMBA</h4>
+        <h4 class="title">Ubuntu下的网络配置</h4>
       </a>
     </div>
   
@@ -463,7 +399,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -483,7 +419,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.2" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 

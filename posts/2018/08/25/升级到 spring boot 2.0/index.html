@@ -41,7 +41,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="spring boot 2.0 版本出了有一段时间了，当然是要用一用了，把现在在写的项目升级一波。当然升级前是看了一下别人的博客 http://tengj.top/2018/07/23/springboot2to1/ 。（怎么感觉有质量的博客越来越少，剩下的就是在互相“引用”，搜出来基本一模一样，国内某搜索引擎更加差劲，还是自己抽时间看文档比较好）本篇持续更新（随缘）   首先在 pom.xml">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://whllhw.xyz/images/gson.png">
-<meta property="og:updated_time" content="2019-04-14T15:17:48.077Z">
+<meta property="og:updated_time" content="2019-04-14T15:55:25.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="升级到 spring boot 2.0">
 <meta name="twitter:description" content="spring boot 2.0 版本出了有一段时间了，当然是要用一用了，把现在在写的项目升级一波。当然升级前是看了一下别人的博客 http://tengj.top/2018/07/23/springboot2to1/ 。（怎么感觉有质量的博客越来越少，剩下的就是在互相“引用”，搜出来基本一模一样，国内某搜索引擎更加差劲，还是自己抽时间看文档比较好）本篇持续更新（随缘）   首先在 pom.xml">
@@ -50,7 +50,7 @@ ga('send', 'pageview');
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -73,7 +73,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:false" class="mail">false</a>
         </hgroup>
       </div>
     </div>
@@ -185,15 +185,9 @@ ga('send', 'pageview');
 </ul>
 <p>2.0 中的更改：</p>
 <ol>
-<li>删除 repository 的 findOne ，导致以前使用的 findOne 不能使用，直接替换为 getOne 会出现以下问题：</li>
+<li>删除 repository 的 findOne ，导致以前使用的 findOne 不能使用，直接替换为 getOne 会出现以下问题：<br>
+<img src="/images/gson.png" alt="getOne 返回代理类HibernateProxy，进行序列化时出错，提示添加适配器。"></li>
 </ol>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/images/gson.png" alt="getOne 返回代理类HibernateProxy，进行序列化时出错，提示添加适配器。" title="">
-                </div>
-                <div class="image-caption">getOne 返回代理类HibernateProxy，进行序列化时出错，提示添加适配器。</div>
-            </figure>
 <p>简单解决：<br>
 用 findById 回避代理类，但是这个接口又被改成返回 <code>Optional&lt;S&gt;</code> 必须使用 get() 来获取 实体。Optional 要求内容非空，否则使用 get() 方法会抛出异常 NoSuchElementException ，优雅了解决空指针异常。</p>
 <ol start="2">
@@ -207,7 +201,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-14T15:17:48.077Z" itemprop="dateUpdated">2019-04-14 23:17:48</time>
+    最后更新时间：<time datetime="2019-04-14T15:55:25.990Z" itemprop="dateUpdated">2019-04-14 23:55:25</time>
 </span><br>
 
 
@@ -345,7 +339,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -365,7 +359,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.2" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 

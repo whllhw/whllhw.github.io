@@ -40,18 +40,18 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="0 暑假项目组一起开发了一个 Spring Boot 项目，内容很多很复杂，代码有好看的也有不好看的，从设计到开发，谁也没有经验（辅导员敢这么相信我们，很感动😂）。没有经过系统测试，草草便上线了，效果还意外不错？！😂 1 自己是用户才能设计出好产品，知道痛点是什么，而不是设计某某系统，写文档介绍说很牛叉，真正用起来就是另一回事。  可能开发人员不清楚真正核心的需求是什么，没有考虑用户体验，直接">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-4554bb1723d93ae4.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-c92f01609476421b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-04-14T15:17:48.189Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-4554bb1723d93ae4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-c92f01609476421b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-14T15:55:26.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个大创项目中期检查说几句">
 <meta name="twitter:description" content="0 暑假项目组一起开发了一个 Spring Boot 项目，内容很多很复杂，代码有好看的也有不好看的，从设计到开发，谁也没有经验（辅导员敢这么相信我们，很感动😂）。没有经过系统测试，草草便上线了，效果还意外不错？！😂 1 自己是用户才能设计出好产品，知道痛点是什么，而不是设计某某系统，写文档介绍说很牛叉，真正用起来就是另一回事。  可能开发人员不清楚真正核心的需求是什么，没有考虑用户体验，直接">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10215367-4554bb1723d93ae4.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10215367-4554bb1723d93ae4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -74,7 +74,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:false" class="mail">false</a>
         </hgroup>
       </div>
     </div>
@@ -201,24 +201,12 @@ ga('send', 'pageview');
 <p>没有搜集用户数据（也没啥可搜集的），没有搜集业务接口访问量（可能访问量上来才有用吧）</p>
 <hr>
 <h1>附：统计数据</h1>
-<p>目前已上线的综测系统，顺利完成了今年16级信息院综测相关业务。包括学生填报加分项并上传证明图片、班长进行审核该班级的证明、辅导员最终确认有效加分项。下文统计数据时间段为：9月11日 9:00 到 9月16日 0:00</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/10215367-4554bb1723d93ae4.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="流量数据" title="">
-                </div>
-                <div class="image-caption">流量数据</div>
-            </figure>
+<p>目前已上线的综测系统，顺利完成了今年16级信息院综测相关业务。包括学生填报加分项并上传证明图片、班长进行审核该班级的证明、辅导员最终确认有效加分项。下文统计数据时间段为：9月11日 9:00 到 9月16日 0:00<br>
+<img src="https://upload-images.jianshu.io/upload_images/10215367-4554bb1723d93ae4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="流量数据"></p>
 <ul>
 <li>前端页面资源使用CDN进行分发，使用回源策略更新文件，减少业务服务器的压力。综测期间使用了8.9GB流量，同时在线达到300 ，资源命中率达90%。实际到达服务器的流量不到500MB，网页加载速度提升，有效提升了用户体验。由于使用的打包工具可计算文件的MD5指纹，在我们更新代码时生成唯一的文件名，避免用户从CDN缓存中获取到旧版本的代码文件。首页入口文件不进行缓存，保证每次访问页面总是询问源服务器是否为最新版本的首页。其他文件缓存30天，代码没有更新时能够快速从本地客户端缓存中获取，同时也减小对CDN的压力和流量。</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/10215367-c92f01609476421b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="图片CDN使用流量" title="">
-                </div>
-                <div class="image-caption">图片CDN使用流量</div>
-            </figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/10215367-c92f01609476421b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片CDN使用流量"></p>
 <ul>
 <li>证明图片使用对象存储和CDN分发，有效保障了此次审核证明业务。综测期间共上传了 2.9GB 的图片资源，图片访问总流量75.26GB，日均流量12.54GB，峰值带宽21.10Mbps，该时间节点为学生停止申报前。图片资源访问次数总量90,611次，日均15,102次。图片资源的存储以及分发，极其占用磁盘空间、网络带宽。若放在业务服务器上必定对其他基础业务有影响，降低了并发数，用户一多就不能正常服务，出现一到高峰就宕机的情况，但是本项目使用使用对象存储服务，CDN进行资源分发。业务服务器在接受到客户端图片资源的请求时，只需要返回一个带授权凭证的URL，客户端便可以向CDN请求数据，流量转移到CDN而不会直接到业务服务器，减少其对其他基础业务的影响。<br>
 同学们对该系统反应良好，反应其网络响应速度比一般网站都要快速。</li>
@@ -231,7 +219,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-14T15:17:48.189Z" itemprop="dateUpdated">2019-04-14 23:17:48</time>
+    最后更新时间：<time datetime="2019-04-14T15:55:26.089Z" itemprop="dateUpdated">2019-04-14 23:55:26</time>
 </span><br>
 
 
@@ -369,7 +357,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -389,7 +377,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.2" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 

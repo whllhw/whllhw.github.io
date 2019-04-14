@@ -40,17 +40,17 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="Java 8里面的流对象真好用，函数式编程让编码不一样，并且还能并发执行。这里给出一个业务中实际遇到的数据查询映射成一个奇特的Map映射 12345678910111213141516171819202122&amp;#123;  table1: [    &amp;#123;      name1: &amp;quot;&amp;quot;,      name2: &amp;quot;&amp;quot;    &amp;#125;,    &amp;#1">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-99779f446545dd7d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-04-14T15:17:48.206Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10215367-99779f446545dd7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-14T15:55:26.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot 中流操作使用">
 <meta name="twitter:description" content="Java 8里面的流对象真好用，函数式编程让编码不一样，并且还能并发执行。这里给出一个业务中实际遇到的数据查询映射成一个奇特的Map映射 12345678910111213141516171819202122&amp;#123;  table1: [    &amp;#123;      name1: &amp;quot;&amp;quot;,      name2: &amp;quot;&amp;quot;    &amp;#125;,    &amp;#1">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10215367-99779f446545dd7d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10215367-99779f446545dd7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -73,7 +73,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:false" class="mail">false</a>
         </hgroup>
       </div>
     </div>
@@ -181,14 +181,8 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  table1: [</span><br><span class="line">    &#123;</span><br><span class="line">      name1: &quot;&quot;,</span><br><span class="line">      name2: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name1: &quot;&quot;,</span><br><span class="line">      name2: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  table2: [</span><br><span class="line">    &#123;</span><br><span class="line">      name3: &quot;1&quot;,</span><br><span class="line">      name4: &quot;2&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name3: &quot;3&quot;,</span><br><span class="line">      name4: &quot;4&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果使用普通的操作分别查询出table内的数据行得到<code>List&lt;table1Entity&gt; lists</code> 然后<code>Map.put(&quot;table1&quot;,lists)</code>就完成了，但是这对于表多的话重复代码就变多了，不符合代码重用的思想。这里给出一个解决方法：</p>
 <p>使用 Java8 的stream API可以较为高效的并发操作，不过理解起来有点难度，（调试也需要一点技巧？）</p>
-<p>首先新建一个key的列表<code>List&lt;String&gt; names</code>， 由其生成一个stream放入查询接口进行查询，得到另一个流，使用一个map进行映射出Javabean，利用filter删除为空的结果，最后Collectors.toList() 收集流。此时得到的是table1、table2的键值对数组（<code>[{&quot;name1&quot;:&quot;&quot;,&quot;name2&quot;:&quot;&quot;}]</code>)。下面给他们按类别扔进对应的Key（由于没有统一基类故使用反射API调用其类型函数，返回类别），<code>Collectors.toMap(s-&gt;{s.get(0).getClass().getMethod(&quot;getItemType&quot;).invoke(s)},s-&gt;s)</code>。附一张图参考，可能还需要进一步优化，不过肯定比线性查询出来后一行一行来的快（见灰色注释掉的代码）</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/10215367-99779f446545dd7d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="流操作消除重复代码" title="">
-                </div>
-                <div class="image-caption">流操作消除重复代码</div>
-            </figure>
+<p>首先新建一个key的列表<code>List&lt;String&gt; names</code>， 由其生成一个stream放入查询接口进行查询，得到另一个流，使用一个map进行映射出Javabean，利用filter删除为空的结果，最后Collectors.toList() 收集流。此时得到的是table1、table2的键值对数组（<code>[{&quot;name1&quot;:&quot;&quot;,&quot;name2&quot;:&quot;&quot;}]</code>)。下面给他们按类别扔进对应的Key（由于没有统一基类故使用反射API调用其类型函数，返回类别），<code>Collectors.toMap(s-&gt;{s.get(0).getClass().getMethod(&quot;getItemType&quot;).invoke(s)},s-&gt;s)</code>。附一张图参考，可能还需要进一步优化，不过肯定比线性查询出来后一行一行来的快（见灰色注释掉的代码）<br>
+<img src="https://upload-images.jianshu.io/upload_images/10215367-99779f446545dd7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="流操作消除重复代码"></p>
 
         </div>
 
@@ -197,7 +191,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-14T15:17:48.206Z" itemprop="dateUpdated">2019-04-14 23:17:48</time>
+    最后更新时间：<time datetime="2019-04-14T15:55:26.104Z" itemprop="dateUpdated">2019-04-14 23:55:26</time>
 </span><br>
 
 
@@ -335,7 +329,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -355,7 +349,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.2" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
