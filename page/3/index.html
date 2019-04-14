@@ -619,7 +619,7 @@ Server refused our key
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-分区备份"
+            <article id="post-Ubuntu下的网络配置"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -635,7 +635,7 @@ Server refused our key
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2016/11/16/分区备份/">分区备份</a>
+      <a class="post-title-link" href="/posts/2016/11/16/Ubuntu下的网络配置/">Ubuntu下的网络配置</a>
     </h3>
   
 
@@ -646,12 +646,23 @@ Server refused our key
 
     
         
-简要记录下了fdisk,dd命令使用
-虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！
+1.配置网络
+命令版：
+1.设置IP
+sudo ifconfig ens3 202.197.75.58 
 
+2.设置网关
+sudo route add default gw 202.197.75.55
+
+3.设置DNS
+sudo nano /etc/resolv.conf 
+
+添加nameserver 114.114.114.114
+4.重启网络
+sudo /ect/init.d/netw...
     
 
-        <a href="/posts/2016/11/16/分区备份/" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/11/16/Ubuntu下的网络配置/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
