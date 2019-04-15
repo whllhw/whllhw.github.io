@@ -25,34 +25,24 @@ ga('send', 'pageview');
     
     
     
-    <title>分区备份 | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
+    <title>Java集合知识整理 | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="ubuntu">
-    <meta name="description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
-<meta name="keywords" content="ubuntu">
+    <meta name="keywords" content="">
+    <meta name="description" content="生活不止眼前的苟且，还有读不懂的诗和到不了的远方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分区备份">
-<meta property="og:url" content="https://whllhw.xyz/posts/2016/11/16/分区备份/index.html">
+<meta property="og:title" content="Java集合知识整理">
+<meta property="og:url" content="https://whllhw.xyz/posts/2019/04/15/Java集合知识整理/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
+<meta property="og:description" content="生活不止眼前的苟且，还有读不懂的诗和到不了的远方">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://i.imgur.com/xpZ0fVt.png">
-<meta property="og:image" content="http://i.imgur.com/rUSIzWB.png">
-<meta property="og:image" content="http://i.imgur.com/I14s6kf.png">
-<meta property="og:image" content="http://i.imgur.com/tHFuK0C.png">
-<meta property="og:image" content="http://i.imgur.com/f2wl35p.png">
-<meta property="og:image" content="http://i.imgur.com/P7qPQeC.png">
-<meta property="og:image" content="http://i.imgur.com/nTeakz5.png">
-<meta property="og:image" content="http://i.imgur.com/doGqQ8B.png">
-<meta property="og:updated_time" content="2019-04-15T16:33:41.070Z">
+<meta property="og:updated_time" content="2019-04-15T16:33:42.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分区备份">
-<meta name="twitter:description" content="简要记录下了fdisk,dd命令使用 虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！">
-<meta name="twitter:image" content="http://i.imgur.com/xpZ0fVt.png">
+<meta name="twitter:title" content="Java集合知识整理">
+<meta name="twitter:description" content="生活不止眼前的苟且，还有读不懂的诗和到不了的远方">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/atom.xml">
     
@@ -126,7 +116,7 @@ ga('send', 'pageview');
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">分区备份</div>
+        <div class="flex-col header-title ellipsis">Java集合知识整理</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -144,11 +134,11 @@ ga('send', 'pageview');
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">分区备份</h1>
+        <h1 class="title">Java集合知识整理</h1>
         <h5 class="subtitle">
             
-                <time datetime="2016-11-16T02:37:59.000Z" itemprop="datePublished" class="page-time">
-  2016-11-16
+                <time datetime="2019-04-14T16:11:06.000Z" itemprop="datePublished" class="page-time">
+  2019-04-15
 </time>
 
 
@@ -165,13 +155,13 @@ ga('send', 'pageview');
 <div class="container body-wrap">
     
 
-<article id="post-分区备份"
+<article id="post-Java集合知识整理"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">分区备份</h1>
+        <h1 class="post-card-title">Java集合知识整理</h1>
         <div class="post-meta">
-            <time class="post-time" title="2016-11-16 10:37:59" datetime="2016-11-16T02:37:59.000Z"  itemprop="datePublished">2016-11-16</time>
+            <time class="post-time" title="2019-04-15 00:11:06" datetime="2019-04-14T16:11:06.000Z"  itemprop="datePublished">2019-04-15</time>
 
             
 
@@ -184,76 +174,7 @@ ga('send', 'pageview');
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <blockquote>
-<p>简要记录下了fdisk,dd命令使用<br>
-虚拟机中演示命令，对分区操作一定小心谨慎！虽说可以恢复，但也很麻烦！</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="ssh安装">ssh安装</h2>
-<p>坑爹没安装ssh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh-server -y</span><br></pre></td></tr></table></figure>
-<ul>
-<li><img src="http://i.imgur.com/xpZ0fVt.png" alt=""></li>
-</ul>
-<h2 id="fdisk分区">fdisk分区</h2>
-<ul>
-<li>对vda进行分区</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/vda</span><br></pre></td></tr></table></figure>
-<!--more-->
-<ul>
-<li>如图：</li>
-<li><img src="http://i.imgur.com/rUSIzWB.png" alt=""></li>
-<li><img src="http://i.imgur.com/I14s6kf.png" alt=""></li>
-<li>1.建立拓展分区vda4</li>
-<li>2.再进行操作建立vda5，vda6</li>
-<li>3.扇区选择默认，大小为+17G，+1G</li>
-<li>已分区成功：</li>
-<li><img src="http://i.imgur.com/tHFuK0C.png" alt=""></li>
-<li>重载分区表</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">partprobe</span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行格式化</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/vda5</span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行格式化</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/vda6</span><br></pre></td></tr></table></figure>
-<ul>
-<li><img src="http://i.imgur.com/f2wl35p.png" alt=""></li>
-<li>挂载vda6(先在/dev建立文件夹hdd1)：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/vda6 hdd1</span><br></pre></td></tr></table></figure>
-<ul>
-<li><img src="http://i.imgur.com/P7qPQeC.png" alt=""></li>
-</ul>
-<h2 id="dd">dd</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /hdd1</span><br><span class="line">dd if=/dev/zero of=0 count=1 bs=100 000 000</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>if=/dev/zero 无限生成0<br>
-of=输出为文件<br>
-count*bs=文件大小(字节）</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/urandom of=1 count=10 bs=10 000 000</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>/dev/urandom 生成随机字符</p>
-</blockquote>
-<ul>
-<li><img src="http://i.imgur.com/nTeakz5.png" alt=""></li>
-<li>生成test.img</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/vda6 of=~/test.img</span><br></pre></td></tr></table></figure>
-<ul>
-<li>生成test.img.gz压缩包</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/vda6 | gzip &gt;~/test.img.gz</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将dd输出的数据导入到gzip 再重定向到test.img.gz</li>
-<li><img src="http://i.imgur.com/doGqQ8B.png" alt=""></li>
-</ul>
-
+            
         </div>
 
         <blockquote class="post-copyright">
@@ -261,12 +182,12 @@ count*bs=文件大小(字节）</p>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-15T16:33:41.070Z" itemprop="dateUpdated">2019-04-16 00:33:41</time>
+    最后更新时间：<time datetime="2019-04-15T16:33:42.024Z" itemprop="dateUpdated">2019-04-16 00:33:42</time>
 </span><br>
 
 
         
-        <a href="/posts/2016/11/16/分区备份/" target="_blank" rel="external">https://whllhw.xyz/posts/2016/11/16/分区备份/</a>
+        <a href="/posts/2019/04/15/Java集合知识整理/" target="_blank" rel="external">https://whllhw.xyz/posts/2019/04/15/Java集合知识整理/</a>
         
     </div>
     
@@ -283,8 +204,6 @@ count*bs=文件大小(字节）</p>
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-
 
             
 
@@ -296,18 +215,18 @@ count*bs=文件大小(字节）</p>
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/posts/2016/12/11/Markdown语法/" id="post-prev" class="post-nav-link">
+      <a href="/posts/2019/04/15/Java并发知识整理/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Markdown语法</h4>
+        <h4 class="title">Java并发知识整理</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/2016/11/16/Ubuntu下的网络配置/" id="post-next" class="post-nav-link">
+      <a href="/posts/2019/04/15/数据库知识整理/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Ubuntu下的网络配置</h4>
+        <h4 class="title">数据库知识整理</h4>
       </a>
     </div>
   
@@ -330,7 +249,7 @@ count*bs=文件大小(字节）</p>
     <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
     <script>
         var gitment = new Gitment({
-            id: 'Wed Nov 16 2016 10:37:59 GMT+0800',
+            id: 'Mon Apr 15 2019 00:11:06 GMT+0800',
             owner: 'whllhw',
             repo: 'blog-comment',
             oauth: {
