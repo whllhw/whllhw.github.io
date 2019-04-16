@@ -44,7 +44,8 @@ ga('send', 'pageview');
 <meta property="og:image" content="https://whllhw.xyz/images/file_1555344369000.png">
 <meta property="og:image" content="https://whllhw.xyz/images/file_1555416270000.png">
 <meta property="og:image" content="https://whllhw.xyz/images/file_1555415892000.png">
-<meta property="og:updated_time" content="2019-04-16T13:09:54.540Z">
+<meta property="og:image" content="https://whllhw.xyz/images/file_1555420503000.png">
+<meta property="og:updated_time" content="2019-04-16T13:37:26.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM知识整理">
 <meta name="twitter:description" content="前言 与计网的那篇一样，整理我看过的JVM知识。我刷完了B站的视频，配合《深入理解Java虚拟机》使用。最有意思是书中的实战部分，内存结构的时候，触发不同内存区域的OOM！没系统整理时，别问，一问就GG。哈哈，每天尽力更新整理，攒面试人品了！ 思维导图  内容太多了，先不展开导图 Java内存区域 导图  内存三大块： 1. 堆 分为年轻代（Eden、From Survivor、To Surviv">
@@ -235,9 +236,9 @@ SOF（大于允许深度时）</p>
 <li>避免Java堆、Native堆来回复制数据</li>
 <li>不受Java堆限制（但受本机总内存限制）</li>
 </ol>
-<h3 id="垃圾回收">垃圾回收</h3>
+<h1>垃圾回收</h1>
 <p><img src="/images/file_1555416270000.png" alt=""></p>
-<h4 id="算法分类">算法分类</h4>
+<h2 id="算法分类">算法分类</h2>
 <ol>
 <li>
 <p>引用计数法<br>
@@ -267,10 +268,10 @@ SOF（大于允许深度时）</p>
 </ol>
 </li>
 </ol>
-<h4 id="分代思想">分代思想</h4>
+<h2 id="分代思想">分代思想</h2>
 <p>少量对象，适合复制算法<br>
 大量存活，适合标记清理、压缩</p>
-<h4 id="一些概念">一些概念</h4>
+<h2 id="一些概念">一些概念</h2>
 <ol>
 <li>什么是可触及性？<br>
 以下是可触及的：
@@ -298,7 +299,7 @@ finalize()中复活对象（当然只会复活一次）</li>
 </ol>
 </li>
 </ol>
-<h4 id="术语">术语</h4>
+<h2 id="术语">术语</h2>
 <table>
 <thead>
 <tr>
@@ -325,6 +326,49 @@ finalize()中复活对象（当然只会复活一次）</li>
 </tr>
 </tbody>
 </table>
+<h2 id="具体算法">具体算法</h2>
+<p><img src="/images/file_1555420503000.png" alt=""></p>
+<h3 id="串行收集器-xx-useserialgc">串行收集器（-XX:UseSerialGC)</h3>
+<p>毫无疑问，串行的效率最高（回收垃圾的效率），但是带来了较长的停顿。使用该参数则表示：<br>
+	1. 新生代、老年代使用串行回收<br>
+	2. 新生代使用复制算法<br>
+	3. 老年代使用标记-压缩</p>
+<h3 id="并行收集器-xx-useparnewgc">并行收集器（-XX: UseParNewGC）</h3>
+<p>复制算法的实现，多线程并行复制，当然是在新生代使用。</p>
+<h3 id="并行收集器-xx-useparallelgc-xx-useparalleloldgc">并行收集器（-XX: UseParallelGC,-XX: UseParallelOldGC）</h3>
+<p>新生代使用复制算法，老年代使用标记-压缩（默认不并行，使用后面的才并行）</p>
+<h3 id="cms-concurrent-mark-sweep-并发标记清除算法">CMS（Concurrent Mark Sweep）并发标记清除算法</h3>
+<p>这个就要详细说说了。是标记-清除算法的并发实现。<br>
+过程如下：<br>
+	1. 初始标记（串行，暂停用户线程）<br>
+		由根直接能标记到的对象，速度快<br>
+	2. 并发标记（与用户线程并行）<br>
+		标记全部可达对象<br>
+	3. 重新标记（串行）<br>
+		暂停整个应用程序，修正标记，准备清理了<br>
+	4. 并发清理（与用户线程并行）<br>
+		清理垃圾<br>
+	5. 并发重置<br>
+		开始下一个循环<br>
+特点：<br>
+	1. 停顿时间短，多次与用户线程并行<br>
+	2. 并发时，系统吞吐量降低（GC线程与应用线程一起工作，应用吞土量当然降低了）<br>
+	3. 清理不彻底（清理时与用户线程并行，期间产生的垃圾只能下次GC回收）<br>
+使用注意事项：<br>
+	1. 老年代使用（对象变化较小，重新标记、清理期间做的工作更加有效）<br>
+	2. 不能在空间快满的时候清理，会出现Concurrent mod failure错误 。此时会使用串行收集器，得不偿失。<br>
+	-XX:CMSInitiatingOccupancyFraction 设置触发GC的阈值<br>
+几个参数：<br>
+	-XX: UseConcMarkSweepGC（使用CMS）<br>
+	-XX: UseCMSCompactAtFullCollection（Full GC后进行碎片整理）<br>
+	-XX: CMSFullGCBeforeCompaction（进行几次GC后再进行碎片整理）<br>
+	-XX:ParallelCMSThreads（CMS线程数量）</p>
+<h3 id="如何减轻gc压力？？">如何减轻GC压力？？</h3>
+<ol>
+<li>软件架构的设计</li>
+<li>代码编写</li>
+<li>堆如何分配</li>
+</ol>
 
         </div>
 
@@ -333,7 +377,7 @@ finalize()中复活对象（当然只会复活一次）</li>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-16T13:09:54.540Z" itemprop="dateUpdated">2019-04-16 21:09:54</time>
+    最后更新时间：<time datetime="2019-04-16T13:37:26.981Z" itemprop="dateUpdated">2019-04-16 21:37:26</time>
 </span><br>
 
 
