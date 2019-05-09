@@ -41,7 +41,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="线程池介绍 线程池为线程生命周期的开销和资源不足问题提供了解决方案。通过对多个任务重用线程，线程创建的开销被分摊到了多个任务上。 使用线程池的好处  降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/4/22/8f025e56062328e4ac36e3c988e30d27?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2019-05-09T02:47:42.640Z">
+<meta property="og:updated_time" content="2019-05-09T03:06:24.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发之线程池">
 <meta name="twitter:description" content="线程池介绍 线程池为线程生命周期的开销和资源不足问题提供了解决方案。通过对多个任务重用线程，线程创建的开销被分摊到了多个任务上。 使用线程池的好处  降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可">
@@ -204,8 +204,7 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RUNNING ：能接受新提交的任务，并且也能处理阻塞队列中的任务；</span><br><span class="line">SHUTDOWN：关闭状态，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。在线程池处于 RUNNING 状态时，调用 shutdown()方法会使线程池进入到该状态。（finalize() 方法在执行过程中也会调用shutdown()方法进入该状态）；</span><br><span class="line">STOP：不能接受新任务，也不处理队列中的任务，会中断正在处理任务的线程。在线程池处于 RUNNING 或 SHUTDOWN 状态时，调用 shutdownNow() 方法会使线程池进入到该状态；</span><br><span class="line">TIDYING：如果所有的任务都已终止了，workerCount (有效线程数) 为0，线程池进入该状态后会调用 terminated() 方法进入TERMINATED 状态。</span><br><span class="line">TERMINATED：在terminated() 方法执行完后进入该状态，默认terminated()方法中什么也没有做。</span><br></pre></td></tr></table></figure>
 <pre><code>ctl计算方法
 </code></pre>
-<pre><code>private static int runStateOf(int c)     { return c &amp; ~CAPACITY; }
-private static int workerCountOf(int c)  { return c </code></pre>
+<pre><code>private static int runStateOf(int c)     { return c </code></pre>
 
         </div>
 
@@ -214,7 +213,7 @@ private static int workerCountOf(int c)  { return c </code></pre>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-09T02:47:42.640Z" itemprop="dateUpdated">2019-05-09 10:47:42</time>
+    最后更新时间：<time datetime="2019-05-09T03:06:24.907Z" itemprop="dateUpdated">2019-05-09 11:06:24</time>
 </span><br>
 
 
