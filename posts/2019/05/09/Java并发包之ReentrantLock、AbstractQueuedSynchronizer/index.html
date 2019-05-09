@@ -41,7 +41,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="ReentrantLock介绍 ReentrantLock重入锁，是实现Lock接口的一个类，也是在实际编程中使用频率很高的一个锁，支持重入性，表示能够对共享资源能够重复加锁，即当前线程获取该锁再次获取不会被阻塞。 与synchronized作用相同（隐式支持重入性） **synchronized实现：**JVM中对对象头的操作。获取自增、释放自减方式实现重入。monitorenter monit">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://q.whllhw.xyz/wp-content/uploads/2019/04/CLH.png">
-<meta property="og:updated_time" content="2019-05-09T03:27:16.707Z">
+<meta property="og:updated_time" content="2019-05-09T03:29:28.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发包之ReentrantLock、AbstractQueuedSynchronizer">
 <meta name="twitter:description" content="ReentrantLock介绍 ReentrantLock重入锁，是实现Lock接口的一个类，也是在实际编程中使用频率很高的一个锁，支持重入性，表示能够对共享资源能够重复加锁，即当前线程获取该锁再次获取不会被阻塞。 与synchronized作用相同（隐式支持重入性） **synchronized实现：**JVM中对对象头的操作。获取自增、释放自减方式实现重入。monitorenter monit">
@@ -190,9 +190,9 @@ ga('send', 'pageview');
 <li>由于锁会被获取n次，那么只有锁在被释放同样的n次之后，该锁才算是完全释放成功</li>
 </ol>
 <h2 id="sync抽象类">Sync抽象类</h2>
-<p>继承AQS，重写了<code>nonfairTryAcquire</code>方法，分析可知其流程很简单，利用<code>state</code>字段记录获取的锁数量。当无锁时直接尝试获取，注意只尝试一次没有<strong>自旋CAS</strong>。当有锁时检查是否当前线程获取的锁，是直接则锁数量 1，没有用到CAS。<br>
+<p>继承AQS，重写了<code>nonfairTryAcquire</code>方法，分析可知其流程很简单，利用<code>state</code>字段记录获取的锁数量。当无锁时直接尝试获取，注意只尝试一次没有<strong>自旋CAS</strong>。当有锁时检查是否当前线程获取的锁，是直接则锁数量+1，没有用到CAS。<br>
 获取锁的过程【<code>nonfairTryAcquire</code>】</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">final boolean nonfairTryAcquire(int acquires) &#123;</span><br><span class="line">    //1. 如果该锁未被任何线程占有，该锁能被当前线程获取</span><br><span class="line">    if (c == 0) &#123;</span><br><span class="line">        if (compareAndSetState(0, acquires)) &#123;</span><br><span class="line">            setExclusiveOwnerThread(current);</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   //2.若被占有，检查占有线程是否是当前线程</span><br><span class="line">    else if (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">        // 3. 再次获取，计数加一</span><br><span class="line">        int nextc = c   acquires;</span><br><span class="line">        if (nextc &lt; 0) // overflow</span><br><span class="line">            throw new Error(&quot;Maximum lock count exceeded&quot;);</span><br><span class="line">        setState(nextc);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">final boolean nonfairTryAcquire(int acquires) &#123;</span><br><span class="line">    //1. 如果该锁未被任何线程占有，该锁能被当前线程获取</span><br><span class="line">    if (c == 0) &#123;</span><br><span class="line">        if (compareAndSetState(0, acquires)) &#123;</span><br><span class="line">            setExclusiveOwnerThread(current);</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   //2.若被占有，检查占有线程是否是当前线程</span><br><span class="line">    else if (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">        // 3. 再次获取，计数加一</span><br><span class="line">        int nextc = c + acquires;</span><br><span class="line">        if (nextc &lt; 0) // overflow</span><br><span class="line">            throw new Error(&quot;Maximum lock count exceeded&quot;);</span><br><span class="line">        setState(nextc);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>释放也是比较简单，先判断是否是当前获取的锁，再直接锁的数量减少，若减少到0则标记当前获取线程为null。注意只有获取锁的时候才用CAS，其他的情况包括：其他线程获取锁，同一线程获取的情况是单线程直接set即可！<br>
 释放锁的过程：【<code>tryRelease</code>】</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">protected final boolean tryRelease(int releases) &#123;</span><br><span class="line">    //1. 同步状态减1</span><br><span class="line">    int c = getState() - releases;</span><br><span class="line">    if (Thread.currentThread() != getExclusiveOwnerThread())</span><br><span class="line">        throw new IllegalMonitorStateException();</span><br><span class="line">    boolean free = false;</span><br><span class="line">    if (c == 0) &#123;</span><br><span class="line">        //2. 只有当同步状态为0时，锁成功被释放，返回true</span><br><span class="line">        free = true;</span><br><span class="line">        setExclusiveOwnerThread(null);</span><br><span class="line">    &#125;</span><br><span class="line">    // 3. 锁未被完全释放，返回false</span><br><span class="line">    setState(c);</span><br><span class="line">    return free;</span><br></pre></td></tr></table></figure>
@@ -219,13 +219,19 @@ ga('send', 'pageview');
 <p>用于构建锁和同步器的框架，很多juc中都用其来构建同步器。（ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask）</p>
 <h2 id="核心思想">核心思想</h2>
 <p><img src="https://q.whllhw.xyz/wp-content/uploads/2019/04/CLH.png" alt=""><br>
-底层：CAS，在C  内使用汇编CPU指令</p>
+底层：CAS，在C++内使用汇编CPU指令</p>
 <h2 id="设计模式：模板方法">设计模式：模板方法</h2>
 <p>一些方法开放给子类进行重写，而同步器给同步组件所提供模板方法又会重新调用被子类所重写的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">protected final boolean tryAcquire(int acquires) &#123;</span><br><span class="line">    //  throw new UnsupportedOperationException(); // 父类实现</span><br><span class="line">    return nonfairTryAcquire(acquires); // NonfairSync子类实现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>AQS中的模板方法<code>acquire</code>又调用到了子类重写的方法</p>
-<pre><code>    public final void acquire(int arg) {
-        if (!tryAcquire(arg) &amp;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public final void acquire(int arg) &#123;</span><br><span class="line">    if (!tryAcquire(arg) &amp;&amp;</span><br><span class="line">        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))</span><br><span class="line">        selfInterrupt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ol>
+<li>同步组件（这里不仅仅是可重入锁，还包括CountDownLatch等）的实现依赖于同步器AQS，在同步组件实现中，使用AQS的方式被推荐定义继承AQS的静态内存类；</li>
+<li>AQS采用模板方法进行设计，AQS的protected修饰的方法需要由继承AQS的子类进行重写实现，当调用AQS的子类的方法时就会调用被重写的方法；</li>
+<li>AQS负责同步状态的管理，线程的排队，等待和唤醒这些底层操作，而Lock等同步组件主要专注于实现同步语义；</li>
+<li>在重写AQS的方式时，使用AQS提供的<code>getState()</code>,<code>setState()</code>,<code>compareAndSetState()</code>方法进行修改同步状态</li>
+</ol>
 
         </div>
 
@@ -234,7 +240,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-09T03:27:16.707Z" itemprop="dateUpdated">2019-05-09 11:27:16</time>
+    最后更新时间：<time datetime="2019-05-09T03:29:28.651Z" itemprop="dateUpdated">2019-05-09 11:29:28</time>
 </span><br>
 
 
