@@ -8,7 +8,7 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>生活不止眼前的苟且，还有读不懂的诗和到不了的远方</description>
-    <pubDate>Thu, 09 May 2019 02:42:42 GMT</pubDate>
+    <pubDate>Thu, 09 May 2019 02:45:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -704,30 +704,6 @@ RC CAR     Raspberry Pi   Python
     </item>
     
     <item>
-      <title>Ubuntu下的网络配置</title>
-      <link>https://whllhw.xyz/posts/2016/11/16/Ubuntu%E4%B8%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
-      <guid>https://whllhw.xyz/posts/2016/11/16/Ubuntu%E4%B8%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
-      <pubDate>Wed, 16 Nov 2016 02:37:59 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1&gt;1.配置网络&lt;/h1&gt;
-&lt;h2 id=&quot;命令版：&quot;&gt;命令版：&lt;/h2&gt;
-&lt;h3 id=&quot;1-设置ip&quot;&gt;1.设置IP&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;sudo ifconfig ens3 202.197.75.58 
-&lt;/code&gt;&lt;/
-        
-      
-      </description>
-      
-      <content:encoded><![CDATA[<a id="more"></a><h1>1.配置网络</h1><h2 id="命令版：">命令版：</h2><h3 id="1-设置ip">1.设置IP</h3><pre><code>sudo ifconfig ens3 202.197.75.58 </code></pre><h3 id="2-设置网关">2.设置网关</h3><pre><code>sudo route add default gw 202.197.75.55</code></pre><h3 id="3-设置dns">3.设置DNS</h3><pre><code>sudo nano /etc/resolv.conf </code></pre><p>添加<code>nameserver 114.114.114.114</code></p><h3 id="4-重启网络">4.重启网络</h3><pre><code>sudo /ect/init.d/networking restart</code></pre><p>或者<code>sudo ifconfig ens3 down</code><br><code>sudo ifconfig ens3 up</code></p><h3 id="5-测试网络">5.测试网络</h3><pre><code>ping 114.114.114.114</code></pre><hr><blockquote><p>好吧，这是我查以前的博客来的，现在谁还用这些命令，直接改配置文件啊！！！</p></blockquote><h2 id="配置版：">配置版：</h2><!--more--><h3 id="1-打开配置文件">1.打开配置文件</h3><p><code>sudo nano /etc/network/interfaces</code></p><p>使用下面的配置：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto ens3 ;自动挂载网卡</span><br><span class="line">iface ens3 inet static ;静态IP地址</span><br><span class="line">address 202.197.75.58 ;要设置的IP</span><br><span class="line">gateway 202.197.75.55 ;网关</span><br><span class="line">netmask 255.255.255.0 ;子网掩码</span><br><span class="line">dns-nameservers 114.114.114.114</span><br></pre></td></tr></table></figure><h3 id="2-重启网卡">2.重启网卡</h3><pre><code>sudo /etc/init.d/networking restart</code></pre><hr><p>#安装ssh<br>sudo apt-get update<br>sudo apt-get install openssh-server<br>sshd<br>##设置开机自动启动ssh<br>sudo nano /etc/rc.local<br>文件中添加：sshd</p>]]></content:encoded>
-      
-      <comments>https://whllhw.xyz/posts/2016/11/16/Ubuntu%E4%B8%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>分区备份</title>
       <link>https://whllhw.xyz/posts/2016/11/16/%E5%88%86%E5%8C%BA%E5%A4%87%E4%BB%BD/</link>
       <guid>https://whllhw.xyz/posts/2016/11/16/%E5%88%86%E5%8C%BA%E5%A4%87%E4%BB%BD/</guid>
@@ -769,6 +745,30 @@ RC CAR     Raspberry Pi   Python
       <content:encoded><![CDATA[<a id="more"></a><h1>配置LNMP</h1><hr><h1>安装Nginx</h1><ul><li>1.执行源更新：<code>sudo apt-get update</code></li><li>2.获取Nginx：<code>sudo apt-get install nginx</code></li><li>3.浏览器打开：<code>202.197.75.58</code></li><li>出现如图即为安装成功！</li><li><img src="http://i.imgur.com/v4Vb7b4.png" alt=""></li></ul><hr><h1>配置Nginx</h1><ul><li>1.执行<code>sudo nano /etc/nginx/sites-available/default</code></li><li>2.获取对php的支持更改如下：</li><li><img src="http://i.imgur.com/lGrrDVu.png" alt=""></li></ul><hr><ul><li><img src="http://i.imgur.com/PvPYrbF.png" alt=""></li></ul><hr><!--more--><p>#安装MySQL</p><ul><li>1.获取Mysql：<code>sudo apt-get install mysql-server</code></li><li>2.安全配置：<code>sudo mysql_secure_installation</code></li></ul><hr><h1>安装php</h1><ul><li>1.获取php-fastproessmanage：<code>sudo apt-get insatll php7.0-fpm</code></li><li>2.获取php对mysql的支持：<code>sudo apt-get install php7.0-sql</code></li><li>3.获得php其他软件：<code>sudo apt-get install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc</code></li></ul><hr><ul><li><img src="http://i.imgur.com/5kpBLSQ.png" alt=""></li></ul><hr><h1>配置php安全</h1><ul><li>1.执行<code>sudo nano /etc/php/7.0/fpm/php.ini</code></li><li>2.修改<code>cgi.fix_pathinfo=0</code>避免安全漏洞</li></ul><hr><h1>MySQL配置</h1><ul><li>1.执行进入后台：<code>mysql -u root -p</code></li><li><img src="http://i.imgur.com/qzyAhqg.png" alt=""></li></ul><hr><ul><li>2.创建数据库：<code>CREATE DATABASE wordpress;</code></li><li><img src="http://i.imgur.com/0yyOe41.png" alt=""></li></ul><hr><ul><li>3.进入wordpress后台安装</li><li><img src="http://i.imgur.com/EO5DzIy.png" alt=""></li><li>4.安装完成后即可登录网站后台写博客</li></ul><hr><h1>samba文件共享</h1><ul><li>1.安装samba：<code>sudo apt-get install samba</code></li><li>2.配置samba：<code>sudo nano /etc/samba/smb.conf</code></li><li><img src="http://i.imgur.com/xHwolcN.png" alt=""></li><li><img src="http://i.imgur.com/BCnueuW.png" alt=""></li></ul><hr><ul><li>3.重启服务：<code>service smbd restart</code></li><li><code>service nmbd restart</code></li><li>4.添加用户，并键入密码：<code>smbpasswd -a lhw</code></li><li><img src="http://i.imgur.com/6glZMQa.png" alt=""></li></ul><hr><ul><li>5.在win下可以访问：</li><li><img src="http://i.imgur.com/gYAZwQQ.png" alt=""></li></ul><hr><ul><li><img src="http://i.imgur.com/Lqhuu7F.png" alt=""></li></ul><hr><ul><li>6.新建一个netgroup用户组<code>groupadd netgroup</code></li><li>7.添加用户<code>useradd a(b,c) -g netgroup</code></li><li><img src="http://i.imgur.com/rCMN1uN.png" alt=""></li><li>8.分别创建密码：<code>passwd a</code></li><li><img src="http://i.imgur.com/l830zTJ.png" alt=""></li></ul><hr><ul><li>9.将smb文件夹归属改变：<code>sudo chown c:netgroup smb</code></li><li><img src="http://i.imgur.com/rdn2miL.png" alt=""></li><li>10.分别设置smbpasswd：<code>smbpasswd -a a</code></li><li><img src="http://i.imgur.com/eGIDa0h.png" alt=""></li></ul><hr><ul><li>11.配置smb，添加字段：</li><li><img src="http://i.imgur.com/tKfYGgO.png" alt=""></li></ul><hr><ul><li>12.使用a登录，发现无法上传文件，删除文件。</li><li><img src="http://i.imgur.com/fa1PWeD.png" alt=""></li></ul><hr><ul><li>13.使用c登录则可以上传文件：</li><li><img src="http://i.imgur.com/Mn4KEPd.png" alt=""></li></ul><hr><ul><li><img src="http://i.imgur.com/J4rh8oF.png" alt=""></li></ul><hr><h1>shell script</h1><ul><li>1.打印登录用户，工作目录：</li><li><img src="http://i.imgur.com/ZSoIzKz.png" alt=""></li></ul><hr><ul><li>2.计算从1 2 3 … 100，结果显示在屏幕上且重定向到result.log</li><li><img src="http://i.imgur.com/Ew9ae0F.png" alt=""></li></ul><hr><ul><li>3.程序的文件名,共有几个参数,若参数的个数小于3个，则输出“the parameter is less than 3“”并退出,显示第二个参数。</li><li><img src="http://i.imgur.com/ChObg5t.png" alt=""></li></ul><hr>]]></content:encoded>
       
       <comments>https://whllhw.xyz/posts/2016/11/16/&#39;LNMP,SAMBA&#39;/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Ubuntu下的网络配置</title>
+      <link>https://whllhw.xyz/posts/2016/11/16/Ubuntu%E4%B8%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
+      <guid>https://whllhw.xyz/posts/2016/11/16/Ubuntu%E4%B8%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
+      <pubDate>Wed, 16 Nov 2016 02:37:59 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1&gt;1.配置网络&lt;/h1&gt;
+&lt;h2 id=&quot;命令版：&quot;&gt;命令版：&lt;/h2&gt;
+&lt;h3 id=&quot;1-设置ip&quot;&gt;1.设置IP&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;sudo ifconfig ens3 202.197.75.58 
+&lt;/code&gt;&lt;/
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<a id="more"></a><h1>1.配置网络</h1><h2 id="命令版：">命令版：</h2><h3 id="1-设置ip">1.设置IP</h3><pre><code>sudo ifconfig ens3 202.197.75.58 </code></pre><h3 id="2-设置网关">2.设置网关</h3><pre><code>sudo route add default gw 202.197.75.55</code></pre><h3 id="3-设置dns">3.设置DNS</h3><pre><code>sudo nano /etc/resolv.conf </code></pre><p>添加<code>nameserver 114.114.114.114</code></p><h3 id="4-重启网络">4.重启网络</h3><pre><code>sudo /ect/init.d/networking restart</code></pre><p>或者<code>sudo ifconfig ens3 down</code><br><code>sudo ifconfig ens3 up</code></p><h3 id="5-测试网络">5.测试网络</h3><pre><code>ping 114.114.114.114</code></pre><hr><blockquote><p>好吧，这是我查以前的博客来的，现在谁还用这些命令，直接改配置文件啊！！！</p></blockquote><h2 id="配置版：">配置版：</h2><!--more--><h3 id="1-打开配置文件">1.打开配置文件</h3><p><code>sudo nano /etc/network/interfaces</code></p><p>使用下面的配置：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto ens3 ;自动挂载网卡</span><br><span class="line">iface ens3 inet static ;静态IP地址</span><br><span class="line">address 202.197.75.58 ;要设置的IP</span><br><span class="line">gateway 202.197.75.55 ;网关</span><br><span class="line">netmask 255.255.255.0 ;子网掩码</span><br><span class="line">dns-nameservers 114.114.114.114</span><br></pre></td></tr></table></figure><h3 id="2-重启网卡">2.重启网卡</h3><pre><code>sudo /etc/init.d/networking restart</code></pre><hr><p>#安装ssh<br>sudo apt-get update<br>sudo apt-get install openssh-server<br>sshd<br>##设置开机自动启动ssh<br>sudo nano /etc/rc.local<br>文件中添加：sshd</p>]]></content:encoded>
+      
+      <comments>https://whllhw.xyz/posts/2016/11/16/Ubuntu%E4%B8%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/#disqus_thread</comments>
     </item>
     
   </channel>
