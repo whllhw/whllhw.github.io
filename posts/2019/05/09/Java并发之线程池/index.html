@@ -41,7 +41,8 @@ ga('send', 'pageview');
 <meta property="og:description" content="线程池介绍 线程池为线程生命周期的开销和资源不足问题提供了解决方案。通过对多个任务重用线程，线程创建的开销被分摊到了多个任务上。 使用线程池的好处  降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/4/22/8f025e56062328e4ac36e3c988e30d27?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2019-05-09T03:06:24.907Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/4/22/fb66e616aa6da061f92d0b4eebb64b7f">
+<meta property="og:updated_time" content="2019-05-09T03:27:16.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发之线程池">
 <meta name="twitter:description" content="线程池介绍 线程池为线程生命周期的开销和资源不足问题提供了解决方案。通过对多个任务重用线程，线程创建的开销被分摊到了多个任务上。 使用线程池的好处  降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可">
@@ -204,7 +205,160 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RUNNING ：能接受新提交的任务，并且也能处理阻塞队列中的任务；</span><br><span class="line">SHUTDOWN：关闭状态，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。在线程池处于 RUNNING 状态时，调用 shutdown()方法会使线程池进入到该状态。（finalize() 方法在执行过程中也会调用shutdown()方法进入该状态）；</span><br><span class="line">STOP：不能接受新任务，也不处理队列中的任务，会中断正在处理任务的线程。在线程池处于 RUNNING 或 SHUTDOWN 状态时，调用 shutdownNow() 方法会使线程池进入到该状态；</span><br><span class="line">TIDYING：如果所有的任务都已终止了，workerCount (有效线程数) 为0，线程池进入该状态后会调用 terminated() 方法进入TERMINATED 状态。</span><br><span class="line">TERMINATED：在terminated() 方法执行完后进入该状态，默认terminated()方法中什么也没有做。</span><br></pre></td></tr></table></figure>
 <pre><code>ctl计算方法
 </code></pre>
-<pre><code>private static int runStateOf(int c)     { return c </code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static int runStateOf(int c)     &#123; return c &amp; ~CAPACITY; &#125;</span><br><span class="line">private static int workerCountOf(int c)  &#123; return c &amp; CAPACITY; &#125;</span><br><span class="line">private static int ctlOf(int rs, int wc) &#123; return rs | wc; &#125;</span><br><span class="line">private static boolean isRunning(int c) &#123; return c &lt; SHUTDOWN; &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构造方法">构造方法</h2>
+<p>关键参数：</p>
+<ol>
+<li>
+<p><strong>corePoolSize</strong>：核心线程数量</p>
+</li>
+<li>
+<p><strong>maximumPoolSize</strong>：最大线程数量</p>
+</li>
+<li>
+<p><strong>workQueue</strong>：等待队列，当任务提交时，如果线程池中的线程数量大于等于corePoolSize的时候，把该任务封装成一个Worker对象放入等待队列<br>
+当有新任务用execute()提交时会执行以下判断：</p>
+<ol>
+<li>运行线程少于corePoolSize则创建新的线程来处理任务，即使线程池中其他线程是空闲的</li>
+<li>当线程池中的线程数量大于等于corePoolSize且小于maximumPoolSize，则当workQueue满的时候才创建新的线程去处理任务</li>
+<li>若设置的corePoolSize和maximumPoolSize相同，则创建的线程池大小固定，workQueue未满时直接放到workQueue，等待有空闲的线程去取任务</li>
+<li>当运行线程数大于等于maximumPoolSize时，若workQueue已满，则执行handler来拒绝任务<br>
+有如下的阻塞队列：</li>
+<li><strong>SynchronousQueue</strong>（CachedThreadPool中使用）必须匹配生产者和消费者才会结束阻塞过程，否则一直阻塞到其他的线程执行take/offer，超时返回false。</li>
+<li><strong>LinkedBlockingQueue</strong> 无界队列，链表实现。如果使用这种方式，那么线程池中能够创建的最大线程数就是corePoolSize，而maximumPoolSize就不会起作用了。当线程池中所有的核心线程都是RUNNING状态时，这时一个新的任务提交就会放入等待队列中。</li>
+<li><strong>ArrayBlockingQueue</strong> 有界队列。使用该方式可以将线程池的最大线程数量限制为maximumPoolSize，这样能够降低资源的消耗，但同时这种方式也使得线程池对线程的调度变得更困难，因为线程池和队列的容量都是有限的值，所以要想使线程池处理任务的吞吐率达到一个相对合理的范围，又想使线程调度相对简单，并且还要尽可能的降低线程池对资源的消耗，就需要合理的设置这两个数量。</li>
+</ol>
+</li>
+<li>
+<p><strong>keepAliveTime</strong>：线程池维护线程所允许的空闲时间。<br>
+线程池维护线程所允许的空闲时间。当线程池中的线程数量大于corePoolSize的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了keepAliveTime；</p>
+</li>
+<li>
+<p><strong>threadFactory</strong>：用于创建自定义线程,指定优先级、名称。</p>
+</li>
+<li>
+<p><strong>handler</strong>：它是RejectedExecutionHandler类型的变量，表示线程池的饱和策略。如果阻塞队列满了并且没有空闲的线程，这时如果继续提交任务，就需要采取一种策略处理该任务。</p>
+<ol>
+<li>AbortPolicy：直接抛出异常，这是默认策略</li>
+<li>CallerRunsPolicy：用调用者所在的线程来执行任务；</li>
+<li>DiscardOldestPolicy：丢弃阻塞队列中靠最前的任务，并执行当前任务；</li>
+<li>DiscardPolicy：直接丢弃任务；</li>
+</ol>
+</li>
+</ol>
+<h2 id="execute方法">execute方法</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void execute(Runnable command) &#123;</span><br><span class="line">        if (command == null)</span><br><span class="line">            throw new NullPointerException();</span><br><span class="line">        int c = ctl.get();</span><br><span class="line">        if (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">            if (addWorker(command, true))</span><br><span class="line">                return;</span><br><span class="line">            c = ctl.get();</span><br><span class="line">        &#125;</span><br><span class="line">        if (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">            int recheck = ctl.get();</span><br><span class="line">            if (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">                reject(command);</span><br><span class="line">            else if (workerCountOf(recheck) == 0) // 防止唯一的线程挂掉，无法从工作队列取数据</span><br><span class="line">                addWorker(null, false);</span><br><span class="line">        &#125;</span><br><span class="line">        else if (!addWorker(command, false))</span><br><span class="line">            reject(command);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>大概进行过程如下，addWorker中也有判断线程数的逻辑，加上这里双重校验线程池状态，所以有点混乱：</p>
+<ol>
+<li>如果workerCount &lt; corePoolSize，则创建并启动一个线程（<strong>addWorker</strong>）来执行新提交的任务；</li>
+<li>如果workerCount &gt;= corePoolSize，且线程池内的阻塞队列未满，则将任务添加到该阻塞队列中；</li>
+<li>如果workerCount &gt;= corePoolSize &amp;&amp; workerCount &lt; maximumPoolSize（<strong>addWorker</strong>内检查）且线程池内的阻塞队列已满，则创建并启动一个线程来执行新提交的任务；</li>
+<li>如果workerCount &gt;= maximumPoolSize，并且线程池内的阻塞队列已满, 则根据拒绝策略来处理该任务, 默认的处理方式是直接抛异常。<br>
+即是，尝试下面的操作，满足则提交运行，新建线程或者是放入队列中：</li>
+<li>核心线程数是否已满？</li>
+<li>阻塞队列是否已满？</li>
+<li>最大线程数是否已满？</li>
+<li>都不满足则拒绝任务</li>
+</ol>
+<h2 id="addworker方法">addWorker方法</h2>
+<p>addWorker方法的主要工作是在线程池中创建一个新的线程并执行，firstTask参数 用于指定新增的线程执行的第一个任务，core参数为true表示在新增线程时会判断当前活动线程数是否少于corePoolSize，false表示新增线程前需要判断当前活动线程数是否少于maximumPoolSize。<br>
+主要思路：</p>
+<ol>
+<li>第一层for，检查运行状态。获取当前线程池的运行状态，如果大于等于SHUTDOWN，则表示不再接收新的任务。并且以下条件有一个不满足则返回false：
+<ol>
+<li>线程池的状态等于SHUTDOWN（则可继续执行阻塞队列中的任务）</li>
+<li>firstTask为空（不能接受新的任务）</li>
+<li>阻塞队列不为空（队列中没有任务，不需要再添加线程）</li>
+</ol>
+</li>
+<li>第二层for，尝试增加workCount，获取当前的线程数，若大于最大线程数（maximumPoolSize）不能再创建返回false。</li>
+<li>否则尝试增加workCount（AtomicInteger，底层是CAS），成功跳出for，进入创建进程的代码块</li>
+<li>失败则重新获取线程池的状态，于开始记录下的值对比，不等说明运行状态被改变，继续第一层for。相等时继续第二层for</li>
+<li>此时已经完成了<strong>workCount</strong>的增加，开始执行Worker的创建代码。<code>new Worker(firstTask)</code></li>
+<li>获取一把可重入锁（mainLock），再次判断线程池的状态（是<strong>RUNNING</strong>或<strong>SHUTDOWN</strong>且<strong>firstTask</strong>为空），不符合则跳出try块，执行清理刚才的线程工作（<strong>addWorkerFaild(w)</strong>)。返回false</li>
+<li>否则添加刚才创建的worker到workers（HashSet）里，并开启调用worker里的thread成员start，开启线程执行，更新largestPoolSize（记录出现的最大线程数量），返回true</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">private boolean addWorker(Runnable firstTask, boolean core) &#123;</span><br><span class="line">    retry:</span><br><span class="line">    for (;;) &#123;</span><br><span class="line">        int c = ctl.get();</span><br><span class="line">        int rs = runStateOf(c);</span><br><span class="line">        // Check if queue empty only if necessary.</span><br><span class="line">        if (rs &gt;= SHUTDOWN &amp;&amp;</span><br><span class="line">            ! (rs == SHUTDOWN &amp;&amp;</span><br><span class="line">                firstTask == null &amp;&amp;</span><br><span class="line">                ! workQueue.isEmpty()))</span><br><span class="line">            return false;</span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            int wc = workerCountOf(c);</span><br><span class="line">            if (wc &gt;= CAPACITY ||</span><br><span class="line">                wc &gt;= (core ? corePoolSize : maximumPoolSize))</span><br><span class="line">                return false;</span><br><span class="line">            if (compareAndIncrementWorkerCount(c))</span><br><span class="line">                break retry;</span><br><span class="line">            c = ctl.get();  // Re-read ctl</span><br><span class="line">            if (runStateOf(c) != rs)</span><br><span class="line">                continue retry;</span><br><span class="line">            // else CAS failed due to workerCount change; retry inner loop</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    boolean workerStarted = false;</span><br><span class="line">    boolean workerAdded = false;</span><br><span class="line">    Worker w = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        w = new Worker(firstTask);</span><br><span class="line">        final Thread t = w.thread;</span><br><span class="line">        if (t != null) &#123;</span><br><span class="line">            final ReentrantLock mainLock = this.mainLock;</span><br><span class="line">            mainLock.lock();</span><br><span class="line">            try &#123;</span><br><span class="line">                int rs = runStateOf(ctl.get());</span><br><span class="line">                if (rs &lt; SHUTDOWN ||</span><br><span class="line">                    (rs == SHUTDOWN &amp;&amp; firstTask == null)) &#123;</span><br><span class="line">                    if (t.isAlive()) // precheck that t is startable</span><br><span class="line">                        throw new IllegalThreadStateException();</span><br><span class="line">                    workers.add(w);</span><br><span class="line">                    int s = workers.size();</span><br><span class="line">                    // largestPoolSize记录着线程池中出现过的最大线程数量</span><br><span class="line">                    if (s &gt; largestPoolSize)</span><br><span class="line">                        largestPoolSize = s;</span><br><span class="line">                    workerAdded = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                mainLock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">            if (workerAdded) &#123;</span><br><span class="line">                t.start();</span><br><span class="line">                workerStarted = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        if (! workerStarted)</span><br><span class="line">            addWorkerFailed(w);</span><br><span class="line">    &#125;</span><br><span class="line">    return workerStarted;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>Worker类</h1>
+<p>线程池中的每一个线程被封装成一个Worker对象，ThreadPool维护的其实就是一组Worker对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private final class Worker</span><br><span class="line">        extends AbstractQueuedSynchronizer</span><br><span class="line">        implements Runnable</span><br></pre></td></tr></table></figure>
+<p>继承了AQS、实现了Runnable接口，并有firstTask（记录保存传入的任务），thread（在调用构造函数时用ThreadFactory创建的，保存处理任务的线程）。构造函数中执行了<code>this.thread = getThreadFactory().newThread(this);</code>新建一个线程，newThread方法传入的参数是this，因为Worker本身继承了Runnable接口，也就是一个线程，所以一个Worker对象在启动的时候会调用Worker类中的run方法。<br>
+Worker继承了AQS，使用AQS来实现独占锁的功能。不使用ReentrantLock（可重入）：</p>
+<ol>
+<li>lock方法一旦获取了独占锁，表示当前线程正在执行任务中</li>
+<li>如果正在执行任务，则不应该中断线程</li>
+<li>如果该线程现在不是独占锁的状态，也就是空闲的状态，说明它没有在处理任务，这时可以对该线程进行中断</li>
+<li>线程池在执行shutdown方法或tryTerminate方法时会调用interruptIdleWorkers方法来中断空闲的线程，interruptIdleWorkers方法会使用tryLock方法来判断线程池中的线程是否是空闲状态；</li>
+<li>之所以设置为不可重入，是因为我们不希望任务在调用像setCorePoolSize这样的线程池控制方法时重新获取锁。如果使用ReentrantLock，它是可重入的，这样如果在任务中调用了如setCorePoolSize这类线程池控制的方法，会中断正在运行的线程。</li>
+</ol>
+<h2 id="worker-runworker方法">Worker.runWorker方法</h2>
+<p>run方法中调用了该方法来执行任务。主要工作是：</p>
+<ol>
+<li>while循环不断地通过getTask()方法获取任务；</li>
+<li>getTask()方法从阻塞队列中取任务；</li>
+<li>如果线程池正在停止，那么要保证当前线程是中断状态，否则要保证当前线程不是中断状态；</li>
+<li>调用task.run()执行任务；</li>
+<li>如果task为null则跳出循环，执行processWorkerExit()方法；</li>
+<li>runWorker方法执行完毕，也代表着Worker中的run方法执行完毕，销毁线程。<br>
+这里的beforeExecute方法和afterExecute方法在ThreadPoolExecutor类中是空的，留给子类来实现。</li>
+</ol>
+<h2 id="gettask方法">getTask方法</h2>
+<p>getTask方法用来从阻塞队列中取任务<br>
+这里重要的地方是第二个if判断，目的是控制线程池的有效线程数量。由上文中的分析可以知道，在执行execute方法时，如果当前线程池的线程数量超过了corePoolSize且小于maximumPoolSize，并且workQueue已满时，则可以增加工作线程，但这时如果超时没有获取到任务，也就是timedOut为true的情况，说明workQueue已经为空了，也就说明了当前线程池中不需要那么多线程来执行任务了，可以把多于corePoolSize数量的线程销毁掉，保持线程数量在corePoolSize即可。<br>
+什么时候会销毁？当然是runWorker方法执行完之后，也就是Worker中的run方法执行完，由JVM自动回收。<br>
+getTask方法返回null时，在runWorker方法中会跳出while循环，然后会执行processWorkerExit方法。</p>
+<h2 id="processworkerexit方法">processWorkerExit方法</h2>
+<p>至此，processWorkerExit执行完之后，工作线程被销毁，以上就是整个工作线程的生命周期，从execute方法开始，Worker使用ThreadFactory创建新的工作线程，runWorker通过getTask获取任务，然后执行任务，如果getTask返回null，进入processWorkerExit方法，整个线程结束，如图所示：<br>
+<img src="https://user-gold-cdn.xitu.io/2017/4/22/fb66e616aa6da061f92d0b4eebb64b7f" alt=""></p>
+<h2 id="tryterminate方法">tryTerminate方法</h2>
+<p>tryTerminate方法根据线程池状态进行判断是否结束线程池。</p>
+<ol>
+<li>当前线程池的状态为以下几种情况时，直接返回，不能结束线程池：
+<ol>
+<li>RUNNING，因为还在运行中，不能停止；</li>
+<li>TIDYING或TERMINATED，因为线程池中已经没有正在运行的线程了；</li>
+<li>SHUTDOWN并且等待队列非空，这时要执行完workQueue中的task；</li>
+</ol>
+</li>
+<li>如果线程数量不为0，则中断一个空闲的工作线程，并返回</li>
+<li>获取this.mainLock锁，尝试设置状态TIDYING（ 线程数已经为0，调用完terminated，即改变为TERMINATED），调用<code>terminated()</code>后设置状态为TERMINATED</li>
+</ol>
+<h2 id="shutdown方法">shutdown方法</h2>
+<p>shutdown方法要将线程池切换到SHUTDOWN状态，并调用interruptIdleWorkers方法请求中断所有空闲的worker，最后调用tryTerminate尝试结束线程池。</p>
+<h2 id="interruptidleworkers方法">interruptIdleWorkers方法</h2>
+<p>interruptIdleWorkers遍历workers中所有的工作线程，若线程没有被中断tryLock成功，就中断该线程。</p>
+<h2 id="shutdownnow方法">shutdownNow方法</h2>
+<p>shutdownNow方法执行完之后调用tryTerminate方法，该方法在上文已经分析过了，目的就是使线程池的状态设置为TERMINATED。<br>
+shutdownNow方法与shutdown方法类似，不同的地方在于：</p>
+<ol>
+<li>设置状态为STOP；</li>
+<li>中断所有工作线程，无论是否是空闲的；</li>
+<li>取出阻塞队列中没有被执行的任务并返回。<br>
+shutdownNow方法执行完之后调用tryTerminate方法，该方法在上文已经分析过了，目的就是使线程池的状态设置为TERMINATED。</li>
+</ol>
+<h2 id="问题">问题</h2>
+<p>为什么需要持有mainLock？因为workers是HashSet类型的，不能保证线程安全。</p>
+<p>在runWorker方法中，执行任务时对Worker对象w进行了lock操作，为什么要在执行任务的时候对每个工作线程都加锁呢？<br>
+下面仔细分析一下：</p>
+<ul>
+<li>在getTask方法中，如果这时线程池的状态是SHUTDOWN并且workQueue为空，那么就应该返回null来结束这个工作线程，而使线程池进入SHUTDOWN状态需要调用shutdown方法；</li>
+<li>shutdown方法会调用interruptIdleWorkers来中断空闲的线程，interruptIdleWorkers持有mainLock，会遍历workers来逐个判断工作线程是否空闲。但getTask方法中没有mainLock；</li>
+<li>在getTask中，如果判断当前线程池状态是RUNNING，并且阻塞队列为空，那么会调用workQueue.take()进行阻塞；</li>
+<li>如果在判断当前线程池状态是RUNNING后，这时调用了shutdown方法把状态改为了SHUTDOWN，这时如果不进行中断，那么当前的工作线程在调用了workQueue.take()后会一直阻塞而不会被销毁，因为在SHUTDOWN状态下不允许再有新的任务添加到workQueue中，这样一来线程池永远都关闭不了了；</li>
+<li>由上可知，shutdown方法与getTask方法（从队列中获取任务时）存在竞态条件；</li>
+<li>解决这一问题就需要用到线程的中断，也就是为什么要用interruptIdleWorkers方法。在调用workQueue.take()时，如果发现当前线程在执行之前或者执行期间是中断状态，则会抛出InterruptedException，解除阻塞的状态；</li>
+<li>但是要中断工作线程，还要判断工作线程是否是空闲的，<strong>如果工作线程正在处理任务，就不应该发生中断</strong>；</li>
+<li>所以Worker继承自AQS，在工作线程处理任务时会进行lock，interruptIdleWorkers在进行中断时会使用tryLock来判断该工作线程是否正在处理任务，如果tryLock返回true，说明该工作线程当前未执行任务，这时才可以被中断。</li>
+</ul>
+<h1>总结</h1>
+<ol>
+<li>分析了线程的创建，任务的提交，状态的转换以及线程池的关闭；</li>
+<li>这里通过execute方法来展开线程池的工作流程，execute方法通过corePoolSize，maximumPoolSize以及阻塞队列的大小来判断决定传入的任务应该被立即执行，还是应该添加到阻塞队列中，还是应该拒绝任务。</li>
+<li>介绍了线程池关闭时的过程，也分析了shutdown方法与getTask方法存在竞态条件；</li>
+<li>在获取任务时，要通过线程池的状态来判断应该结束工作线程还是阻塞线程等待新的任务，也解释了为什么关闭线程池时要中断工作线程以及为什么每一个worker都需要lock。</li>
+</ol>
+<h1>参考</h1>
+<p><a href="https://juejin.im/entry/58fada5d570c350058d3aaad" target="_blank" rel="noopener">https://juejin.im/entry/58fada5d570c350058d3aaad</a></p>
 
         </div>
 
@@ -213,7 +367,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-09T03:06:24.907Z" itemprop="dateUpdated">2019-05-09 11:06:24</time>
+    最后更新时间：<time datetime="2019-05-09T03:27:16.717Z" itemprop="dateUpdated">2019-05-09 11:27:16</time>
 </span><br>
 
 
