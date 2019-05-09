@@ -8,8 +8,31 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>生活不止眼前的苟且，还有读不懂的诗和到不了的远方</description>
-    <pubDate>Thu, 09 May 2019 02:40:07 GMT</pubDate>
+    <pubDate>Thu, 09 May 2019 02:42:42 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Java并发之线程池</title>
+      <link>https://whllhw.xyz/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <guid>https://whllhw.xyz/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <pubDate>Thu, 09 May 2019 02:42:09 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1&gt;线程池介绍&lt;/h1&gt;
+&lt;p&gt;线程池为线程生命周期的开销和资源不足问题提供了解决方案。通过对多个任务重用线程，线程创建的开销被分摊到了多个任务上。&lt;/p&gt;
+&lt;h1&gt;使用线程池的好处&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h1>线程池介绍</h1><p>线程池为线程生命周期的开销和资源不足问题提供了解决方案。通过对多个任务重用线程，线程创建的开销被分摊到了多个任务上。</p><h1>使用线程池的好处</h1><ul><li>降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li><li>提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li><li>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li></ul><h1>类图</h1><p><img src="https://user-gold-cdn.xitu.io/2017/4/22/8f025e56062328e4ac36e3c988e30d27?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p><h2 id="executor-接口">Executor 接口</h2><p>只有一个方法<code>void execute(Runnable command)</code>，用来提交一个任务，根据不同的Executor实现，可能是创建一个新工作线程或者是复用工作线程运行<br>根据线程池的容量或阻塞队列的容量决定是否放入阻塞队列中，或者拒绝接受传入的任务。</p><h2 id="executorservice接口">ExecutorService接口</h2><p>继承自Executor，并提供了管理终止的方法<code>shutdown()</code>（不再接受新任务，等待任务结束）<code>shutdownNow()</code>（除此之外还尝试终止运行中的任务）<br><code>Future submit(Runnable command)</code> 提供一个能查询结果的接口</p><h2 id="scheduledexecutorservice接口">ScheduledExecutorService接口</h2><p>ScheduledExecutorService扩展ExecutorService接口并增加了schedule方法。调用schedule方法可以在指定的延时后执行一个Runnable或者Callable任务。ScheduledExecutorService接口还定义了按照指定时间间隔定期执行任务的scheduleAtFixedRate()方法和scheduleWithFixedDelay()方法。</p><h1>ThreadPoolExecutor分析</h1><p>继承自AbstractExecutorService，也是实现了ExecutorService接口。<br>重要字段：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));</span><br><span class="line">private static final int COUNT_BITS = Integer.SIZE - 3;</span><br><span class="line">private static final int CAPACITY   = (1 &lt;&lt; COUNT_BITS) - 1;</span><br><span class="line"></span><br><span class="line">// runState is stored in the high-order bits</span><br><span class="line">private static final int RUNNING    = -1 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int SHUTDOWN   =  0 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int STOP       =  1 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int TIDYING    =  2 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int TERMINATED =  3 &lt;&lt; COUNT_BITS;</span><br></pre></td></tr></table></figure><p>ctl是对线程池的运行状态和线程池中有效线程的数量进行控制的一个字段， 它包含两部分的信息: 线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)，这里可以看到，使用了Integer类型来保存，高3位保存runState，低29位保存workerCount。COUNT_BITS 就是29，CAPACITY就是1左移29位减1（29个1），这个常量表示workerCount的上限值，大约是5亿。<br><strong>为什么要一个Integer表示两个值</strong>：在多线程的环境下，运行状态和有效线程数量往往需要保证统一，不能出现一个改而另一个没有改的情况，如果将他们放在同一个 AtomicInteger中，利用 AtomicInteger 的原子操作，就可以保证这两个值始终是统一的。Doug Lea大神牛逼！</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RUNNING ：能接受新提交的任务，并且也能处理阻塞队列中的任务；</span><br><span class="line">SHUTDOWN：关闭状态，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。在线程池处于 RUNNING 状态时，调用 shutdown()方法会使线程池进入到该状态。（finalize() 方法在执行过程中也会调用shutdown()方法进入该状态）；</span><br><span class="line">STOP：不能接受新任务，也不处理队列中的任务，会中断正在处理任务的线程。在线程池处于 RUNNING 或 SHUTDOWN 状态时，调用 shutdownNow() 方法会使线程池进入到该状态；</span><br><span class="line">TIDYING：如果所有的任务都已终止了，workerCount (有效线程数) 为0，线程池进入该状态后会调用 terminated() 方法进入TERMINATED 状态。</span><br><span class="line">TERMINATED：在terminated() 方法执行完后进入该状态，默认terminated()方法中什么也没有做。</span><br></pre></td></tr></table></figure><pre><code>ctl计算方法</code></pre><pre><code>private static int runStateOf(int c)     { return c &amp; ~CAPACITY; }private static int workerCountOf(int c)  { return c </code></pre>]]></content:encoded>
+      
+      <comments>https://whllhw.xyz/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Java并发包之ReentrantLock、AbstractQueuedSynchronizer</title>
