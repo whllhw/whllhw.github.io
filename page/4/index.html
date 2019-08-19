@@ -151,6 +151,122 @@ ga('send', 'pageview');
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-wxPython的坑，textctrl回车事件处理"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-03-30 15:14:42" datetime="2017-03-30T07:14:42.000Z"  itemprop="datePublished">2017-03-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/">wxPython的坑，textctrl回车事件处理</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+学习Python的GUI界面绘制，对比PyQt，wxPython的区别，选择了wxPython的路径。 为一个小程序，实现网络聊天室的效果，简要写写其界面，毕竟只用终端界面容易出现冲突。
+
+
+我参考的是这个
+快速入门教程
+
+到正题了————&gt;
+实现功能为：按下回车，发送信息到服务器，并广播到各个客户端。
+BUG：wxPython消息处理机制会先处理按下ENTER键的事件，而不是先执行回车。
+    
+
+        <a href="/posts/2017/03/30/wxPython的坑，textctrl回车事件处理/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-SSH无密码登录三步实现"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-03-11 23:37:45" datetime="2017-03-11T15:37:45.000Z"  itemprop="datePublished">2017-03-11</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2017/03/11/SSH无密码登录三步实现/">SSH无密码登录三步实现</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+SSH免密码登录百度上有很多教程，大多是重复的，效果不一定好，Linux字符终端调试起来不一定好受，原来的Ubuntu上没有试过登录，后面就弄不好了。
+借助必应的威力，有了新的发现，借助__ssh-copy-id__，三步实现！！
+
+第一步：
+生成密钥：
+1ssh-kengen
+保存在_~/.ssh/_目录下。
+第二步：
+1ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote-host
+该命令将公钥文件写到远程机器的 ~/.ssh/authorized_key
+第三步：
+1ssh username@remote-host
+登录！！
+
+原文：
+
+使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录
+    
+
+        <a href="/posts/2017/03/11/SSH无密码登录三步实现/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-ssh/">ubuntu, ssh</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-VMware vSphere Hypervisor (ESXi)虚拟化使用笔记"
   class="article-card article-type-post" itemprop="blogPost">
 

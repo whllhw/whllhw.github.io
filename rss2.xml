@@ -8,8 +8,50 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>生活不止眼前的苟且，还有读不懂的诗和到不了的远方</description>
-    <pubDate>Mon, 19 Aug 2019 11:36:39 GMT</pubDate>
+    <pubDate>Mon, 19 Aug 2019 11:53:18 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Linux 和 Windows 双系统共用蓝牙设备</title>
+      <link>https://whllhw.xyz/posts/2019/08/19/Linux%20%E5%92%8C%20Windows%20%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%85%B1%E7%94%A8%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/</link>
+      <guid>https://whllhw.xyz/posts/2019/08/19/Linux%20%E5%92%8C%20Windows%20%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%85%B1%E7%94%A8%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/</guid>
+      <pubDate>Mon, 19 Aug 2019 11:51:33 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1&gt;背景&lt;/h1&gt;
+&lt;p&gt;我安装的双系统，有时需要切换到Linux下工作，有时又需要在Windows下处理事务。我使用的蓝牙键盘是Logitech K380，可以同时容纳三个设备，但是每次在一个系统下配置使用后，重启到另外一个系统便不能再连接，需要重新配对。本文参考了网络上其
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h1>背景</h1><p>我安装的双系统，有时需要切换到Linux下工作，有时又需要在Windows下处理事务。我使用的蓝牙键盘是Logitech K380，可以同时容纳三个设备，但是每次在一个系统下配置使用后，重启到另外一个系统便不能再连接，需要重新配对。本文参考了网络上其他的文章，可先看参考文章。话不多说，直接开始！</p><p>首先，了解一下原因。蓝牙配对是根据设备的MAC地址和随机生成的密钥来连接的，相同设备的MAC地址是相同的，但是系统随机生成的密钥不同，所以解决的思路就是把密钥改成相同的即可。</p><p>由于我Windows已经配对了，我参考南浦月的博客步骤如下：</p><ol><li>Windows配对键盘（生成配置文件）</li><li>Linux下配对键盘（读取key）</li><li>回到Windows修改配对key</li></ol><h1>使用dumplive在Linux下读取Windows注册表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mount /dev/sda3 /mnt          #假设 sda3 是 Windows 系统盘</span><br><span class="line">cd /mnt/Windows/System32/config    #注意路径大小写</span><br><span class="line">dumphive system ~/system.reg</span><br></pre></td></tr></table></figure><p>这里直接参考原博客即可，但是我的Win10（版本1803）对应的键值与原文中的</p><blockquote><p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Keys&lt;本机蓝牙 MAC&gt;&lt;鼠标蓝牙 MAC&gt;</p></blockquote><p>不一样，使用<code>grep -Pn 'BTHPORT.*(\\[\da-f]{12}){2}' ~/system.reg</code> 正则无法匹配，我这里的键值是</p><blockquote><p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Keys\441ca8xxxxx（本机蓝牙MAC）</p></blockquote><p>最后的密钥在键为键盘蓝牙MAC下，<img src="https://118.89.41.105/wp-content/uploads/2019/07/396a1edb3cee1e929390025df1a79655.png" alt=""></p><p>剩余步骤直接按原文操作即可。</p><h1>修改Linux下蓝牙配对信息</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">cd /var/lib/bluetooth/60:57:XX:XX:XX:XX # 进入本机蓝牙设备的配对信息</span><br><span class="line">cd EB:50:XX:XX:XX:XX # 进入键盘蓝牙目录</span><br></pre></td></tr></table></figure><p>修改该目录下的info文件，把key改对即可。注意去掉冒号，全大写，这里与原文鼠标的配置文件不同。（不需要反转字符）<img src="https://118.89.41.105/wp-content/uploads/2019/07/2019-07-18-19-48-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p><h1>参考</h1><p><a href="https://blog.nanpuyue.com/2018/040.html" target="_blank" rel="noopener">https://blog.nanpuyue.com/2018/040.html</a></p>]]></content:encoded>
+      
+      <comments>https://whllhw.xyz/posts/2019/08/19/Linux%20%E5%92%8C%20Windows%20%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%85%B1%E7%94%A8%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Java并发之并发容器ConcurrentHashMap</title>
+      <link>https://whllhw.xyz/posts/2019/08/19/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8ConcurrentHashMap/</link>
+      <guid>https://whllhw.xyz/posts/2019/08/19/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8ConcurrentHashMap/</guid>
+      <pubDate>Mon, 19 Aug 2019 11:44:19 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1&gt;为什么要使用ConcurrentHashMap？&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;HashMap线程不安全，多个线程同时&lt;code&gt;putVal&lt;/code&gt;会造成死循环（在扩容过程中，链表成环）&lt;br&gt;
+扩容过程：遍历旧桶，对每个桶里的链表entry，使用头插法放入对应新桶
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h1>为什么要使用ConcurrentHashMap？</h1><ol><li>HashMap线程不安全，多个线程同时<code>putVal</code>会造成死循环（在扩容过程中，链表成环）<br>扩容过程：遍历旧桶，对每个桶里的链表entry，使用头插法放入对应新桶，即与原来的顺序相反。头插法过程中会改变头节点，当一个线程resize进度快于另外一个线程时，就会出现前一个链表插入后的后继仍然时原来的后继节点，这就出现了环。<a href="https://my.oschina.net/hosee/blog/673521" title="参考" target="_blank" rel="noopener">参考</a><br><img src="http://static.oschina.net/uploads/space/2016/0511/150544_UYcT_2243330.jpg" alt=""></li><li>Hashtable效率底下，（依靠synchronized来同步方法）不能多读。</li><li>ConcurrentHashMap利用锁分段技术，用多把锁提升了并发访问，同时扩容也只涉及到单个段，不涉及全部的段</li></ol><h1>ConcurrentHashMap结构</h1><h1>参考</h1><p>Java并发编程的技术</p>]]></content:encoded>
+      
+      <comments>https://whllhw.xyz/posts/2019/08/19/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8ConcurrentHashMap/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Java并发之线程池</title>

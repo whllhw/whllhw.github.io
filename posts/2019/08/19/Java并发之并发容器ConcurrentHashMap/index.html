@@ -25,25 +25,27 @@ ga('send', 'pageview');
     
     
     
-    <title>树莓派构建wheels下载 | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
+    <title>Java并发之并发容器ConcurrentHashMap | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="python, 树莓派">
-    <meta name="description" content="树莓派是arm平台，用pip安装时，默认从源码构建，编译耗时过长，甚至编译失败 www.piwheels.org 提供树莓派预编译二进制包 操作步骤：  在 /etc/pip.conf 添加如下内容，启用源  12[global]extra-index-url=https://www.piwheels.org/simple 不过由于镜像在国外，国内有时访问过慢，下载失败。 解决： 上网站去手动下载">
-<meta name="keywords" content="python, 树莓派">
+    <meta name="keywords" content="java">
+    <meta name="description" content="为什么要使用ConcurrentHashMap？  HashMap线程不安全，多个线程同时putVal会造成死循环（在扩容过程中，链表成环） 扩容过程：遍历旧桶，对每个桶里的链表entry，使用头插法放入对应新桶，即与原来的顺序相反。头插法过程中会改变头节点，当一个线程resize进度快于另外一个线程时，就会出现前一个链表插入后的后继仍然时原来的后继节点，这就出现了环。参考  Hashtable效">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派构建wheels下载">
-<meta property="og:url" content="https://whllhw.xyz/posts/2018/12/28/树莓派构建wheels下载/index.html">
+<meta property="og:title" content="Java并发之并发容器ConcurrentHashMap">
+<meta property="og:url" content="https://whllhw.xyz/posts/2019/08/19/Java并发之并发容器ConcurrentHashMap/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="树莓派是arm平台，用pip安装时，默认从源码构建，编译耗时过长，甚至编译失败 www.piwheels.org 提供树莓派预编译二进制包 操作步骤：  在 /etc/pip.conf 添加如下内容，启用源  12[global]extra-index-url=https://www.piwheels.org/simple 不过由于镜像在国外，国内有时访问过慢，下载失败。 解决： 上网站去手动下载">
+<meta property="og:description" content="为什么要使用ConcurrentHashMap？  HashMap线程不安全，多个线程同时putVal会造成死循环（在扩容过程中，链表成环） 扩容过程：遍历旧桶，对每个桶里的链表entry，使用头插法放入对应新桶，即与原来的顺序相反。头插法过程中会改变头节点，当一个线程resize进度快于另外一个线程时，就会出现前一个链表插入后的后继仍然时原来的后继节点，这就出现了环。参考  Hashtable效">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-19T11:53:18.601Z">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0511/150544_UYcT_2243330.jpg">
+<meta property="og:updated_time" content="2019-08-19T11:53:18.660Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="树莓派构建wheels下载">
-<meta name="twitter:description" content="树莓派是arm平台，用pip安装时，默认从源码构建，编译耗时过长，甚至编译失败 www.piwheels.org 提供树莓派预编译二进制包 操作步骤：  在 /etc/pip.conf 添加如下内容，启用源  12[global]extra-index-url=https://www.piwheels.org/simple 不过由于镜像在国外，国内有时访问过慢，下载失败。 解决： 上网站去手动下载">
+<meta name="twitter:title" content="Java并发之并发容器ConcurrentHashMap">
+<meta name="twitter:description" content="为什么要使用ConcurrentHashMap？  HashMap线程不安全，多个线程同时putVal会造成死循环（在扩容过程中，链表成环） 扩容过程：遍历旧桶，对每个桶里的链表entry，使用头插法放入对应新桶，即与原来的顺序相反。头插法过程中会改变头节点，当一个线程resize进度快于另外一个线程时，就会出现前一个链表插入后的后继仍然时原来的后继节点，这就出现了环。参考  Hashtable效">
+<meta name="twitter:image" content="http://static.oschina.net/uploads/space/2016/0511/150544_UYcT_2243330.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
@@ -117,7 +119,7 @@ ga('send', 'pageview');
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">树莓派构建wheels下载</div>
+        <div class="flex-col header-title ellipsis">Java并发之并发容器ConcurrentHashMap</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -135,11 +137,11 @@ ga('send', 'pageview');
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">树莓派构建wheels下载</h1>
+        <h1 class="title">Java并发之并发容器ConcurrentHashMap</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-12-28T15:25:57.000Z" itemprop="datePublished" class="page-time">
-  2018-12-28
+                <time datetime="2019-08-19T11:44:19.000Z" itemprop="datePublished" class="page-time">
+  2019-08-19
 </time>
 
 
@@ -156,13 +158,13 @@ ga('send', 'pageview');
 <div class="container body-wrap">
     
 
-<article id="post-树莓派构建wheels下载"
+<article id="post-Java并发之并发容器ConcurrentHashMap"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">树莓派构建wheels下载</h1>
+        <h1 class="post-card-title">Java并发之并发容器ConcurrentHashMap</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-12-28 23:25:57" datetime="2018-12-28T15:25:57.000Z"  itemprop="datePublished">2018-12-28</time>
+            <time class="post-time" title="2019-08-19 19:44:19" datetime="2019-08-19T11:44:19.000Z"  itemprop="datePublished">2019-08-19</time>
 
             
 
@@ -175,21 +177,17 @@ ga('send', 'pageview');
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>树莓派是arm平台，用pip安装时，默认从源码构建，编译耗时过长，甚至编译失败<br>
-<a href="http://www.piwheels.org" target="_blank" rel="noopener">www.piwheels.org</a> 提供树莓派预编译二进制包<br>
-操作步骤：</p>
+            <h1>为什么要使用ConcurrentHashMap？</h1>
 <ol>
-<li>在 /etc/pip.conf 添加如下内容，启用源</li>
+<li>HashMap线程不安全，多个线程同时<code>putVal</code>会造成死循环（在扩容过程中，链表成环）<br>
+扩容过程：遍历旧桶，对每个桶里的链表entry，使用头插法放入对应新桶，即与原来的顺序相反。头插法过程中会改变头节点，当一个线程resize进度快于另外一个线程时，就会出现前一个链表插入后的后继仍然时原来的后继节点，这就出现了环。<a href="https://my.oschina.net/hosee/blog/673521" title="参考" target="_blank" rel="noopener">参考</a><br>
+<img src="http://static.oschina.net/uploads/space/2016/0511/150544_UYcT_2243330.jpg" alt=""></li>
+<li>Hashtable效率底下，（依靠synchronized来同步方法）不能多读。</li>
+<li>ConcurrentHashMap利用锁分段技术，用多把锁提升了并发访问，同时扩容也只涉及到单个段，不涉及全部的段</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>不过由于镜像在国外，国内有时访问过慢，下载失败。<br>
-解决：<br>
-上网站去手动下载 whl 文件到电脑后传给树莓派后执行 pip install $file_name.whl 安装。注意：文件名不能更改，否则会提示：<br>
-is not a supported wheel on this platform.<br>
-例如，浏览器给我加的括号1：<br>
-tensorflow-1.11.0-cp35-none-linux_armv7l (1).whl is not a supported wheel on this platform.</p>
-<p>PS:<br>
-安装tensorflow时可先安装h5py的whl文件，不然又要编译h5py</p>
+<h1>ConcurrentHashMap结构</h1>
+<h1>参考</h1>
+<p>Java并发编程的技术</p>
 
         </div>
 
@@ -198,12 +196,12 @@ tensorflow-1.11.0-cp35-none-linux_armv7l (1).whl is not a supported wheel on thi
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-19T11:53:18.601Z" itemprop="dateUpdated">2019-08-19 19:53:18</time>
+    最后更新时间：<time datetime="2019-08-19T11:53:18.660Z" itemprop="dateUpdated">2019-08-19 19:53:18</time>
 </span><br>
 
 
         
-        <a href="/posts/2018/12/28/树莓派构建wheels下载/" target="_blank" rel="external">https://whllhw.xyz/posts/2018/12/28/树莓派构建wheels下载/</a>
+        <a href="/posts/2019/08/19/Java并发之并发容器ConcurrentHashMap/" target="_blank" rel="external">https://whllhw.xyz/posts/2019/08/19/Java并发之并发容器ConcurrentHashMap/</a>
         
     </div>
     
@@ -220,7 +218,7 @@ tensorflow-1.11.0-cp35-none-linux_armv7l (1).whl is not a supported wheel on thi
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-树莓派/">python, 树莓派</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
 
             
@@ -233,18 +231,18 @@ tensorflow-1.11.0-cp35-none-linux_armv7l (1).whl is not a supported wheel on thi
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/posts/2019/01/14/DonkeyCar总结/" id="post-prev" class="post-nav-link">
+      <a href="/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">DonkeyCar总结</h4>
+        <h4 class="title">Linux 和 Windows 双系统共用蓝牙设备</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/2018/12/15/读书及写书摘：写下来才是自己的/" id="post-next" class="post-nav-link">
+      <a href="/posts/2019/05/09/Java并发之线程池/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">读书及写书摘：写下来才是自己的</h4>
+        <h4 class="title">Java并发之线程池</h4>
       </a>
     </div>
   
@@ -267,7 +265,7 @@ tensorflow-1.11.0-cp35-none-linux_armv7l (1).whl is not a supported wheel on thi
     <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
     <script>
         var gitment = new Gitment({
-            id: 'Fri Dec 28 2018 23:25:57 GMT+0800',
+            id: 'Mon Aug 19 2019 19:44:19 GMT+0800',
             owner: 'whllhw',
             repo: 'blog-comment',
             oauth: {
