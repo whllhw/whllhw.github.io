@@ -151,6 +151,52 @@ ga('send', 'pageview');
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-解决钉钉服务器出口IP不确定问题：自签名根证书-host-nginx反向代理"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-28 15:42:25" datetime="2019-12-28T07:42:25.000Z"  itemprop="datePublished">2019-12-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2019/12/28/解决钉钉服务器出口IP不确定问题：自签名根证书-host-nginx反向代理/">解决钉钉服务器出口IP不确定问题：自签名根证书+hosts文件+nginx反向代理</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        问题来源
+企业内部应用一般部署在内网，没有固定的公网IP，这样在访问钉钉的API时就会被拦截下来。钉钉的服务器出口IP只支持一个统配符，出现不匹配的情况就会被拦截。
+解决方案比较
+当然存在多种解决方案，各有差别，但是本质都需要一个公网服务器，公网搭设一个代理服务：
+
+在代码中使用代理。对代码具有一定的侵入性。
+使用系统代理。这样需要用PAC来选择代理的网址，对一些程序可能无效。
+使用ipta...
+    
+
+        <a href="/posts/2019/12/28/解决钉钉服务器出口IP不确定问题：自签名根证书-host-nginx反向代理/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-Linux 和 Windows 双系统共用蓝牙设备"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -587,60 +633,6 @@ Spring Boot 中的spring-boot-web-starter中默认配置的Web容器就是Tomcat
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-树莓派构建wheels下载"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-12-28 23:25:57" datetime="2018-12-28T15:25:57.000Z"  itemprop="datePublished">2018-12-28</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2018/12/28/树莓派构建wheels下载/">树莓派构建wheels下载</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        树莓派是arm平台，用pip安装时，默认从源码构建，编译耗时过长，甚至编译失败
-www.piwheels.org 提供树莓派预编译二进制包
-操作步骤：
-
-在 /etc/pip.conf 添加如下内容，启用源
-
-12[global]extra-index-url=https://www.piwheels.org/simple
-不过由于镜像在国外，国内有时访问过慢，下载失败。
-解决：
-上网站去手...
-    
-
-        <a href="/posts/2018/12/28/树莓派构建wheels下载/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-树莓派/">python, 树莓派</a></li></ul>
 
     </div>
     

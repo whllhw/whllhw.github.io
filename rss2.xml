@@ -8,8 +8,30 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>生活不止眼前的苟且，还有读不懂的诗和到不了的远方</description>
-    <pubDate>Sat, 28 Dec 2019 05:46:21 GMT</pubDate>
+    <pubDate>Sat, 28 Dec 2019 09:20:04 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>解决钉钉服务器出口IP不确定问题：自签名根证书+hosts文件+nginx反向代理</title>
+      <link>https://whllhw.xyz/posts/2019/12/28/%E8%A7%A3%E5%86%B3%E9%92%89%E9%92%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E5%8F%A3IP%E4%B8%8D%E7%A1%AE%E5%AE%9A%E9%97%AE%E9%A2%98%EF%BC%9A%E8%87%AA%E7%AD%BE%E5%90%8D%E6%A0%B9%E8%AF%81%E4%B9%A6-host-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</link>
+      <guid>https://whllhw.xyz/posts/2019/12/28/%E8%A7%A3%E5%86%B3%E9%92%89%E9%92%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E5%8F%A3IP%E4%B8%8D%E7%A1%AE%E5%AE%9A%E9%97%AE%E9%A2%98%EF%BC%9A%E8%87%AA%E7%AD%BE%E5%90%8D%E6%A0%B9%E8%AF%81%E4%B9%A6-host-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</guid>
+      <pubDate>Sat, 28 Dec 2019 07:42:25 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1&gt;问题来源&lt;/h1&gt;
+&lt;p&gt;企业内部应用一般部署在内网，没有固定的公网IP，这样在访问钉钉的API时就会被拦截下来。钉钉的服务器出口IP只支持一个统配符，出现不匹配的情况就会被拦截。&lt;/p&gt;
+&lt;h1&gt;解决方案比较&lt;/h1&gt;
+&lt;p&gt;当然存在多种解决方案，各有差别，但是本质都需
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h1>问题来源</h1><p>企业内部应用一般部署在内网，没有固定的公网IP，这样在访问钉钉的API时就会被拦截下来。钉钉的服务器出口IP只支持一个统配符，出现不匹配的情况就会被拦截。</p><h1>解决方案比较</h1><p>当然存在多种解决方案，各有差别，但是本质都需要一个公网服务器，公网搭设一个代理服务：</p><ol><li>在代码中使用代理。对代码具有一定的侵入性。</li><li>使用系统代理。这样需要用PAC来选择代理的网址，对一些程序可能无效。</li><li>使用iptables转发到代理软件。仅限于linux可用。</li></ol><p>这里我介绍一种用反向代理的方法解决没有固定IP的方案。内网的windows服务器只需要一个根证书、改Hosts文件即可。</p><h1>解决方案</h1><h2 id="先决条件">先决条件</h2><ol><li>公网服务器且系统为Linux、固定的公网IP</li></ol><h2 id="步骤">步骤</h2><ol><li><p>生成自签名的根证书 + 域名证书<br><a href="https://2heng.xin/2018/12/16/your-own-ca-with-openssl/" target="_blank" rel="noopener">OpenSSL 自签 CA 及 SSL 证书</a>参考这篇文章即可。注意把域名改成<code>oapi.dingtalk.com</code>，将csr文件转换为pem文件。</p></li><li><p>在公网配置Nginx的反向代理，使用如下配置文件</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        # SSL configuration</span><br><span class="line">        listen 443 ssl;</span><br><span class="line">        listen [::]:443 ssl;</span><br><span class="line">        ssl on;</span><br><span class="line">        ssl_certificate /home/ubuntu/certs/oapi.dingtalk.com.pem; # 公钥路径</span><br><span class="line">        ssl_certificate_key /home/ubuntu/certs/oapi.dingtalk.com.key; # 私钥路径</span><br><span class="line">        ssl_session_timeout  5m;</span><br><span class="line">        ssl_protocols  SSLv2 SSLv3 TLSv1 TLSv1.2;</span><br><span class="line">        ssl_ciphers  &quot;HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES&quot;;</span><br><span class="line">        ssl_prefer_server_ciphers   on;</span><br><span class="line">        server_name oapi.dingtalk.com;</span><br><span class="line">        location ~ / &#123;</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_pass https://oapi.dingtalk.com;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li><p>在内网服务器，把根证书导入到受信任的根证书颁发机构<br><img src="/images/%E5%AE%89%E8%A3%85CA%E6%A0%B9%E8%AF%81%E4%B9%A6.png" alt=""></p></li><li><p>在内网服务器，设置Hosts文件</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;公网ip&gt;  oapi.dingtalk.com</span><br></pre></td></tr></table></figure><ol start="5"><li>重启nginx，即可在内网服务器上访问反代的钉钉API</li></ol><h2 id="简要分析原理">简要分析原理</h2><p>本地hosts文件强制解析到自有服务器上，中间的证书是自签名认证的，服务器获取到请求后转发给真正的钉钉服务器，这样出口IP就确定了下来，能过验证。注意根证书的私钥不要泄露了，否则带来中间人攻击的风险。</p>]]></content:encoded>
+      
+      <comments>https://whllhw.xyz/posts/2019/12/28/%E8%A7%A3%E5%86%B3%E9%92%89%E9%92%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E5%8F%A3IP%E4%B8%8D%E7%A1%AE%E5%AE%9A%E9%97%AE%E9%A2%98%EF%BC%9A%E8%87%AA%E7%AD%BE%E5%90%8D%E6%A0%B9%E8%AF%81%E4%B9%A6-host-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Linux 和 Windows 双系统共用蓝牙设备</title>
