@@ -47,7 +47,7 @@ ga('send', 'pageview');
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -70,7 +70,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:false" class="mail">false</a>
+          
         </hgroup>
       </div>
     </div>
@@ -158,7 +158,7 @@ ga('send', 'pageview');
             <div class="content flex-col">
                 <p><strong>whllhw</strong></p>
                 <p><em>生活不止眼前的苟且，还有读不懂的诗和到不了的远方</em></p>
-                <p><blockquote><p>1.博客为Hexo生成，源码托管在Github，同步到腾讯云服务器。<br>2.由于域名未备案，只能用https协议访问。<br>3.文章与简书同步（借简书SEO给自己导点流量）</p></blockquote><del>我不生产代码，我是代码的搬运工。</del>开始找工作才发现自己这么菜，只能抓紧时间学习。求报大腿鸭。<p>【个人技能】</p><ol><li>熟悉Java、Python<del>单词拼写</del>后台开发方向</li><li>熟悉Linux<del>rm -rf</del></li><li>熟悉MySQL<del>删库语句drop database</del></li></ol></p>
+                <p>人生苦短，遇见是一种缘分</p>
             </div>
 
             
@@ -219,7 +219,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -239,9 +239,30 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

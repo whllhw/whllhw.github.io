@@ -48,7 +48,7 @@ ga('send', 'pageview');
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -71,7 +71,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">whllhw</h5>
-          <a href="mailto:false" class="mail">false</a>
+          
         </hgroup>
       </div>
     </div>
@@ -274,23 +274,8 @@ sudo chmod 770 . -R
 
 
 
-<section class="comments" id="comments">
-    <div id="gitment_thread"></div>
-    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
-    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
-    <script>
-        var gitment = new Gitment({
-            id: 'Thu Jun 01 2017 13:37:00 GMT+0800',
-            owner: 'whllhw',
-            repo: 'blog-comment',
-            oauth: {
-                client_id: '95bdba8ca1dc4fcadca0',
-                client_secret: 'a37b8b6abc79a8a43d860fdd182caa52a10dffbd',
-            },
-        })
-        gitment.render('comments')
-    </script>
-</section>
+
+
 
 
 
@@ -349,7 +334,7 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -369,9 +354,30 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </li>
 </template>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
