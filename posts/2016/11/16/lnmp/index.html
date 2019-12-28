@@ -25,25 +25,48 @@ ga('send', 'pageview');
     
     
     
-    <title>使用Flask 中遇到的Python2 编码问题 | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
+    <title>LNMP,SAMBA | 仰头45℃爆笑 | 生活不止眼前的苟且，还有读不懂的诗和到不了的远方</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="flask, python">
-    <meta name="description" content="使用Flask 中遇到的Python2 编码问题  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。  开始前建议阅读 Python2.x 字符编码终极指南，或者搜索一下就有很多文章。 Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复">
-<meta name="keywords" content="flask, python">
+    <meta name="keywords" content="">
+    <meta name="description" content="简要记录下了ubuntu下LNMP服务器的安装，samba文件共享的配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Flask 中遇到的Python2 编码问题">
-<meta property="og:url" content="https://whllhw.xyz/posts/2017/09/17/使用Flask 中遇到的Python2 编码问题/index.html">
+<meta property="og:title" content="LNMP,SAMBA">
+<meta property="og:url" content="https://whllhw.xyz/posts/2016/11/16/lnmp/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
-<meta property="og:description" content="使用Flask 中遇到的Python2 编码问题  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。  开始前建议阅读 Python2.x 字符编码终极指南，或者搜索一下就有很多文章。 Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复">
+<meta property="og:description" content="简要记录下了ubuntu下LNMP服务器的安装，samba文件共享的配置">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-19T11:53:18.494Z">
+<meta property="og:image" content="http://i.imgur.com/v4Vb7b4.png">
+<meta property="og:image" content="http://i.imgur.com/lGrrDVu.png">
+<meta property="og:image" content="http://i.imgur.com/PvPYrbF.png">
+<meta property="og:image" content="http://i.imgur.com/5kpBLSQ.png">
+<meta property="og:image" content="http://i.imgur.com/qzyAhqg.png">
+<meta property="og:image" content="http://i.imgur.com/0yyOe41.png">
+<meta property="og:image" content="http://i.imgur.com/EO5DzIy.png">
+<meta property="og:image" content="http://i.imgur.com/xHwolcN.png">
+<meta property="og:image" content="http://i.imgur.com/BCnueuW.png">
+<meta property="og:image" content="http://i.imgur.com/6glZMQa.png">
+<meta property="og:image" content="http://i.imgur.com/gYAZwQQ.png">
+<meta property="og:image" content="http://i.imgur.com/Lqhuu7F.png">
+<meta property="og:image" content="http://i.imgur.com/rCMN1uN.png">
+<meta property="og:image" content="http://i.imgur.com/l830zTJ.png">
+<meta property="og:image" content="http://i.imgur.com/rdn2miL.png">
+<meta property="og:image" content="http://i.imgur.com/eGIDa0h.png">
+<meta property="og:image" content="http://i.imgur.com/tKfYGgO.png">
+<meta property="og:image" content="http://i.imgur.com/fa1PWeD.png">
+<meta property="og:image" content="http://i.imgur.com/Mn4KEPd.png">
+<meta property="og:image" content="http://i.imgur.com/J4rh8oF.png">
+<meta property="og:image" content="http://i.imgur.com/ZSoIzKz.png">
+<meta property="og:image" content="http://i.imgur.com/Ew9ae0F.png">
+<meta property="og:image" content="http://i.imgur.com/ChObg5t.png">
+<meta property="og:updated_time" content="2019-12-28T05:37:34.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Flask 中遇到的Python2 编码问题">
-<meta name="twitter:description" content="使用Flask 中遇到的Python2 编码问题  python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。  开始前建议阅读 Python2.x 字符编码终极指南，或者搜索一下就有很多文章。 Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复">
+<meta name="twitter:title" content="LNMP,SAMBA">
+<meta name="twitter:description" content="简要记录下了ubuntu下LNMP服务器的安装，samba文件共享的配置">
+<meta name="twitter:image" content="http://i.imgur.com/v4Vb7b4.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
@@ -117,7 +140,7 @@ ga('send', 'pageview');
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">使用Flask 中遇到的Python2 编码问题</div>
+        <div class="flex-col header-title ellipsis">LNMP,SAMBA</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -135,11 +158,11 @@ ga('send', 'pageview');
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">使用Flask 中遇到的Python2 编码问题</h1>
+        <h1 class="title">LNMP,SAMBA</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-09-17T08:47:49.000Z" itemprop="datePublished" class="page-time">
-  2017-09-17
+                <time datetime="2016-11-16T02:37:59.000Z" itemprop="datePublished" class="page-time">
+  2016-11-16
 </time>
 
 
@@ -156,13 +179,13 @@ ga('send', 'pageview');
 <div class="container body-wrap">
     
 
-<article id="post-使用Flask 中遇到的Python2 编码问题"
+<article id="post-lnmp"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">使用Flask 中遇到的Python2 编码问题</h1>
+        <h1 class="post-card-title">LNMP,SAMBA</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-09-17 16:47:49" datetime="2017-09-17T08:47:49.000Z"  itemprop="datePublished">2017-09-17</time>
+            <time class="post-time" title="2016-11-16 10:37:59" datetime="2016-11-16T02:37:59.000Z"  itemprop="datePublished">2016-11-16</time>
 
             
 
@@ -175,24 +198,147 @@ ga('send', 'pageview');
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1>使用Flask 中遇到的Python2 编码问题</h1>
-<blockquote>
-<p>python2 的编码问题一直被开发者诟病，进行一些字符工作是确实会有点麻烦，而且新手不熟悉编码，更会踩坑里。</p>
+            <blockquote>
+<p>简要记录下了ubuntu下LNMP服务器的安装，samba文件共享的配置</p>
 </blockquote>
-<p>开始前建议阅读 <a href="http://selfboot.cn/2016/12/28/py_encode_decode/" target="_blank" rel="noopener">Python2.x 字符编码终极指南</a>，或者搜索一下就有很多文章。</p>
-<p>Python2 中的 str 类型可以看做是 byte 类型的数组，即是字节流。早期设计中并没有这么多的编码，后来版本提供一个 unicode类型来修复了这一类型。有如下关系</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unicode.encode(<span class="string">'utf-8'</span>) = str</span><br><span class="line">str.decode(<span class="string">'utf-8'</span>) = unicode</span><br></pre></td></tr></table></figure>
-<p>Flask 中提交的表单 + MySQLdb + Mysql</p>
-<ol>
-<li>源文件中指明编码 #coding=utf-8</li>
-<li>Mysql设置编码为utf8</li>
-<li>MySQLdb 连接指定charset=‘utf8’，插入的代码如下</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g.db.execute(<span class="string">'insert into entries (title, text) values (&#123;&#125;, &#123;&#125;)'</span>.format(request.form[<span class="string">'title'</span>].encode(<span class="string">'utf-8'</span>), request.form[<span class="string">'text'</span>].encode(<span class="string">'utf-8'</span>)))</span><br></pre></td></tr></table></figure>
-<p>request.form[‘title’] 的类型是Unicode，encode后应该就可以变成str了，可是<br>
-提示<code>OperationalError: (1054, &quot;Unknown column 'abc' in 'field list'&quot;)</code>英文都插入不了，然后经Stack Overflow启发，改动 { } =&gt; “{ }”，然后就可以运行了。。坑死了。</p>
-<p>还有一个坑：<code>OperationalError: (2002, &quot;Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)&quot;)</code></p>
-<p>默认MySQLdb会在/var/lib/mysql 寻找sock，由于服务器的安装位置不是这里，查找mysql.sock发现在/tmp 目录下，创建MySQLdb连接时，指定unix_sock = /tmp/mysql.sock就可以连接了</p>
+<a id="more"></a>
+<h1>配置LNMP</h1>
+<hr>
+<h1>安装Nginx</h1>
+<ul>
+<li>1.执行源更新：<code>sudo apt-get update</code></li>
+<li>2.获取Nginx：<code>sudo apt-get install nginx</code></li>
+<li>3.浏览器打开：<code>202.197.75.58</code></li>
+<li>出现如图即为安装成功！</li>
+<li><img src="http://i.imgur.com/v4Vb7b4.png" alt=""></li>
+</ul>
+<hr>
+<h1>配置Nginx</h1>
+<ul>
+<li>1.执行<code>sudo nano /etc/nginx/sites-available/default</code></li>
+<li>2.获取对php的支持更改如下：</li>
+<li><img src="http://i.imgur.com/lGrrDVu.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li><img src="http://i.imgur.com/PvPYrbF.png" alt=""></li>
+</ul>
+<hr>
+<!--more-->
+<p>#安装MySQL</p>
+<ul>
+<li>1.获取Mysql：<code>sudo apt-get install mysql-server</code></li>
+<li>2.安全配置：<code>sudo mysql_secure_installation</code></li>
+</ul>
+<hr>
+<h1>安装php</h1>
+<ul>
+<li>1.获取php-fastproessmanage：<code>sudo apt-get insatll php7.0-fpm</code></li>
+<li>2.获取php对mysql的支持：<code>sudo apt-get install php7.0-sql</code></li>
+<li>3.获得php其他软件：<code>sudo apt-get install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc</code></li>
+</ul>
+<hr>
+<ul>
+<li><img src="http://i.imgur.com/5kpBLSQ.png" alt=""></li>
+</ul>
+<hr>
+<h1>配置php安全</h1>
+<ul>
+<li>1.执行<code>sudo nano /etc/php/7.0/fpm/php.ini</code></li>
+<li>2.修改<code>cgi.fix_pathinfo=0</code>避免安全漏洞</li>
+</ul>
+<hr>
+<h1>MySQL配置</h1>
+<ul>
+<li>1.执行进入后台：<code>mysql -u root -p</code></li>
+<li><img src="http://i.imgur.com/qzyAhqg.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>2.创建数据库：<code>CREATE DATABASE wordpress;</code></li>
+<li><img src="http://i.imgur.com/0yyOe41.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>3.进入wordpress后台安装</li>
+<li><img src="http://i.imgur.com/EO5DzIy.png" alt=""></li>
+<li>4.安装完成后即可登录网站后台写博客</li>
+</ul>
+<hr>
+<h1>samba文件共享</h1>
+<ul>
+<li>1.安装samba：<code>sudo apt-get install samba</code></li>
+<li>2.配置samba：<code>sudo nano /etc/samba/smb.conf</code></li>
+<li><img src="http://i.imgur.com/xHwolcN.png" alt=""></li>
+<li><img src="http://i.imgur.com/BCnueuW.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>3.重启服务：<code>service smbd restart</code></li>
+<li><code>service nmbd restart</code></li>
+<li>4.添加用户，并键入密码：<code>smbpasswd -a lhw</code></li>
+<li><img src="http://i.imgur.com/6glZMQa.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>5.在win下可以访问：</li>
+<li><img src="http://i.imgur.com/gYAZwQQ.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li><img src="http://i.imgur.com/Lqhuu7F.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>6.新建一个netgroup用户组<code>groupadd netgroup</code></li>
+<li>7.添加用户<code>useradd a(b,c) -g netgroup</code></li>
+<li><img src="http://i.imgur.com/rCMN1uN.png" alt=""></li>
+<li>8.分别创建密码：<code>passwd a</code></li>
+<li><img src="http://i.imgur.com/l830zTJ.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>9.将smb文件夹归属改变：<code>sudo chown c:netgroup smb</code></li>
+<li><img src="http://i.imgur.com/rdn2miL.png" alt=""></li>
+<li>10.分别设置smbpasswd：<code>smbpasswd -a a</code></li>
+<li><img src="http://i.imgur.com/eGIDa0h.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>11.配置smb，添加字段：</li>
+<li><img src="http://i.imgur.com/tKfYGgO.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>12.使用a登录，发现无法上传文件，删除文件。</li>
+<li><img src="http://i.imgur.com/fa1PWeD.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>13.使用c登录则可以上传文件：</li>
+<li><img src="http://i.imgur.com/Mn4KEPd.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li><img src="http://i.imgur.com/J4rh8oF.png" alt=""></li>
+</ul>
+<hr>
+<h1>shell script</h1>
+<ul>
+<li>1.打印登录用户，工作目录：</li>
+<li><img src="http://i.imgur.com/ZSoIzKz.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>2.计算从1+2+3+…+100，结果显示在屏幕上且重定向到result.log</li>
+<li><img src="http://i.imgur.com/Ew9ae0F.png" alt=""></li>
+</ul>
+<hr>
+<ul>
+<li>3.程序的文件名,共有几个参数,若参数的个数小于3个，则输出“the parameter is less than 3“”并退出,显示第二个参数。</li>
+<li><img src="http://i.imgur.com/ChObg5t.png" alt=""></li>
+</ul>
+<hr>
 
         </div>
 
@@ -201,12 +347,12 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-19T11:53:18.494Z" itemprop="dateUpdated">2019-08-19 19:53:18</time>
+    最后更新时间：<time datetime="2019-12-28T05:37:34.832Z" itemprop="dateUpdated">2019-12-28 13:37:34</time>
 </span><br>
 
 
         
-        <a href="/posts/2017/09/17/使用Flask 中遇到的Python2 编码问题/" target="_blank" rel="external">https://whllhw.xyz/posts/2017/09/17/使用Flask 中遇到的Python2 编码问题/</a>
+        <a href="/posts/2016/11/16/lnmp/" target="_blank" rel="external">https://whllhw.xyz/posts/2016/11/16/lnmp/</a>
         
     </div>
     
@@ -223,8 +369,6 @@ ga('send', 'pageview');
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flask-python/">flask, python</a></li></ul>
-
 
             
 
@@ -236,18 +380,18 @@ ga('send', 'pageview');
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/posts/2017/09/21/Selenium 自动化测试框架/" id="post-prev" class="post-nav-link">
+      <a href="/posts/2016/11/16/Ubuntu下的网络配置/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Selenium 自动化测试框架</h4>
+        <h4 class="title">Ubuntu下的网络配置</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/2017/06/23/腾讯云主机相关的iptables使用端口转发/" id="post-next" class="post-nav-link">
+      <a href="/posts/2016/11/16/分区备份/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">腾讯云主机相关的iptables使用端口转发</h4>
+        <h4 class="title">分区备份</h4>
       </a>
     </div>
   

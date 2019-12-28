@@ -39,13 +39,10 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="背景 我安装的双系统，有时需要切换到Linux下工作，有时又需要在Windows下处理事务。我使用的蓝牙键盘是Logitech K380，可以同时容纳三个设备，但是每次在一个系统下配置使用后，重启到另外一个系统便不能再连接，需要重新配对。本文参考了网络上其他的文章，可先看参考文章。话不多说，直接开始！ 首先，了解一下原因。蓝牙配对是根据设备的MAC地址和随机生成的密钥来连接的，相同设备的MAC地址">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://118.89.41.105/wp-content/uploads/2019/07/396a1edb3cee1e929390025df1a79655.png">
-<meta property="og:image" content="https://118.89.41.105/wp-content/uploads/2019/07/2019-07-18-19-48-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-<meta property="og:updated_time" content="2019-08-19T11:53:18.667Z">
+<meta property="og:updated_time" content="2019-12-28T05:46:21.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 和 Windows 双系统共用蓝牙设备">
 <meta name="twitter:description" content="背景 我安装的双系统，有时需要切换到Linux下工作，有时又需要在Windows下处理事务。我使用的蓝牙键盘是Logitech K380，可以同时容纳三个设备，但是每次在一个系统下配置使用后，重启到另外一个系统便不能再连接，需要重新配对。本文参考了网络上其他的文章，可先看参考文章。话不多说，直接开始！ 首先，了解一下原因。蓝牙配对是根据设备的MAC地址和随机生成的密钥来连接的，相同设备的MAC地址">
-<meta name="twitter:image" content="https://118.89.41.105/wp-content/uploads/2019/07/396a1edb3cee1e929390025df1a79655.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
@@ -196,11 +193,11 @@ ga('send', 'pageview');
 <blockquote>
 <p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Keys\441ca8xxxxx（本机蓝牙MAC）</p>
 </blockquote>
-<p>最后的密钥在键为键盘蓝牙MAC下，<img src="https://118.89.41.105/wp-content/uploads/2019/07/396a1edb3cee1e929390025df1a79655.png" alt=""></p>
-<p>剩余步骤直接按原文操作即可。</p>
+<p>最后的密钥在键为键盘蓝牙MAC下。<br>
+剩余步骤直接按原文操作即可。</p>
 <h1>修改Linux下蓝牙配对信息</h1>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">cd /var/lib/bluetooth/60:57:XX:XX:XX:XX # 进入本机蓝牙设备的配对信息</span><br><span class="line">cd EB:50:XX:XX:XX:XX # 进入键盘蓝牙目录</span><br></pre></td></tr></table></figure>
-<p>修改该目录下的info文件，把key改对即可。注意去掉冒号，全大写，这里与原文鼠标的配置文件不同。（不需要反转字符）<img src="https://118.89.41.105/wp-content/uploads/2019/07/2019-07-18-19-48-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
+<p>修改该目录下的info文件，把key改对即可。注意去掉冒号，全大写，这里与原文鼠标的配置文件不同。（不需要反转字符）</p>
 <h1>参考</h1>
 <p><a href="https://blog.nanpuyue.com/2018/040.html" target="_blank" rel="noopener">https://blog.nanpuyue.com/2018/040.html</a></p>
 
@@ -211,7 +208,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-19T11:53:18.667Z" itemprop="dateUpdated">2019-08-19 19:53:18</time>
+    最后更新时间：<time datetime="2019-12-28T05:46:21.477Z" itemprop="dateUpdated">2019-12-28 13:46:21</time>
 </span><br>
 
 
