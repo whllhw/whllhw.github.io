@@ -36,7 +36,7 @@ ga('send', 'pageview');
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极品飞车世界 NFS World 服务器搭建教程">
-<meta property="og:url" content="https://whllhw.xyz/posts/2018/09/16/极品飞车世界 NFS World 服务器搭建教程/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2018/09/16/极品飞车世界 NFS World 服务器搭建教程/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="本篇文章主要讲搭建过程，以及出现问题的解决方法。难度较高，我已经搭建好了服务器供玩耍，如何连接服务器看这篇文章或者 简书  不推荐的方法 我先找到 github SoapboxRaceWorld上面的开源服务器，尝试了很久，最后搭建好了之后发现游戏中购车的界面进不去，在后台数据库发现少数据，但是我已经全部导入了的😂   既然已经不推荐用这种方法了，可以跳过这里。  打包出来的是 war ，需要">
 <meta property="og:locale" content="zh">
@@ -288,12 +288,12 @@ PS：我准备把这个服务做成 docker 镜像，这样部署的时候就不�
 
 
         
-        <a href="/posts/2018/09/16/极品飞车世界 NFS World 服务器搭建教程/" target="_blank" rel="external">https://whllhw.xyz/posts/2018/09/16/极品飞车世界 NFS World 服务器搭建教程/</a>
+        <a href="/posts/2018/09/16/极品飞车世界 NFS World 服务器搭建教程/" target="_blank" rel="external">https://whllhw.ml/posts/2018/09/16/极品飞车世界 NFS World 服务器搭建教程/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -355,6 +355,32 @@ PS：我准备把这个服务做成 docker 镜像，这样部署的时候就不�
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -385,7 +411,7 @@ PS：我准备把这个服务做成 docker 镜像，这样部署的时候就不�
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -399,7 +425,7 @@ PS：我准备把这个服务做成 docker 镜像，这样部署的时候就不�
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -429,27 +455,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

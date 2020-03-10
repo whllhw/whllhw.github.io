@@ -36,16 +36,16 @@ ga('send', 'pageview');
 <meta name="keywords" content="spring boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="升级到 spring boot 2.0">
-<meta property="og:url" content="https://whllhw.xyz/posts/2018/08/25/升级到 spring boot 2.0/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2018/08/25/升级到 spring boot 2.0/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="spring boot 2.0 版本出了有一段时间了，当然是要用一用了，把现在在写的项目升级一波。当然升级前是看了一下别人的博客 http://tengj.top/2018/07/23/springboot2to1/ 。（怎么感觉有质量的博客越来越少，剩下的就是在互相“引用”，搜出来基本一模一样，国内某搜索引擎更加差劲，还是自己抽时间看文档比较好）本篇持续更新（随缘）   首先在 pom.xml">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://whllhw.xyz/images/gson.png">
+<meta property="og:image" content="https://whllhw.ml/images/gson.png">
 <meta property="og:updated_time" content="2019-08-19T11:53:18.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="升级到 spring boot 2.0">
 <meta name="twitter:description" content="spring boot 2.0 版本出了有一段时间了，当然是要用一用了，把现在在写的项目升级一波。当然升级前是看了一下别人的博客 http://tengj.top/2018/07/23/springboot2to1/ 。（怎么感觉有质量的博客越来越少，剩下的就是在互相“引用”，搜出来基本一模一样，国内某搜索引擎更加差劲，还是自己抽时间看文档比较好）本篇持续更新（随缘）   首先在 pom.xml">
-<meta name="twitter:image" content="https://whllhw.xyz/images/gson.png">
+<meta name="twitter:image" content="https://whllhw.ml/images/gson.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
@@ -206,12 +206,12 @@ ga('send', 'pageview');
 
 
         
-        <a href="/posts/2018/08/25/升级到 spring boot 2.0/" target="_blank" rel="external">https://whllhw.xyz/posts/2018/08/25/升级到 spring boot 2.0/</a>
+        <a href="/posts/2018/08/25/升级到 spring boot 2.0/" target="_blank" rel="external">https://whllhw.ml/posts/2018/08/25/升级到 spring boot 2.0/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -273,6 +273,32 @@ ga('send', 'pageview');
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -303,7 +329,7 @@ ga('send', 'pageview');
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -317,7 +343,7 @@ ga('send', 'pageview');
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -347,27 +373,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

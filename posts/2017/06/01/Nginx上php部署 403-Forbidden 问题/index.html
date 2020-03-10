@@ -36,7 +36,7 @@ ga('send', 'pageview');
 <meta name="keywords" content="nginx, php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx上php部署 403-Forbidden 问题">
-<meta property="og:url" content="https://whllhw.xyz/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="php7.0-fpm + Nginx搭建php服务，遇到403 也是常见的情形。网络上有说进程数不够、缓存不够会出现403 ，可我这破网站也就我一人在上，显然不是这情况。先记录下如何安装。 sudo apt-get install php nginx # 默认php7自带了fpm  修改Nginx默认站点的配置">
 <meta property="og:locale" content="zh">
@@ -216,12 +216,12 @@ sudo chmod 770 . -R
 
 
         
-        <a href="/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/" target="_blank" rel="external">https://whllhw.xyz/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/</a>
+        <a href="/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/" target="_blank" rel="external">https://whllhw.ml/posts/2017/06/01/Nginx上php部署 403-Forbidden 问题/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -283,6 +283,32 @@ sudo chmod 770 . -R
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -313,7 +339,7 @@ sudo chmod 770 . -R
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -327,7 +353,7 @@ sudo chmod 770 . -R
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -357,27 +383,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

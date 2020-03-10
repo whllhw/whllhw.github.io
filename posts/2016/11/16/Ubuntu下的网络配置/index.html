@@ -36,7 +36,7 @@ ga('send', 'pageview');
 <meta name="keywords" content="ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu下的网络配置">
-<meta property="og:url" content="https://whllhw.xyz/posts/2016/11/16/Ubuntu下的网络配置/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2016/11/16/Ubuntu下的网络配置/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="1.配置网络 命令版： 1.设置IP sudo ifconfig ens3 202.197.75.58   2.设置网关 sudo route add default gw 202.197.75.55  3.设置DNS sudo nano /etc/resolv.conf   添加nameserver 114.114.114.114 4.重启网络 sudo /ect/init.d/network">
 <meta property="og:locale" content="zh">
@@ -230,12 +230,12 @@ sudo nano /etc/rc.local<br>
 
 
         
-        <a href="/posts/2016/11/16/Ubuntu下的网络配置/" target="_blank" rel="external">https://whllhw.xyz/posts/2016/11/16/Ubuntu下的网络配置/</a>
+        <a href="/posts/2016/11/16/Ubuntu下的网络配置/" target="_blank" rel="external">https://whllhw.ml/posts/2016/11/16/Ubuntu下的网络配置/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -297,6 +297,32 @@ sudo nano /etc/rc.local<br>
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -327,7 +353,7 @@ sudo nano /etc/rc.local<br>
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -341,7 +367,7 @@ sudo nano /etc/rc.local<br>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -371,27 +397,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

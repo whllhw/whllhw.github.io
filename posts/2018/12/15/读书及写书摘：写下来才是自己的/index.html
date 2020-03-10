@@ -35,7 +35,7 @@ ga('send', 'pageview');
     <meta name="description" content="开学的时候受公众号（stormzhang）影响在当当买了几本书，大佬推荐的一些理财书（《富爸爸穷爸爸》、《小狗钱钱》），还有一些运营的书（《启示录》、《增长黑客》）。和好友一起凑单买了几本，很快囫囵吞枣把一页页书吃掉，书上知识、理念很开眼界，但是现在博主已经全都忘记书上说过什么了，可能得再次翻开书才能找回看书时熟悉的感觉。今天写这篇水文，就当总结阅读来的感悟，还有不足之处吧。 以前的时候基本没怎么">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读书及写书摘：写下来才是自己的">
-<meta property="og:url" content="https://whllhw.xyz/posts/2018/12/15/读书及写书摘：写下来才是自己的/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2018/12/15/读书及写书摘：写下来才是自己的/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="开学的时候受公众号（stormzhang）影响在当当买了几本书，大佬推荐的一些理财书（《富爸爸穷爸爸》、《小狗钱钱》），还有一些运营的书（《启示录》、《增长黑客》）。和好友一起凑单买了几本，很快囫囵吞枣把一页页书吃掉，书上知识、理念很开眼界，但是现在博主已经全都忘记书上说过什么了，可能得再次翻开书才能找回看书时熟悉的感觉。今天写这篇水文，就当总结阅读来的感悟，还有不足之处吧。 以前的时候基本没怎么">
 <meta property="og:locale" content="zh">
@@ -234,12 +234,12 @@ ga('send', 'pageview');
 
 
         
-        <a href="/posts/2018/12/15/读书及写书摘：写下来才是自己的/" target="_blank" rel="external">https://whllhw.xyz/posts/2018/12/15/读书及写书摘：写下来才是自己的/</a>
+        <a href="/posts/2018/12/15/读书及写书摘：写下来才是自己的/" target="_blank" rel="external">https://whllhw.ml/posts/2018/12/15/读书及写书摘：写下来才是自己的/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -299,6 +299,32 @@ ga('send', 'pageview');
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -329,7 +355,7 @@ ga('send', 'pageview');
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -343,7 +369,7 @@ ga('send', 'pageview');
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -373,27 +399,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

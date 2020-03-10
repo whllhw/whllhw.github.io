@@ -35,7 +35,7 @@ ga('send', 'pageview');
     <meta name="description" content="背景 我安装的双系统，有时需要切换到Linux下工作，有时又需要在Windows下处理事务。我使用的蓝牙键盘是Logitech K380，可以同时容纳三个设备，但是每次在一个系统下配置使用后，重启到另外一个系统便不能再连接，需要重新配对。本文参考了网络上其他的文章，可先看参考文章。话不多说，直接开始！ 首先，了解一下原因。蓝牙配对是根据设备的MAC地址和随机生成的密钥来连接的，相同设备的MAC地址">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 和 Windows 双系统共用蓝牙设备">
-<meta property="og:url" content="https://whllhw.xyz/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="背景 我安装的双系统，有时需要切换到Linux下工作，有时又需要在Windows下处理事务。我使用的蓝牙键盘是Logitech K380，可以同时容纳三个设备，但是每次在一个系统下配置使用后，重启到另外一个系统便不能再连接，需要重新配对。本文参考了网络上其他的文章，可先看参考文章。话不多说，直接开始！ 首先，了解一下原因。蓝牙配对是根据设备的MAC地址和随机生成的密钥来连接的，相同设备的MAC地址">
 <meta property="og:locale" content="zh">
@@ -213,12 +213,12 @@ ga('send', 'pageview');
 
 
         
-        <a href="/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/" target="_blank" rel="external">https://whllhw.xyz/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/</a>
+        <a href="/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/" target="_blank" rel="external">https://whllhw.ml/posts/2019/08/19/Linux 和 Windows 双系统共用蓝牙设备/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -278,6 +278,32 @@ ga('send', 'pageview');
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -308,7 +334,7 @@ ga('send', 'pageview');
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -322,7 +348,7 @@ ga('send', 'pageview');
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -352,27 +378,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

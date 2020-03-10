@@ -36,17 +36,17 @@ ga('send', 'pageview');
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="idea git push 引起的血案">
-<meta property="og:url" content="https://whllhw.xyz/posts/2018/08/26/idea git push 引起的血案/index.html">
+<meta property="og:url" content="https://whllhw.ml/posts/2018/08/26/idea git push 引起的血案/index.html">
 <meta property="og:site_name" content="仰头45℃爆笑">
 <meta property="og:description" content="操作不当导致一天内写的代码丢失，最后依靠 idea 的本地历史（local history）找回。  过程：  使用 idea 的 VSC 工具进行 git commit （用这个主要是这个带有自动整理代码，优化导入的功能，还会分析代码） 想了想应该只有我有最新的版本了，别人不会有更新的。于是直接点开 git push （以前都是先使用 git pull 的，这次脑残了） 提示有冲突，是否进行合">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://whllhw.xyz/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png">
-<meta property="og:image" content="https://whllhw.xyz/images/TIM%E6%88%AA%E5%9B%BE20180828232021.png">
+<meta property="og:image" content="https://whllhw.ml/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png">
+<meta property="og:image" content="https://whllhw.ml/images/TIM%E6%88%AA%E5%9B%BE20180828232021.png">
 <meta property="og:updated_time" content="2019-08-19T11:53:18.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="idea git push 引起的血案">
 <meta name="twitter:description" content="操作不当导致一天内写的代码丢失，最后依靠 idea 的本地历史（local history）找回。  过程：  使用 idea 的 VSC 工具进行 git commit （用这个主要是这个带有自动整理代码，优化导入的功能，还会分析代码） 想了想应该只有我有最新的版本了，别人不会有更新的。于是直接点开 git push （以前都是先使用 git pull 的，这次脑残了） 提示有冲突，是否进行合">
-<meta name="twitter:image" content="https://whllhw.xyz/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png">
+<meta name="twitter:image" content="https://whllhw.ml/images/TIM%E6%88%AA%E5%9B%BE20180828233327.png">
     
         <link rel="alternate" type="application/atom+xml" title="仰头45℃爆笑" href="/rss2.xml">
     
@@ -212,12 +212,12 @@ ga('send', 'pageview');
 
 
         
-        <a href="/posts/2018/08/26/idea git push 引起的血案/" target="_blank" rel="external">https://whllhw.xyz/posts/2018/08/26/idea git push 引起的血案/</a>
+        <a href="/posts/2018/08/26/idea git push 引起的血案/" target="_blank" rel="external">https://whllhw.ml/posts/2018/08/26/idea git push 引起的血案/</a>
         
     </div>
     
     <footer>
-        <a href="https://whllhw.xyz">
+        <a href="https://whllhw.ml">
             <img src="/img/avatar.png" alt="whllhw">
             whllhw
         </a>
@@ -279,6 +279,32 @@ ga('send', 'pageview');
 
 
 
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'dev',
+          clientSecret: 'dev',
+          repo: 'test_repo',
+          owner: 'whllhw',
+          admin: ['whllhw'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
 
 
 
@@ -309,7 +335,7 @@ ga('send', 'pageview');
         </p>
     </div>
     <div class="bottom">
-        <p><span>whllhw &copy; 2016 - 2019</span>
+        <p><span>whllhw &copy; 2016 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -323,7 +349,7 @@ ga('send', 'pageview');
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+    <script src="/js/waves.min.js"></script>
 <script>
 var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
@@ -353,27 +379,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="/js/search.min.js?v=1.7.2" async></script>
 
 
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
