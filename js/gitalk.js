@@ -2927,14 +2927,16 @@ var queryStringify = exports.queryStringify = function queryStringify(query) {
 var axiosJSON = exports.axiosJSON = _axios2.default.create({
   headers: {
     'Accept': 'application/json'
-  }
+  },
+  withCredentials: true
 });
 
 var axiosGithub = exports.axiosGithub = _axios2.default.create({
-  baseURL: 'https://api.whllhw.ml',
+  baseURL: 'https://118.89.41.105',
   headers: {
     'Accept': 'application/json'
-  }
+  },
+  withCredentials: true
 });
 
 var getMetaContent = exports.getMetaContent = function getMetaContent(name, content) {
@@ -6985,7 +6987,7 @@ var GitalkComponent = function (_Component) {
       pagerDirection: 'last', // last or first
       createIssueManually: false,
       distractionFreeMode: false,
-      proxy: 'https://api.whllhw.ml/oauth/token',
+      proxy: 'https://118.89.41.105/oauth/token',
       flipMoveOptions: {
         staggerDelayBy: 150,
         appearAnimation: 'accordionVertical',
@@ -7277,6 +7279,7 @@ var GitalkComponent = function (_Component) {
     value: function logout() {
       this.setState({ user: null });
       window.localStorage.removeItem(_const.GT_ACCESS_TOKEN);
+      _util.axiosGithub.post('/logout');
     }
   }, {
     key: 'like',
@@ -7659,7 +7662,7 @@ var GitalkComponent = function (_Component) {
   }, {
     key: 'loginLink',
     get: function get() {
-      var githubOauthUrl = 'https://api.whllhw.ml/oauth/authorize';
+      var githubOauthUrl = 'https://118.89.41.105/oauth/authorize';
       var clientID = this.options.clientID;
 
       var query = {
