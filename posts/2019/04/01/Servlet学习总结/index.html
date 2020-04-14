@@ -17,7 +17,7 @@ ga('send', 'pageview');</script><meta name="google-site-verification" content="g
 <p>Spring Boot 中的spring-boot-web-starter中默认配置的Web容器就是Tomcat，而Tomcat是实现了Servlet规范的Web容器，以前在项目中经常用到，但是由于Spring Boot的约定先于配置大大隐藏了Tomcat的复杂性，还有Servlet的一些底层实现，导致在项目用到一些Servlet的东西却不知道其接口之间的关系。加上最近找实习也遇到面试官问这些问题，之前零散在网上看的不系统，回答的时候有点懵，于是花了一天去较为系统的了解这个Java Web中的重要接口。</p>
 <h1>思维导图</h1>
 <p>先看看我导图，然后再自底向上一一道来，归纳得不全，只有常见的接口，接口的实现也没有时间细看。<br>
-<img src="https://upload-images.jianshu.io/upload_images/10215367-a441953f2f80b8b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Servlet"></p>
+<img src="/images/10215367-a441953f2f80b8b2.png" alt="Servlet"></p>
 <h1>什么是Servlet？</h1>
 <p>Servlet（server applet）是JavaEE（位于javax.servlet）中的编程规范，用在浏览器与Java之间访问交互，只需要实现了Servlet就可以在任意符合其规范的Web容器应用服务器（Tomcat JBoss Wildfly）中运行你的后端代码。从而实现了一次编写到处部署（面向接口编程的好处）！</p>
 <h1>Servlet有哪些常见的接口？</h1>

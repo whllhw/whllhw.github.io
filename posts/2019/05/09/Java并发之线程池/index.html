@@ -22,7 +22,7 @@ ga('send', 'pageview');</script><meta name="google-site-verification" content="g
 <li>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
 </ul>
 <h1>类图</h1>
-<p><img src="https://user-gold-cdn.xitu.io/2017/4/22/8f025e56062328e4ac36e3c988e30d27?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+<p><img src="/images/8f025e56062328e4ac36e3c988e30d27" alt=""></p>
 <h2 id="executor-接口">Executor 接口</h2>
 <p>只有一个方法<code>void execute(Runnable command)</code>，用来提交一个任务，根据不同的Executor实现，可能是创建一个新工作线程或者是复用工作线程运行<br>
 根据线程池的容量或阻塞队列的容量决定是否放入阻塞队列中，或者拒绝接受传入的任务。</p>
@@ -144,7 +144,7 @@ Worker继承了AQS，使用AQS来实现独占锁的功能。不使用ReentrantLo
 getTask方法返回null时，在runWorker方法中会跳出while循环，然后会执行processWorkerExit方法。</p>
 <h2 id="processworkerexit方法">processWorkerExit方法</h2>
 <p>至此，processWorkerExit执行完之后，工作线程被销毁，以上就是整个工作线程的生命周期，从execute方法开始，Worker使用ThreadFactory创建新的工作线程，runWorker通过getTask获取任务，然后执行任务，如果getTask返回null，进入processWorkerExit方法，整个线程结束，如图所示：<br>
-<img src="https://user-gold-cdn.xitu.io/2017/4/22/fb66e616aa6da061f92d0b4eebb64b7f" alt=""></p>
+<img src="/images/fb66e616aa6da061f92d0b4eebb64b7f" alt=""></p>
 <h2 id="tryterminate方法">tryTerminate方法</h2>
 <p>tryTerminate方法根据线程池状态进行判断是否结束线程池。</p>
 <ol>

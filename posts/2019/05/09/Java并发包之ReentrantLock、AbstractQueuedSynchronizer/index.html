@@ -54,8 +54,8 @@ ga('send', 'pageview');</script><meta name="google-site-verification" content="g
 <h1>AQS（AbstractQueuedSynchronizer）同步器</h1>
 <p>用于构建锁和同步器的框架，很多juc中都用其来构建同步器。（ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask）</p>
 <h2 id="核心思想">核心思想</h2>
-<p><img src="https://q.whllhw.xyz/wp-content/uploads/2019/04/CLH.png" alt=""><br>
-底层：CAS，在C++内使用汇编CPU指令</p>
+<!-- ![](https://q.whllhw.xyz/wp-content/uploads/2019/04/CLH.png) -->
+<p>底层：CAS，在C++内使用汇编CPU指令</p>
 <h2 id="设计模式：模板方法">设计模式：模板方法</h2>
 <p>一些方法开放给子类进行重写，而同步器给同步组件所提供模板方法又会重新调用被子类所重写的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">protected final boolean tryAcquire(int acquires) &#123;</span><br><span class="line">    //  throw new UnsupportedOperationException(); // 父类实现</span><br><span class="line">    return nonfairTryAcquire(acquires); // NonfairSync子类实现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

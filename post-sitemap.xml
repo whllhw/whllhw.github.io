@@ -7,6 +7,30 @@
     </url>
 
     <url>
+        <loc>https://whllhw.ml/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+        <lastmod>2020-04-14T05:41:59.677Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://whllhw.ml/posts/2019/04/01/Servlet%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2020-04-14T05:40:06.845Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://whllhw.ml/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E5%8C%85%E4%B9%8BReentrantLock%E3%80%81AbstractQueuedSynchronizer/</loc>
+        <lastmod>2020-04-14T05:38:16.976Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://whllhw.ml/posts/2019/01/14/DonkeyCar%E6%80%BB%E7%BB%93/</loc>
         <lastmod>2020-04-14T05:27:46.880Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -55,22 +79,6 @@
     </url>
 
     <url>
-        <loc>https://whllhw.ml/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
-        <lastmod>2019-08-19T11:53:18.652Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://whllhw.ml/posts/2019/05/09/Java%E5%B9%B6%E5%8F%91%E5%8C%85%E4%B9%8BReentrantLock%E3%80%81AbstractQueuedSynchronizer/</loc>
-        <lastmod>2019-08-19T11:53:18.646Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://whllhw.ml/posts/2019/04/15/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</loc>
         <lastmod>2019-08-19T11:53:18.636Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -89,14 +97,6 @@
     <url>
         <loc>https://whllhw.ml/posts/2019/04/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</loc>
         <lastmod>2019-08-19T11:53:18.621Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://whllhw.ml/posts/2019/04/01/Servlet%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2019-08-19T11:53:18.613Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

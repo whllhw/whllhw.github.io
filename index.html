@@ -100,7 +100,7 @@ ga('send', 'pageview');</script><meta name="google-site-verification" content="g
 <li>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
 </ul>
 <h1>类图</h1>
-<p><img src="https://user-gold-cdn.xitu.io/2017/4/22/8f025e56062328e4ac36e3c988e30d27?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+<p><img src="/images/8f025e56062328e4ac36e3c988e30d27" alt=""></p>
 <h2 id="executor-接口">Executor 接口</h2>
 <p>只有一个方法<code>void execute(Runnable command)</code>，用来提交一个任务，根据不同的Executor实现，可能是创建一个新工作线程或者是复用工作线程运行<br>
 根据线程池的容量或阻塞队列的容量决定是否放入阻塞队列中，或者拒绝接受传入的任务。</p>
@@ -222,7 +222,7 @@ Worker继承了AQS，使用AQS来实现独占锁的功能。不使用ReentrantLo
 getTask方法返回null时，在runWorker方法中会跳出while循环，然后会执行processWorkerExit方法。</p>
 <h2 id="processworkerexit方法">processWorkerExit方法</h2>
 <p>至此，processWorkerExit执行完之后，工作线程被销毁，以上就是整个工作线程的生命周期，从execute方法开始，Worker使用ThreadFactory创建新的工作线程，runWorker通过getTask获取任务，然后执行任务，如果getTask返回null，进入processWorkerExit方法，整个线程结束，如图所示：<br>
-<img src="https://user-gold-cdn.xitu.io/2017/4/22/fb66e616aa6da061f92d0b4eebb64b7f" alt=""></p>
+<img src="/images/fb66e616aa6da061f92d0b4eebb64b7f" alt=""></p>
 <h2 id="tryterminate方法">tryTerminate方法</h2>
 <p>tryTerminate方法根据线程池状态进行判断是否结束线程池。</p>
 <ol>
@@ -313,8 +313,8 @@ shutdownNow方法执行完之后调用tryTerminate方法，该方法在上文已
 <h1>AQS（AbstractQueuedSynchronizer）同步器</h1>
 <p>用于构建锁和同步器的框架，很多juc中都用其来构建同步器。（ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask）</p>
 <h2 id="核心思想">核心思想</h2>
-<p><img src="https://q.whllhw.xyz/wp-content/uploads/2019/04/CLH.png" alt=""><br>
-底层：CAS，在C++内使用汇编CPU指令</p>
+<!-- ![](https://q.whllhw.xyz/wp-content/uploads/2019/04/CLH.png) -->
+<p>底层：CAS，在C++内使用汇编CPU指令</p>
 <h2 id="设计模式：模板方法">设计模式：模板方法</h2>
 <p>一些方法开放给子类进行重写，而同步器给同步组件所提供模板方法又会重新调用被子类所重写的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">protected final boolean tryAcquire(int acquires) &#123;</span><br><span class="line">    //  throw new UnsupportedOperationException(); // 父类实现</span><br><span class="line">    return nonfairTryAcquire(acquires); // NonfairSync子类实现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -608,7 +608,7 @@ finalize()中复活对象（当然只会复活一次）</li>
 <p>Spring Boot 中的spring-boot-web-starter中默认配置的Web容器就是Tomcat，而Tomcat是实现了Servlet规范的Web容器，以前在项目中经常用到，但是由于Spring Boot的约定先于配置大大隐藏了Tomcat的复杂性，还有Servlet的一些底层实现，导致在项目用到一些Servlet的东西却不知道其接口之间的关系。加上最近找实习也遇到面试官问这些问题，之前零散在网上看的不系统，回答的时候有点懵，于是花了一天去较为系统的了解这个Java Web中的重要接口。</p>
 <h1>思维导图</h1>
 <p>先看看我导图，然后再自底向上一一道来，归纳得不全，只有常见的接口，接口的实现也没有时间细看。<br>
-<img src="https://upload-images.jianshu.io/upload_images/10215367-a441953f2f80b8b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Servlet"></p>
+<img src="/images/10215367-a441953f2f80b8b2.png" alt="Servlet"></p>
 <h1>什么是Servlet？</h1>
 <p>Servlet（server applet）是JavaEE（位于javax.servlet）中的编程规范，用在浏览器与Java之间访问交互，只需要实现了Servlet就可以在任意符合其规范的Web容器应用服务器（Tomcat JBoss Wildfly）中运行你的后端代码。从而实现了一次编写到处部署（面向接口编程的好处）！</p>
 <h1>Servlet有哪些常见的接口？</h1>
